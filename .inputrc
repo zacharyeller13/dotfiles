@@ -1,0 +1,13 @@
+# Use to set behavior of line input editing and keybindings
+
+# Make tab autocomplete ignore filename case
+
+set completion-ignore-case on
+
+# List all matches in case of multiple possible completions
+
+set show-all-if-ambiguous on
+
+# Select matches with Shift-Tab
+
+"\e[Z": menu-complete
