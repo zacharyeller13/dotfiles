@@ -7,6 +7,6 @@ export PATH="$HOME/bin:$PATH";
 
 for DOTFILE in `find /home/zacheller/.dotfiles`
 do
-	[ -f "$DOTFILE" ] && source "$DOTFILE"
+    [ -f "$DOTFILE" ] && source "$DOTFILE"
 done
 
