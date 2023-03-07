@@ -1,1 +1,8 @@
+include /usr/shar/nano/go.nanorc
+include /usr/shar/nano/python.nanorc
+include /usr/shar/nano/sh.nanorc
+include /usr/shar/nano/sql.nanorc
+include /usr/shar/nano/xml.nanorc
+include /usr/shar/nano/yaml.nanorc
+
 set tabsize 4
