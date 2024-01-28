@@ -1,9 +1,6 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=/etc/alternatives/dotnet:$HOME/bin:/usr/local/bin:$PATH
 
-# Path to your oh-my-zsh installation.
-export ZSH="$HOME/.oh-my-zsh"
-
 # JRE Path
 export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64/bin/java
 
@@ -63,7 +60,7 @@ ZSH_THEME="jonathan"
 # "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
 # or set a custom format using the strftime function format specifications,
 # see 'man strftime' for details.
-# HIST_STAMPS="mm/dd/yyyy"
+HIST_STAMPS="yyyy-mm-dd"
 
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
@@ -74,8 +71,6 @@ ZSH_THEME="jonathan"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git zsh-autocomplete)
-
-source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
@@ -103,6 +98,12 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+export ZSH=$HOME/.oh-my-zsh
+source $ZSH/oh-my-zsh.sh
+source $HOME/.alias
+source $HOME/.env
+
 # Import colorscheme from 'wal' asynchronously
 
 (cat ~/.cache/wal/sequences &)
+

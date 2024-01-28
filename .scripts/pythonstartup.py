@@ -21,7 +21,7 @@ try:
     # Will only work on Linux; readline is not intended for Windows
     import readline
     readline.parse_and_bind("tab: complete")
-    print('letz go.')
+    print('tab completion babay!!!')
     del readline
 except ImportError:
     print('no readline support.')

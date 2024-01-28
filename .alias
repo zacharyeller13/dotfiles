@@ -3,5 +3,5 @@ alias ld="ls -ld */" # List only directories
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
-nand=~/Nextcloud2/Documents/Learning/OSSU/Nand2Tetris/nand2tetris
+alias nand="cd ~/Nextcloud2/Documents/Learning/OSSU/Nand2Tetris/nand2tetris"
 
