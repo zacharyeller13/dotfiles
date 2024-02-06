@@ -1,12 +1,9 @@
 # Set the oh-my-posh theme
 oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH/agnosterplus.omp.json" | Invoke-Expression
 
-# Function to make navigating to Nand2Tetris faster
-# function gotoNand2Tetris { Set-Location "C:\Users\zachary.eller.WILSONLEGAL\Nextcloud\Documents\Learning\OSSU\Nand2Tetris\nand2tetris" }
-# Function to make navigation to Projects faster
-# function gotoProjects { Set-Location "$HOME\OneDrive - Harbor Global\Documents\Projects" }
-# function gotoScripts { Set-Location "$HOME\OneDrive - Harbor Global\Documents\Scripts" }
-. "./functions.ps1"
+# Functions
+# Including gotoNand2Tetris, gotoProjects, gotoScripts
+. "$HOME/.dotfiles/dotfiles/functions.ps1"
 
 # Aliases
 Set-Alias nand gotoNand2Tetris
