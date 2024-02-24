@@ -5,3 +5,11 @@
 	branch = false
 [core]
 	autocrlf = input
+[push]
+	default = current
+[init]
+	defaultBranch = main
+[branch]
+	sort = -committerdate
+[log]
+	date = iso
