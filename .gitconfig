@@ -5,6 +5,7 @@
 	branch = false
 [core]
 	autocrlf = input
+	editor = nvim
 [push]
 	default = current
 [init]
