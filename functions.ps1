@@ -7,13 +7,19 @@ function gotoScripts { Set-Location "$HOME\OneDrive - Harbor Global\Documents\Sc
 # To clear the Intapp Data Cache when troubleshooting or other reasons
 function Clear-IntappCache {
 	[CmdletBinding(SupportsShouldProcess=$true)]
-	Param()
+	Param([switch]$IncludeAuth)
 
 	Process
 	{
 		$dataCache = "$env:APPDATA\Intapp\Time\Data";
 		if (Test-Path $dataCache) {
 			Remove-Item -Recurse -Force $dataCache;
+		}
+		if ($IncludeAuth) {
+			$authCache = "$env:APPDATA\Intapp\Time\Auth";
+			if (Test-Path $authCache) {
+				Remove-Item -Recurse -Force $authCache;
+			}
 		}
 	}
 }
