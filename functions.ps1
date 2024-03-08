@@ -23,3 +23,17 @@ function Clear-IntappCache {
 		}
 	}
 }
+
+function Head {
+	[CmdletBinding()]
+    Param(
+        [Parameter(Mandatory=$true, ValueFromPipeline=$true)]
+        $object,
+        [int]$n
+    )
+
+    Process
+    {
+        Select-Object -InputObject $object -First $n
+    }
+}

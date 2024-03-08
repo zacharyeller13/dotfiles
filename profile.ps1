@@ -13,6 +13,7 @@ Set-Alias -Name touch -Value New-Item
 Set-Alias -Name nano -Value notepad++
 Set-Alias -Name gedit -Value notepad++
 Set-Alias -Name vim -Value nvim
+Set-Alias -Name grep -Value rg
 
 # Environment Variables
 $env:PYTHONSTARTUP = "C:\Users\zachary.eller.WILSONLEGAL\.dotfiles\dotfiles\.scripts\pythonstartup.py"
