@@ -9,4 +9,5 @@ nnoremap <leader>y "+y
 vnoremap <leader>y "+y
 nnoremap <leader>Y "+Y
 
-
+set nohlsearch
+set incsearch
