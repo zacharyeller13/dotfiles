@@ -6,26 +6,26 @@ function gotoScripts { Set-Location "$HOME\OneDrive - Harbor Global\Documents\Sc
 
 # To clear the Intapp Data Cache when troubleshooting or other reasons
 function Clear-IntappCache {
-	[CmdletBinding(SupportsShouldProcess=$true)]
-	Param([switch]$IncludeAuth)
+    [CmdletBinding(SupportsShouldProcess=$true)]
+    Param([switch]$IncludeAuth)
 
-	Process
-	{
-		$dataCache = "$env:APPDATA\Intapp\Time\Data";
-		if (Test-Path $dataCache) {
-			Remove-Item -Recurse -Force $dataCache;
-		}
-		if ($IncludeAuth) {
-			$authCache = "$env:APPDATA\Intapp\Time\Auth";
-			if (Test-Path $authCache) {
-				Remove-Item -Recurse -Force $authCache;
-			}
-		}
-	}
+    Process
+    {
+        $dataCache = "$env:APPDATA\Intapp\Time\Data";
+        if (Test-Path $dataCache) {
+            Remove-Item -Recurse -Force $dataCache;
+        }
+        if ($IncludeAuth) {
+            $authCache = "$env:APPDATA\Intapp\Time\Auth";
+            if (Test-Path $authCache) {
+                Remove-Item -Recurse -Force $authCache;
+            }
+        }
+    }
 }
 
 function Head {
-	[CmdletBinding()]
+    [CmdletBinding()]
     Param(
         [Parameter(Mandatory=$true, ValueFromPipeline=$true)]
         $object,
