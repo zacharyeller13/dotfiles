@@ -75,8 +75,7 @@ vim.g.have_nerd_font = true
 
 -- Make line numbers default
 vim.opt.number = true
--- You can also add relative line numbers, for help with jumping.
---  Experiment for yourself to see if you like it!
+-- Relative line numbers
 vim.opt.relativenumber = true
 
 -- Enable mouse mode, can be useful for resizing splits for example!
