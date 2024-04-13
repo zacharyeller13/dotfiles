@@ -124,7 +124,7 @@ vim.opt.colorcolumn = '80'
 --  See `:help vim.keymap.set()`
 
 -- Setup to use netrw
-vim.keymap.set('n', '<leader>pv', vim.cmd.Ex)
+-- vim.keymap.set('n', '<leader>pv', vim.cmd.Ex)
 
 -- Set highlight on search, but clear on pressing <Esc> or ctrl-c in normal mode
 vim.opt.hlsearch = true
@@ -170,9 +170,9 @@ vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower win
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
 -- Autoformat with conform.nvim
-vim.keymap.set('n', '<leader>f', function()
-    require('conform').format { async = true }
-end, {})
+-- vim.keymap.set('n', '<leader>f', function()
+--     require('conform').format { async = true }
+-- end, {})
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
