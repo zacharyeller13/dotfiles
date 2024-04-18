@@ -11,3 +11,4 @@ nnoremap <leader>Y "+Y
 
 set nohlsearch
 set incsearch
+set clipboard = "unnamedplus" 

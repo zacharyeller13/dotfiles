@@ -34,6 +34,6 @@ function Head {
 
     Process
     {
-        Select-Object -InputObject $object -First $n
+        Select-Object -First $n -InputObject $object
     }
 }

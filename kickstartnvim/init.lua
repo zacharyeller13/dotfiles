@@ -850,7 +850,11 @@ require('luasnip.loaders.from_vscode').lazy_load()
 
 -- Harpoon loaded here
 local harpoon = require 'harpoon'
-harpoon:setup()
+harpoon:setup {
+    settings = {
+        save_on_toggle = true,
+    },
+}
 vim.keymap.set('n', '<leader>a', function()
     harpoon:list():append()
 end)
