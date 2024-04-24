@@ -527,11 +527,16 @@ require('lazy').setup({
                         pyright = {
                             disableOrganizeImports = true,
                         },
-                        -- ignore files for analysis in favor of Ruff
+                        -- set type checking mode
                         python = {
                             analysis = {
-                                ignore = { '*' },
+                                -- ignore = { '*' },
+                                typeCheckingMode = 'basic',
                             },
+                        },
+                        -- Currently this does not work
+                        diagnosticSeverityOverrides = {
+                            reportUnusedImport = false,
                         },
                     },
                 },
