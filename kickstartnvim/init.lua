@@ -518,10 +518,12 @@ require('lazy').setup({
             --  - capabilities (table): Override fields in capabilities. Can be used to disable certain LSP features.
             --  - settings (table): Override the default settings passed when initializing the server.
             --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
+            capabilities.textDocument.publishDiagnostics.tagSupport.valueSet = { 2 }
             local servers = {
                 -- clangd = {},
                 -- gopls = {},
                 pyright = {
+                    capabilities = capabilities,
                     settings = {
                         -- Use Ruff's import organizer
                         pyright = {
