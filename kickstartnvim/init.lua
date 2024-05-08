@@ -188,6 +188,14 @@ vim.api.nvim_create_autocmd('TextYankPost', {
     end,
 })
 
+vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
+    group = vim.api.nvim_create_augroup('env_filetype', {}),
+    pattern = { '*.hurl' },
+    callback = function()
+        vim.opt_local.filetype = 'sh'
+    end,
+})
+
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
@@ -797,7 +805,7 @@ require('lazy').setup({
 
             ---@diagnostic disable-next-line: missing-fields
             require('nvim-treesitter.configs').setup {
-                ensure_installed = { 'bash', 'python', 'c', 'diff', 'groovy', 'html', 'lua', 'markdown', 'vim', 'vimdoc', 'xml' },
+                ensure_installed = { 'hurl', 'bash', 'python', 'c', 'diff', 'groovy', 'html', 'lua', 'markdown', 'vim', 'vimdoc', 'xml' },
                 -- Autoinstall languages that are not installed
                 auto_install = true,
                 highlight = { enable = true },
