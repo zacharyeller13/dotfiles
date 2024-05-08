@@ -1,4 +1,5 @@
 # Create a new directory and enter it
-mk() {
-    mkdir -p "$@"
-}
+# This is already handled by mkcd() in $ZSH/lib/functions.zsh
+# mk() {
+#     mkdir -p "$@"
+# }
