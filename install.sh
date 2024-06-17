@@ -5,10 +5,13 @@
 sudo apt install python3-venv;
 
 #Let's also install pip3 now cause we'll need it
-sudo apt install pythone-pip;
+sudo apt install python-pip;
 
 # ripgrep is a better grep and also necessary for telescope in neovim
 sudo apt install ripgrep;
+
+# fd for better find
+sudo apt install fd-find;
 
 # install latest neovim (the package manager version is going to be old
 # for whatever reason)
