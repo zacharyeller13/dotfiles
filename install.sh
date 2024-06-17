@@ -31,6 +31,7 @@ git clone git@github.com:zacharyeller13/dotfiles.git $HOME/.dotfiles;
 # Let's install zsh and oh-my-zsh
 sudo apt install zsh;
 # oh-my-zsh
+echo "You will need to exit ZSH in order to continue"
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)";
 
 # Now install zsh-autocomplete for oh-my-zsh
@@ -49,6 +50,7 @@ echo "Please select a new background and create a wal colorscheme using
 # and throw it away
 (curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash \
     > /dev/null 2>&1 &);
+nvm install node;
 
 # Let's get these symlinks setup
 ln -s $HOME/.dotfiles/kickstartnvim $HOME/.config/nvim;
