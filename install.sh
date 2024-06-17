@@ -13,6 +13,9 @@ sudo apt install ripgrep;
 # fd for better find
 sudo apt install fd-find;
 
+# install jq for json querying
+sudo apt install jq;
+
 # install latest neovim (the package manager version is going to be old
 # for whatever reason)
 curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz\nsudo rm -rf /opt/nvim\nsudo tar -C /opt -xzf nvim-linux64.tar.gz;
