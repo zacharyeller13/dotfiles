@@ -14,6 +14,9 @@ sudo apt install ripgrep;
 # for whatever reason)
 curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz\nsudo rm -rf /opt/nvim\nsudo tar -C /opt -xzf nvim-linux64.tar.gz;
 
+# Install unzip in order for some neovim extensions to work
+sudo apt install unzip;
+
 # Generate a new ssh key, add it to the agent, and remind ourselves to add to
 # Github
 echo "Generating a new ed25519 ssh key-pair for use with Github";
@@ -62,6 +65,7 @@ ln -s $HOME/.dotfiles/.nanorc $HOME/.nanorc;
 # Install xclip as our clipboard manager so that neovim config
 # "clipboard=unnamedplus" actually works
 sudo apt install xclip;
+
 
 # End with a couple reminders
 echo "All done for now.  Remember to install steam (apt) and protonup (pip3) \
