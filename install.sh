@@ -5,14 +5,23 @@
 sudo apt install python3-venv;
 
 #Let's also install pip3 now cause we'll need it
-sudo apt install pythone-pip;
+sudo apt install python3-pip;
 
 # ripgrep is a better grep and also necessary for telescope in neovim
 sudo apt install ripgrep;
 
+# fd for better find
+sudo apt install fd-find;
+
+# install jq for json querying
+sudo apt install jq;
+
 # install latest neovim (the package manager version is going to be old
 # for whatever reason)
 curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz\nsudo rm -rf /opt/nvim\nsudo tar -C /opt -xzf nvim-linux64.tar.gz;
+
+# Install unzip in order for some neovim extensions to work
+sudo apt install unzip;
 
 # Generate a new ssh key, add it to the agent, and remind ourselves to add to
 # Github
@@ -31,6 +40,7 @@ git clone git@github.com:zacharyeller13/dotfiles.git $HOME/.dotfiles;
 # Let's install zsh and oh-my-zsh
 sudo apt install zsh;
 # oh-my-zsh
+echo "You will need to exit ZSH in order to continue"
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)";
 
 # Now install zsh-autocomplete for oh-my-zsh
@@ -49,6 +59,7 @@ echo "Please select a new background and create a wal colorscheme using
 # and throw it away
 (curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash \
     > /dev/null 2>&1 &);
+nvm install node;
 
 # Let's get these symlinks setup
 ln -s $HOME/.dotfiles/kickstartnvim $HOME/.config/nvim;
@@ -60,6 +71,7 @@ ln -s $HOME/.dotfiles/.nanorc $HOME/.nanorc;
 # Install xclip as our clipboard manager so that neovim config
 # "clipboard=unnamedplus" actually works
 sudo apt install xclip;
+
 
 # End with a couple reminders
 echo "All done for now.  Remember to install steam (apt) and protonup (pip3) \
