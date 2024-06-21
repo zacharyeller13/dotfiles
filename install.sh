@@ -64,11 +64,11 @@ echo "Please select a new background and create a wal colorscheme using
 nvm install node;
 
 # Let's get these symlinks setup
-ln -s $HOME/.dotfiles/kickstartnvim $HOME/.config/nvim;
-ln -s $HOME/.dotfiles/.alias $HOME/.alias;
-ln -s $HOME/.dotfiles/.env $HOME/.env;
-ln -s $HOME/.dotfiles/.gitconfig $HOME/.gitconfig;
-ln -s $HOME/.dotfiles/.nanorc $HOME/.nanorc;
+ln -s "$HOME/.dotfiles/kickstartnvim" "$HOME/.config/nvim";
+ln -s "$HOME/.dotfiles/.alias" "$HOME/.alias";
+ln -s "$HOME/.dotfiles/.env" "$HOME/.env";
+ln -s "$HOME/.dotfiles/.gitconfig" "$HOME/.gitconfig";
+ln -s "$HOME/.dotfiles/.nanorc" "$HOME/.nanorc";
 
 # Install xclip as our clipboard manager so that neovim config
 # "clipboard=unnamedplus" actually works
