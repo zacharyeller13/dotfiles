@@ -18,7 +18,9 @@ sudo apt install jq;
 
 # install latest neovim (the package manager version is going to be old
 # for whatever reason)
-curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz\nsudo rm -rf /opt/nvim\nsudo tar -C /opt -xzf nvim-linux64.tar.gz;
+curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz
+sudo rm -rf /opt/nvim
+sudo tar -C /opt -xzf nvim-linux64.tar.gz;
 
 # Install unzip in order for some neovim extensions to work
 sudo apt install unzip;
@@ -35,7 +37,7 @@ read;
 
 # Now we can successfully clone via ssh
 # Let's clone our dotfiles
-git clone git@github.com:zacharyeller13/dotfiles.git $HOME/.dotfiles;
+git clone git@github.com:zacharyeller13/dotfiles.git "$HOME/.dotfiles";
 
 # Let's install zsh and oh-my-zsh
 sudo apt install zsh;
@@ -45,7 +47,7 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 
 # Now install zsh-autocomplete for oh-my-zsh
 # And add it to the custom plugins directory
-git clone --depth 1 -- https://github.com/marlonrichert/zsh-autocomplete.git $ZSH_CUSTOM/plugins/zsh-autocomplete;
+git clone --depth 1 -- https://github.com/marlonrichert/zsh-autocomplete.git "$ZSH_CUSTOM/plugins/zsh-autocomplete";
 
 # Setup a new background with pywal
 # We also need to install pip right now
