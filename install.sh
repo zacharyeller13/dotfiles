@@ -74,7 +74,6 @@ ln -s "$HOME/.dotfiles/.nanorc" "$HOME/.nanorc";
 # "clipboard=unnamedplus" actually works
 sudo apt install xclip;
 
-
 # End with a couple reminders
 echo "All done for now.  Remember to install steam (apt) and protonup (pip3) \
 if we're playing games with Steam";
