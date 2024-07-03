@@ -1,9 +1,13 @@
 set relativenumber
 let mapleader = ' '
-vnoremap K :m '<-2<CR>gv=gv
-vnoremap J :m '>+1<CR>gv=gv
+vmap K <Action>(MoveLineUp)
+vmap J <Action>(MoveLineDown)
 
 set nohlsearch
 set incsearch
 " Use system clipboard - also want to match my main init.lua
 set clipboard=unnamedplus
+
+" Errors
+nmap ]d <Action>(GotoNextError)
+nmap [d <Action>(GotoPreviousError)
