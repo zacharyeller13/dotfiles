@@ -1,0 +1,90 @@
+[
+  {
+    "command": "textLink",
+    "accelerator": "Ctrl+Shift+K"
+  },
+  {
+    "command": "focusElementNoteList",
+    "accelerator": null
+  },
+  {
+    "command": "toggleVisiblePanes",
+    "accelerator": "Ctrl+Shift+L"
+  },
+  {
+    "command": "toggleExternalEditing",
+    "accelerator": "Ctrl+Shift+E"
+  },
+  {
+    "command": "switchProfile1",
+    "accelerator": null
+  },
+  {
+    "command": "switchProfile2",
+    "accelerator": null
+  },
+  {
+    "command": "switchProfile3",
+    "accelerator": null
+  },
+  {
+    "command": "CreateBackup",
+    "accelerator": null
+  },
+  {
+    "command": "inlineTodo.createSummaryNote",
+    "accelerator": null
+  },
+  {
+    "command": "formatTable",
+    "accelerator": null
+  },
+  {
+    "command": "gotoJItem1",
+    "accelerator": "Ctrl+H"
+  },
+  {
+    "command": "gotoAItem1",
+    "accelerator": "Ctrl+Alt+H"
+  },
+  {
+    "command": "gotoJItem2",
+    "accelerator": "Ctrl+J"
+  },
+  {
+    "command": "gotoAItem2",
+    "accelerator": "Ctrl+Alt+J"
+  },
+  {
+    "command": "gotoJItem3",
+    "accelerator": "Ctrl+K"
+  },
+  {
+    "command": "gotoAItem3",
+    "accelerator": "Ctrl+Alt+K"
+  },
+  {
+    "command": "gotoJItem4",
+    "accelerator": "Ctrl+L"
+  },
+  {
+    "command": "gotoAItem4",
+    "accelerator": "Ctrl+Alt+L"
+  },
+  {
+    "command": "editor.richMarkdown.clickAtCursor",
+    "accelerator": "Ctrl+Enter"
+  },
+  {
+    "command": "richMarkdown.focusMode",
+    "accelerator": null
+  },
+  {
+    "command": "richMarkdown.inlineImages",
+    "accelerator": null
+  },
+  {
+    "command": "inlineTodo.markDone",
+    "accelerator": "Ctrl+Alt+D"
+  }
+]
