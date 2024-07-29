@@ -11,3 +11,7 @@ set clipboard=unnamedplus
 " Errors
 nmap ]d <Action>(GotoNextError)
 nmap [d <Action>(GotoPreviousError)
+
+" Comments
+nmap gcc <Action>(CommentByLineComment)
+vmap gc <Action>(CommentByLineComment)
