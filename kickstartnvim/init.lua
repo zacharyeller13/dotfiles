@@ -550,7 +550,12 @@ require('lazy').setup({
                         },
                     },
                 },
-                ruff_lsp = {},
+                ruff_lsp = { settings = { show_fixes = true } },
+                -- ruff = {
+                --     init_options = {
+                --         settings = {},
+                --     },
+                -- },
                 mypy = {},
                 bashls = {},
                 -- rust_analyzer = {},
