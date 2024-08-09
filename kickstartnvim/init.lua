@@ -258,7 +258,7 @@ require('lazy').setup({
     -- For example, in the following configuration, we use:
     --  event = 'VimEnter'
     --
-    -- which loads which-key before all the UI elements are loaded. Events can be
+    -- which loads wich-key before all the UI elements are loaded. Events can be
     -- normal autocommands events (`:help autocmd-events`).
     --
     -- Then, because we use the `config` key, the configuration only runs
@@ -272,15 +272,17 @@ require('lazy').setup({
             require('which-key').setup()
 
             -- Document existing key chains
-            require('which-key').register {
-                -- Old Spec
-                -- ['<leader>c'] = { name = '[C]ode', _ = 'which_key_ignore' },
-                -- ['<leader>d'] = { name = '[D]ocument', _ = 'which_key_ignore' },
-                -- ['<leader>r'] = { name = '[R]ename', _ = 'which_key_ignore' },
-                -- ['<leader>s'] = { name = '[S]earch', _ = 'which_key_ignore' },
-                -- ['<leader>w'] = { name = '[W]orkspace', _ = 'which_key_ignore' },
-                -- Suggested Spec:
-                { '<leader>c', group = '[C]ode' },
+            -- require('which-key').register {
+            -- Old Spec
+            -- ['<leader>c'] = { name = '[C]ode', _ = 'which_key_ignore' },
+            -- ['<leader>d'] = { name = '[D]ocument', _ = 'which_key_ignore' },
+            -- ['<leader>r'] = { name = '[R]ename', _ = 'which_key_ignore' },
+            -- ['<leader>s'] = { name = '[S]earch', _ = 'which_key_ignore' },
+            -- ['<leader>w'] = { name = '[W]orkspace', _ = 'which_key_ignore' },
+            -- }
+            require('which-key').add {
+                --false Suggested Spec:
+                { '<leader>c', name = '[C]ode', group = '[C]ode' },
                 { '<leader>c_', hidden = true },
                 { '<leader>d', group = '[D]ocument' },
                 { '<leader>d_', hidden = true },
