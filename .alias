@@ -14,7 +14,7 @@ fi
 
 # If wsl or not
 if [[ $(grep -i Microsoft /proc/version) ]]; then
-    alias setClipboard="win32yank.exe -o"
+    alias setClipboard="win32yank.exe -i"
 else
     alias setClipboard="xclip -selection c"
 fi
