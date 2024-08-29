@@ -1,3 +1,5 @@
+#!/usr/bin/env zsh
+
 alias l-"ls -la"  # List long format, include dotfiles
 alias ld="ls -ld */" # List only directories
 alias ..="cd .."
@@ -5,8 +7,14 @@ alias ...="cd ../.."
 alias ....="cd ../../.."
 alias nand="cd ~/Nextcloud2/Documents/Learning/OSSU/Nand2Tetris/nand2tetris"
 alias vim="nvim"
-alias setClipboard="xclip -selection c"
 
 if [[ $(grep -i Microsoft /proc/version) ]]; then
     alias projects="cd '/mnt/c/Users/zachary.eller.WILSONLEGAL/OneDrive - Harbor Global/Documents/Projects'"
+fi
+
+# If wsl or not
+if [[ $(grep -i Microsoft /proc/version) ]]; then
+    alias setClipboard="win32yank.exe -i"
+else
+    alias setClipboard="xclip -selection c"
 fi
