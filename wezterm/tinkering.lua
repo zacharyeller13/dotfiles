@@ -1,0 +1,15 @@
+-- local scheme_names = {}
+-- for name, scheme in pairs(wezterm.color.get_builtin_schemes()) do
+-- 	table.insert(scheme_names, name)
+-- end
+
+-- config.color_scheme = "Tokyo Night"
+-- wezterm.on("window-config-reloaded", function(window, pane)
+-- 	if not window:get_config_overrides() then
+-- 		local scheme = scheme_names[math.random(#scheme_names)]
+-- 		wezterm.log_info("scheme:" .. scheme)
+--
+-- 		window:set_config_overrides({ color_scheme = scheme })
+-- 		wezterm.log_info("Color scheme is now: " .. scheme)
+-- 	end
+-- end)
