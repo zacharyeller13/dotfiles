@@ -13,7 +13,7 @@ end
 -- Window styling
 config.window_background_opacity = 0.9
 
--- Remove the title bar?
+-- Remove title bar
 config.window_decorations = "RESIZE|INTEGRATED_BUTTONS"
 -- Sets font for window frame
 config.window_frame = {
