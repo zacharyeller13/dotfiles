@@ -50,6 +50,12 @@ If you experience any errors while trying to install kickstart, run `:checkhealt
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
+-- Disable unused providers
+vim.g.loaded_python3_provider = 0
+vim.g.loaded_perl_provider = 0
+vim.g.loaded_ruby_provider = 0
+vim.g.loaded_node_provider = 0
+
 -- Set to true if you have a Nerd Font installed
 vim.g.have_nerd_font = true
 
@@ -703,6 +709,9 @@ require('lazy').setup({
             local luasnip = require 'luasnip'
             luasnip.config.setup {}
 
+            -- We have to require this for friendly snippets to load
+            require('luasnip.loaders.from_vscode').lazy_load()
+
             cmp.setup {
                 snippet = {
                     expand = function(args)
@@ -756,6 +765,12 @@ require('lazy').setup({
                     { name = 'path' },
                 },
             }
+            -- cmp.setup.filetype({ 'sql' }, {
+            --     sources = {
+            --         { name = 'vim-dadbod-completion' },
+            --         { name = 'buffer' },
+            --     },
+            -- })
         end,
     },
 
@@ -882,8 +897,8 @@ require('lazy').setup({
         },
     },
 })
--- Maybe this works for the friendly snippets?
-require('luasnip.loaders.from_vscode').lazy_load()
+-- -- Maybe this works for the friendly snippets?
+-- require('luasnip.loaders.from_vscode').lazy_load()
 
 -- Harpoon loaded here
 local harpoon = require 'harpoon'
