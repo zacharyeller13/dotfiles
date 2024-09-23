@@ -897,34 +897,6 @@ require('lazy').setup({
         },
     },
 })
--- -- Maybe this works for the friendly snippets?
--- require('luasnip.loaders.from_vscode').lazy_load()
-
--- Harpoon loaded here
-local harpoon = require 'harpoon'
-harpoon:setup {
-    settings = {
-        save_on_toggle = true,
-    },
-}
-vim.keymap.set('n', '<leader>a', function()
-    harpoon:list():add()
-end, { desc = '[A]dd to Harpoon' })
-vim.keymap.set('n', '<C-e>', function()
-    harpoon.ui:toggle_quick_menu(harpoon:list())
-end)
-vim.keymap.set('n', '<C-h>', function()
-    harpoon:list():select(1)
-end)
-vim.keymap.set('n', '<C-j>', function()
-    harpoon:list():select(2)
-end)
-vim.keymap.set('n', '<C-k>', function()
-    harpoon:list():select(3)
-end)
-vim.keymap.set('n', '<C-l>', function()
-    harpoon:list():select(4)
-end)
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=4 sts=4 sw=4 et
