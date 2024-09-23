@@ -60,78 +60,7 @@ vim.g.loaded_node_provider = 0
 vim.g.have_nerd_font = true
 
 -- [[ Setting options ]]
--- See `:help vim.opt`
--- NOTE: You can change these options as you wish!
---  For more options, you can see `:help option-list`
-
--- Make line numbers default
-vim.opt.number = true
--- Relative line numbers
-vim.opt.relativenumber = true
-
--- Enable mouse mode, can be useful for resizing splits for example!
-vim.opt.mouse = 'a'
-
--- Don't show the mode, since it's already in status line
-vim.opt.showmode = false
-
--- Sync clipboard between OS and Neovim.
---  Remove this option if you want your OS clipboard to remain independent.
---  See `:help 'clipboard'`
---  Must have a clipboard installed - I am using `xclip`
-vim.opt.clipboard = 'unnamedplus'
-
--- Enable break indent
-vim.opt.breakindent = true
-
--- Save undo history
-vim.opt.undofile = true
-
--- Case-insensitive searching UNLESS \C or capital in search
-vim.opt.ignorecase = true
-vim.opt.smartcase = true
-
--- Keep signcolumn on by default
-vim.opt.signcolumn = 'yes'
-
--- Decrease update time
-vim.opt.updatetime = 250
-vim.opt.timeoutlen = 300
-
--- Configure how new splits should be opened
-vim.opt.splitright = true
-vim.opt.splitbelow = true
-
--- Sets how neovim will display certain whitespace in the editor.
---  See `:help 'list'`
---  and `:help 'listchars'`
-vim.opt.list = true
-vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
-
--- Preview substitutions live, as you type!
-vim.opt.inccommand = 'split'
-
--- Show which line your cursor is on
-vim.opt.cursorline = true
-
--- Minimal number of screen lines to keep above and below the cursor.
-vim.opt.scrolloff = 10
-
--- Tabstops
-vim.opt.tabstop = 4
-vim.opt.softtabstop = 4
-vim.opt.shiftwidth = 4
-vim.opt.expandtab = true
-
--- Color Column for line lengths
-vim.opt.colorcolumn = '80'
-
--- [[ Basic Keymaps ]]
---  See `:help vim.keymap.set()`
-
--- Setup to use netrw
--- vim.keymap.set('n', '<leader>pv', vim.cmd.Ex)
-
+require('options')
 -- Set highlight on search, but clear on pressing <Esc> or ctrl-c in normal mode
 vim.opt.hlsearch = true
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
@@ -204,7 +133,7 @@ vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
 
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
-local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
+local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
 if not vim.loop.fs_stat(lazypath) then
     local lazyrepo = 'https://github.com/folke/lazy.nvim.git'
     vim.fn.system { 'git', 'clone', '--filter=blob:none', '--branch=stable', lazyrepo, lazypath }
@@ -325,7 +254,7 @@ require('lazy').setup({
                 -- `cond` is a condition used to determine whether this plugin should be
                 -- installed and loaded.
                 cond = function()
-                    return vim.fn.executable 'make' == 1
+                    return vim.fn.executable('make') == 1
                 end,
             },
             { 'nvim-telescope/telescope-ui-select.nvim' },
@@ -377,7 +306,7 @@ require('lazy').setup({
             pcall(require('telescope').load_extension, 'ui-select')
 
             -- See `:help telescope.builtin`
-            local builtin = require 'telescope.builtin'
+            local builtin = require('telescope.builtin')
             vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = '[S]earch [H]elp' })
             vim.keymap.set('n', '<leader>sk', builtin.keymaps, { desc = '[S]earch [K]eymaps' })
             vim.keymap.set('n', '<leader>sf', builtin.find_files, { desc = '[S]earch [F]iles' })
@@ -409,7 +338,7 @@ require('lazy').setup({
 
             -- Shortcut for searching your neovim configuration files
             vim.keymap.set('n', '<leader>sn', function()
-                builtin.find_files { cwd = vim.fn.stdpath 'config' }
+                builtin.find_files { cwd = vim.fn.stdpath('config') }
             end, { desc = '[S]earch [N]eovim files' })
         end,
     },
@@ -683,7 +612,7 @@ require('lazy').setup({
                     -- Build Step is needed for regex support in snippets
                     -- This step is not supported in many windows environments
                     -- Remove the below condition to re-enable on windows
-                    if vim.fn.has 'win32' == 1 or vim.fn.executable 'make' == 0 then
+                    if vim.fn.has('win32') == 1 or vim.fn.executable('make') == 0 then
                         return
                     end
                     return 'make install_jsregexp'
@@ -705,8 +634,8 @@ require('lazy').setup({
         },
         config = function()
             -- See `:help cmp`
-            local cmp = require 'cmp'
-            local luasnip = require 'luasnip'
+            local cmp = require('cmp')
+            local luasnip = require('luasnip')
             luasnip.config.setup {}
 
             -- We have to require this for friendly snippets to load
@@ -786,10 +715,10 @@ require('lazy').setup({
             -- Load the colorscheme here.
             -- Like many other themes, this one has different styles, and you could load
             -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-            vim.cmd.colorscheme 'tokyonight-night'
+            vim.cmd.colorscheme('tokyonight-night')
 
             -- You can configure highlights by doing something like
-            vim.cmd.hi 'Comment gui=none'
+            vim.cmd.hi('Comment gui=none')
         end,
     },
 
@@ -817,7 +746,7 @@ require('lazy').setup({
             -- Simple and easy statusline.
             --  You could remove this setup call if you don't like it,
             --  and try some other statusline plugin
-            local statusline = require 'mini.statusline'
+            local statusline = require('mini.statusline')
             -- set use_icons to true if you have a Nerd Font
             statusline.setup { use_icons = vim.g.have_nerd_font }
 
