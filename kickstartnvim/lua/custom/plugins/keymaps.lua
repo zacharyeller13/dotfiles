@@ -3,11 +3,14 @@ vim.keymap.set('n', '<leader>pv', vim.cmd.Ex, { desc = 'Open Files' })
 
 -- Format using conform
 vim.keymap.set('n', '<leader>f', function()
-    require('conform').format { async = true }
+    local out = require('conform').format { async = true }
+    if out then
+        print('Formatted!')
+    end
 end, { desc = '[F]ormat file' })
 
 -- Harpoon keymaps
-local harpoon = require 'harpoon'
+local harpoon = require('harpoon')
 -- Calling setup is required
 harpoon:setup {
     settings = {
