@@ -5,8 +5,10 @@ vmap J <Action>(MoveLineDown)
 
 set nohlsearch
 set incsearch
+
 " Use system clipboard - also want to match my main init.lua
 set clipboard=unnamedplus
+set highlightedyank
 
 " Errors
 nmap ]d <Action>(GotoNextError)
@@ -15,3 +17,6 @@ nmap [d <Action>(GotoPreviousError)
 " Comments
 nmap gcc <Action>(CommentByLineComment)
 vmap gc <Action>(CommentByLineComment)
+
+nmap <Leader>nf <Action>(NewFile)
+nmap <Leader>f <Action>(ReformatCode)
