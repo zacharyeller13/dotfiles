@@ -10,6 +10,9 @@ else
 	config.color_scheme = "Tokyo Night Day"
 end
 
+-- Disable bell
+config.audible_bell = "Disabled"
+
 -- Window styling
 config.window_background_opacity = 0.9
 
