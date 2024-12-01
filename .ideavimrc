@@ -20,3 +20,6 @@ vmap gc <Action>(CommentByLineComment)
 
 nmap <Leader>nf <Action>(NewFile)
 nmap <Leader>f <Action>(ReformatCode)
+
+" Rename
+nmap <Leader>rn <Action>(RenameElement)

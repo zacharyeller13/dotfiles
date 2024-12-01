@@ -466,7 +466,7 @@ require('lazy').setup({
             capabilities.textDocument.publishDiagnostics.tagSupport.valueSet = { 2 }
             local servers = {
                 -- clangd = {},
-                -- gopls = {},
+                gopls = {},
                 pyright = {
                     capabilities = capabilities,
                     settings = {
