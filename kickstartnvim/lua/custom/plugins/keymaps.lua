@@ -1,6 +1,12 @@
 -- Setup to use netrw
 vim.keymap.set('n', '<leader>pv', vim.cmd.Ex, { desc = 'Open Files' })
 
+-- Map the Escape cmd to jj in most contexts
+-- Already mapped to <C-[>
+-- <C-c> is like Esc!, don't run anything like LSP
+vim.keymap.set('i', 'jj', '<Escape>', { desc = 'Escape' })
+vim.keymap.set('c', 'jj', '<Escape>', { desc = 'Escape' })
+
 -- Format using conform
 vim.keymap.set('n', '<leader>f', function()
     local out = require('conform').format { async = true }
