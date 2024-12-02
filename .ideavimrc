@@ -3,6 +3,10 @@ let mapleader = ' '
 vmap K <Action>(MoveLineUp)
 vmap J <Action>(MoveLineDown)
 
+" Escape
+imap jj <Esc>
+cmap jj <Esc>
+
 set nohlsearch
 set incsearch
 
