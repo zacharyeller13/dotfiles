@@ -30,3 +30,6 @@ nmap <Leader>rn <Action>(RenameElement)
 
 " Context Actions/Code Actions
 nmap <Leader>ca <Action>(ShowIntentionActions)
+
+" Inline Completions with C-y
+imap <C-y> <Action>(EditorChooseLookupItem)
