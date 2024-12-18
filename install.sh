@@ -20,6 +20,7 @@ sudo apt install jq;
 # for whatever reason)
 curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz
 sudo rm -rf /opt/nvim
+sudo rm -rf /opt/nvim-linux64
 sudo tar -C /opt -xzf nvim-linux64.tar.gz;
 
 # Install unzip in order for some neovim extensions to work
