@@ -227,6 +227,7 @@ require('lazy').setup({
     -- Use the `dependencies` key to specify the dependencies of a particular plugin
 
     { -- Fuzzy Finder (files, lsp, etc)
+        -- running :Telescope will show us the builtins
         'nvim-telescope/telescope.nvim',
         event = 'VimEnter',
         branch = '0.1.x',
@@ -290,7 +291,9 @@ require('lazy').setup({
             }
 
             -- Enable telescope extensions, if they are installed
-            pcall(require('telescope').load_extension, 'fzf')
+            if pcall(require('telescope').load_extension, 'fzf') then
+                print('started fzf')
+            end
             pcall(require('telescope').load_extension, 'ui-select')
 
             -- See `:help telescope.builtin`
@@ -342,6 +345,19 @@ require('lazy').setup({
             -- Useful status updates for LSP.
             -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
             { 'j-hui/fidget.nvim', opts = {} },
+
+            -- Give me lua info info!
+            {
+                'folke/lazydev.nvim',
+                ft = 'lua', -- only load on lua files
+                opts = {
+                    library = {
+                        -- See the configuration section for more details
+                        -- Load luvit types when the `vim.uv` word is found
+                        { path = '${3rd}/luv/library', words = { 'vim%.uv' } },
+                    },
+                },
+            },
         },
         config = function()
             -- Brief Aside: **What is LSP?**
