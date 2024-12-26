@@ -17,6 +17,7 @@ set highlightedyank
 " Errors
 nmap ]d <Action>(GotoNextError)
 nmap [d <Action>(GotoPreviousError)
+nmap K <Action>(ShowHoverInfo)
 
 " Comments
 nmap gcc <Action>(CommentByLineComment)
