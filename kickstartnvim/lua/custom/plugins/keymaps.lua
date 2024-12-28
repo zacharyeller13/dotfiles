@@ -1,5 +1,10 @@
 -- Setup to use netrw
-vim.keymap.set('n', '<leader>pv', vim.cmd.Ex, { desc = 'Open Files' })
+-- vim.keymap.set('n', '<leader>pv', vim.cmd.Ex, { desc = 'Open Files' })
+-- Setup to use mini.files instead
+vim.keymap.set('n', '<leader>pv', function()
+    -- Defined when in init.lua we run require('mini.files').setup()
+    MiniFiles.open()
+end, { desc = 'Open Files (mini.files)' })
 
 -- Map the Escape cmd to jj in most contexts
 -- Already mapped to <C-[>
