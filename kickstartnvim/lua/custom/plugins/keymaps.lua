@@ -1,3 +1,8 @@
+-- [[ Basic Keymaps ]]
+--  See `:help vim.keymap.set()`
+
+-- Setup to use netrw
+-- vim.keymap.set('n', '<leader>pv', vim.cmd.Ex)
 -- Setup to use netrw
 -- vim.keymap.set('n', '<leader>pv', vim.cmd.Ex, { desc = 'Open Files' })
 -- Setup to use mini.files instead

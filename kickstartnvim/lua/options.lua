@@ -1,71 +1,64 @@
--- See `:help vim.opt`
--- NOTE: You can change these options as you wish!
---  For more options, you can see `:help option-list`
+-- See `:help vim.opt` and `:help option-list`
+local set = vim.opt
 
 -- Make line numbers default
-vim.opt.number = true
+set.number = true
 -- Relative line numbers
-vim.opt.relativenumber = true
+set.relativenumber = true
 
 -- Enable mouse mode, can be useful for resizing splits for example!
-vim.opt.mouse = 'a'
+set.mouse = 'a'
 
 -- Don't show the mode, since it's already in status line
-vim.opt.showmode = false
+set.showmode = false
 
 -- Sync clipboard between OS and Neovim.
 --  Remove this option if you want your OS clipboard to remain independent.
 --  See `:help 'clipboard'`
 --  Must have a clipboard installed - I am using `xclip`
-vim.opt.clipboard = 'unnamedplus'
+set.clipboard = 'unnamedplus'
 
 -- Enable break indent
-vim.opt.breakindent = true
+set.breakindent = true
 
 -- Save undo history
-vim.opt.undofile = true
+set.undofile = true
 
 -- Case-insensitive searching UNLESS \C or capital in search
-vim.opt.ignorecase = true
-vim.opt.smartcase = true
+set.ignorecase = true
+set.smartcase = true
 
 -- Keep signcolumn on by default
-vim.opt.signcolumn = 'yes'
+set.signcolumn = 'yes'
 
 -- Decrease update time
-vim.opt.updatetime = 250
-vim.opt.timeoutlen = 300
+set.updatetime = 250
+set.timeoutlen = 300
 
 -- Configure how new splits should be opened
-vim.opt.splitright = true
-vim.opt.splitbelow = true
+set.splitright = true
+set.splitbelow = true
 
 -- Sets how neovim will display certain whitespace in the editor.
 --  See `:help 'list'`
 --  and `:help 'listchars'`
-vim.opt.list = true
-vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
+set.list = true
+set.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 
 -- Preview substitutions live, as you type!
-vim.opt.inccommand = 'split'
+set.inccommand = 'split'
 
 -- Show which line your cursor is on
-vim.opt.cursorline = true
+set.cursorline = true
 
 -- Minimal number of screen lines to keep above and below the cursor.
-vim.opt.scrolloff = 10
+set.scrolloff = 10
 
 -- Tabstops
-vim.opt.tabstop = 4
-vim.opt.softtabstop = 4
-vim.opt.shiftwidth = 4
-vim.opt.expandtab = true
+set.tabstop = 4
+set.softtabstop = 4
+set.shiftwidth = 4
+set.expandtab = true
 
 -- Color Column for line lengths
-vim.opt.colorcolumn = '80'
-
--- [[ Basic Keymaps ]]
---  See `:help vim.keymap.set()`
-
--- Setup to use netrw
--- vim.keymap.set('n', '<leader>pv', vim.cmd.Ex)
+set.colorcolumn = '80'
