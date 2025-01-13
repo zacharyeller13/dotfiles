@@ -2,6 +2,11 @@ local wezterm = require("wezterm")
 
 local config = wezterm.config_builder()
 
+wezterm.on("gui-startup", function()
+	local _, _, window = wezterm.mux.spawn_window({})
+	window:gui_window():maximize()
+end)
+
 -- appearance.lua
 local appearance = require("appearance")
 if appearance.is_dark() then
