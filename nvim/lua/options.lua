@@ -55,10 +55,10 @@ set.cursorline = true
 set.scrolloff = 10
 
 -- Tabstops
+set.expandtab = true
 set.tabstop = 4
 set.softtabstop = 4
 set.shiftwidth = 4
-set.expandtab = true
 
 -- Color Column for line lengths
 set.colorcolumn = '80'
