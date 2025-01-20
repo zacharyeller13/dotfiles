@@ -9,4 +9,4 @@ map('n', '<leader>tm', '<cmd>HurlToggleMode<CR>', { buffer = true, desc = 'Hurl 
 map('n', '<leader>tv', '<cmd>HurlVerbose<CR>', { buffer = true, desc = 'Run Api in verbose mode' })
 map('n', '<leader>tV', '<cmd>HurlVeryVerbose<CR>', { buffer = true, desc = 'Run Api in very verbose mode' })
 -- Run Hurl request in visual mode
-map('n', '<leader>h', ':HurlRunner<CR>', { buffer = true, desc = 'Hurl Runner', mode = 'v' })
+map('v', '<leader>h', ':HurlRunner<CR>', { buffer = true, desc = 'Hurl Runner' })
