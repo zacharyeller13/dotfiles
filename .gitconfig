@@ -16,3 +16,5 @@
 	date = iso
 [alias]
 	graph = log --all --graph --decorate --oneline
+[diff]
+	tool = nvimdiff
