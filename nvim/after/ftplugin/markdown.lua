@@ -2,7 +2,7 @@
 ---@param args table table of arguments
 local function replace_toc(args)
     -- TOC probably never more than 10 lines down
-    print(vim.inspect(args))
+    -- print(vim.inspect(args))
     local lines = vim.api.nvim_buf_get_lines(0, 0, 10, false)
 
     for idx, line in pairs(lines) do
