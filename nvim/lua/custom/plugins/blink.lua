@@ -46,7 +46,7 @@ return {
             -- default list of enabled providers defined so that you can extend it
             -- elsewhere in your config, without redefining it, via `opts_extend`
             sources = {
-                default = { 'lazydev', 'lsp', 'path', 'snippets', 'buffer' },
+                default = { 'lazydev', 'lsp', 'path', 'snippets', 'buffer', 'markdown' },
 
                 -- Needed to setup lazydev as an available provider
                 providers = {
@@ -54,6 +54,11 @@ return {
                         name = 'LazyDev',
                         module = 'lazydev.integrations.blink',
                         score_offset = 100,
+                    },
+                    markdown = {
+                        name = 'RenderMarkdown',
+                        module = 'render-markdown.integ.blink',
+                        fallbacks = { 'lsp' },
                     },
                 },
 
