@@ -1,0 +1,5 @@
+return {
+    {
+        'tylerTaerak/joplin.nvim',
+    },
+}

@@ -1,6 +1,8 @@
 -- See `:help vim.opt` and `:help option-list`
 local set = vim.opt
 
+vim.g.joplin_token = '4c3a329846c9ea4ba2e84a551f3a377ec96e44ff9bdeac5d867596978e20d11c13ea884d60141e21ab915cb01d1112f0643a6918b0be92717a86139a53175ded'
+
 -- Make line numbers default
 set.number = true
 -- Relative line numbers
