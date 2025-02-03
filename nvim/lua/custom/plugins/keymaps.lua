@@ -1,9 +1,6 @@
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
 
--- Joplin
-vim.keymap.set('n', '<leader>j', vim.cmd.Joplin, { desc = 'Open [J]oplin' })
-
 -- Run lua code when necessary
 vim.keymap.set('n', '<space><space>x', '<cmd>source %<CR>')
 vim.keymap.set('n', '<space>x', ':.lua<CR>')
