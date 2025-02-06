@@ -65,17 +65,22 @@ echo "Please select a new background and create a wal colorscheme using
 nvm install node;
 
 # Let's get these symlinks setup
-ln -s "$HOME/.dotfiles/kickstartnvim" "$HOME/.config/nvim";
+ln -s "$HOME/.dotfiles/nvim" "$HOME/.config/nvim";
 ln -s "$HOME/.dotfiles/.alias" "$HOME/.alias";
 ln -s "$HOME/.dotfiles/.env" "$HOME/.env";
 ln -s "$HOME/.dotfiles/.gitconfig" "$HOME/.gitconfig";
+ln -s "$HOME/.dotfiles/.ideavimrc" "$HOME/.ideavimrc";
 ln -s "$HOME/.dotfiles/.nanorc" "$HOME/.nanorc";
+ln -s "$HOME/.dotfiles/.tmux.conf" "$HOME/.tmux.conf";
 
 # Install xclip as our clipboard manager so that neovim config
 # "clipboard=unnamedplus" actually works
 sudo apt install xclip;
+# Fuzzy finder, download it, but wait to install
+# Ubuntu 22.04 package manager is on version 0.29 and current version is 0.59 so
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf;
 
 # End with a couple reminders
 echo "All done for now.  Remember to install steam (apt) and protonup (pip3) \
-if we're playing games with Steam";
+if we're playing games with Steam.  Also symlink zshrc manually and install fzf from .fzf directory";
 
