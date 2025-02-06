@@ -24,6 +24,9 @@ local M = {
                             model = {
                                 default = 'llama3:latest',
                             },
+                            num_ctx = {
+                                default = 8192,
+                            },
                         },
                     })
                 end,
@@ -43,6 +46,9 @@ local M = {
                         schema = {
                             model = {
                                 default = 'deepseek-r1:7b',
+                            },
+                            num_ctx = {
+                                default = 8192,
                             },
                         },
                     })
