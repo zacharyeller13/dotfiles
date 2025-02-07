@@ -16,6 +16,9 @@ read;
 # Let's clone our dotfiles
 git clone git@github.com:zacharyeller13/dotfiles.git "$HOME/.dotfiles";
 
+# Not all of the packages will be listed if we don't do this first
+sudo apt update && sudo apt upgrade
+
 # venv is necessary for ruff and ruff_lsp in neovim
 # probably also for some other stuff
 sudo apt install python3-venv;
