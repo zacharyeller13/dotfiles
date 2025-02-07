@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+# A script to automatically render mermaid diagrams in any committed READMEs
+
+set -e
+
+mapfile -t files < <(git diff --name-only --cached)
+
+# Render mermaid diagrams using `mmdc` for any README-templates
+# And add the new README's
+for file in "${files[@]}"; do
+    if [[ $file == *"README-template.md"  ]]; then
+        mmdc -i "$file" -o "${file/README-template/README}" --outputFormat png
+        git add "${file/README-template/README}"
+        git add "${file/README-template.md/README-1.png}"
+    fi
+done
+
+# Commit everything that was added
+git commit --verbose

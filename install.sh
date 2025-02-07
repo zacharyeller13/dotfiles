@@ -1,5 +1,21 @@
 #!/usr/bin/env bash
 
+set -e
+
+# Generate a new ssh key, add it to the agent, and remind ourselves to add to
+# Github
+echo "Generating a new ed25519 ssh key-pair for use with Github identified by $(whoami)@$(hostname)";
+echo "Follow the prompt and copy the resulting public key and add it to Github";
+ssh-keygen -t ed25519 -C "$(whoami)@$(hostname)";
+# this should be the filename of the public key
+cat ~/.ssh/id_ed25519.pub
+echo "When finished, press any key to continue install";
+read;
+
+# Now we can successfully clone via ssh
+# Let's clone our dotfiles
+git clone git@github.com:zacharyeller13/dotfiles.git "$HOME/.dotfiles";
+
 # venv is necessary for ruff and ruff_lsp in neovim
 # probably also for some other stuff
 sudo apt install python3-venv;
@@ -26,20 +42,6 @@ sudo tar -C /opt -xzf nvim-linux64.tar.gz;
 # Install unzip in order for some neovim extensions to work
 sudo apt install unzip;
 
-# Generate a new ssh key, add it to the agent, and remind ourselves to add to
-# Github
-echo "Generating a new ed25519 ssh key-pair for use with Github";
-echo "Follow the prompt and copy the resulting public key and add it to Github";
-ssh-keygen -t ed25519 -C "$(whoami)@$(hostname)";
-# this should be the filename of the public key
-cat ~/.ssh/id_ed25519.pub
-echo "When finished, press any key to continue install";
-read;
-
-# Now we can successfully clone via ssh
-# Let's clone our dotfiles
-git clone git@github.com:zacharyeller13/dotfiles.git "$HOME/.dotfiles";
-
 # Let's install zsh and oh-my-zsh
 sudo apt install zsh;
 # oh-my-zsh
@@ -64,6 +66,9 @@ echo "Please select a new background and create a wal colorscheme using
     > /dev/null 2>&1 &);
 nvm install node;
 
+# Install mermaid-cli
+npm install -g @mermaid-js/mermaid-cli
+
 # Let's get these symlinks setup
 ln -s "$HOME/.dotfiles/nvim" "$HOME/.config/nvim";
 ln -s "$HOME/.dotfiles/.alias" "$HOME/.alias";
@@ -72,15 +77,16 @@ ln -s "$HOME/.dotfiles/.gitconfig" "$HOME/.gitconfig";
 ln -s "$HOME/.dotfiles/.ideavimrc" "$HOME/.ideavimrc";
 ln -s "$HOME/.dotfiles/.nanorc" "$HOME/.nanorc";
 ln -s "$HOME/.dotfiles/.tmux.conf" "$HOME/.tmux.conf";
+ln -s "$HOME/.dotfiles/.zshrc" "$HOME/.zshrc";
 
 # Install xclip as our clipboard manager so that neovim config
 # "clipboard=unnamedplus" actually works
 sudo apt install xclip;
 # Fuzzy finder, download it, but wait to install
 # Ubuntu 22.04 package manager is on version 0.29 and current version is 0.59 so
-git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf;
+git clone --depth 1 https://github.com/junegunn/fzf.git "$HOME/.fzf";
 
 # End with a couple reminders
 echo "All done for now.  Remember to install steam (apt) and protonup (pip3) \
-if we're playing games with Steam.  Also symlink zshrc manually and install fzf from .fzf directory";
+if we're playing games with Steam.  Also manually install fzf from .fzf directory";
 
