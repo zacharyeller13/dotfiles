@@ -3,5 +3,5 @@
 ## Install 
 
 ```sh
-curl -o- https://raw.githubusercontent.com/zacharyeller13/dotfiles/refs/heads/main/install.sh | bash
+curl -O https://raw.githubusercontent.com/zacharyeller13/dotfiles/refs/heads/main/install.sh && chmod +x install.sh && ./install.sh
 ```
