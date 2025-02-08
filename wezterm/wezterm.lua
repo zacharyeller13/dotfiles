@@ -2,6 +2,11 @@ local wezterm = require("wezterm")
 
 local config = wezterm.config_builder()
 
+-- Need to be able to start straight in to WSL if we're on Windows
+if #wezterm.default_wsl_domains() > 0 then
+	config.default_domain = wezterm.default_wsl_domains()[1].name
+end
+
 wezterm.on("gui-startup", function()
 	local _, _, window = wezterm.mux.spawn_window({})
 	window:gui_window():maximize()
