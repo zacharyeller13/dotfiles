@@ -26,6 +26,9 @@ sudo apt install python3-venv;
 #Let's also install pip3 now cause we'll need it
 sudo apt install python3-pip;
 
+# Also pipx because PEP668 makes life hard
+sudo apt install pipx;
+
 # ripgrep is a better grep and also necessary for telescope in neovim
 sudo apt install ripgrep;
 
@@ -57,7 +60,7 @@ git clone --depth 1 -- https://github.com/marlonrichert/zsh-autocomplete.git "$H
 
 # Setup a new background with pywal
 # We also need to install pip right now
-pip3 install pywal
+pipx install pywal
 echo "Please select a new background and create a wal colorscheme using
     'wal -i <path to picture>'
 .zshrc will then source this from .cache/wal.  You can do this later";
@@ -67,6 +70,10 @@ echo "Please select a new background and create a wal colorscheme using
 # and throw it away
 (curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash \
     > /dev/null 2>&1 &);
+
+# Need to source nvm before we can actually use it
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 nvm install node;
 
 # Install mermaid-cli
@@ -85,6 +92,7 @@ ln -s "$HOME/.dotfiles/.zshrc" "$HOME/.zshrc";
 # Install xclip as our clipboard manager so that neovim config
 # "clipboard=unnamedplus" actually works
 sudo apt install xclip;
+
 # Fuzzy finder, download it, but wait to install
 # Ubuntu 22.04 package manager is on version 0.29 and current version is 0.59 so
 git clone --depth 1 https://github.com/junegunn/fzf.git "$HOME/.fzf";
