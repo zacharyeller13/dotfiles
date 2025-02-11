@@ -1,6 +1,7 @@
-[user]
-	name = Zachary Eller
-	email = 37415056+zacharyeller13@users.noreply.github.com
+[includeIf "gitdir:~/dev/**"]
+	path = ~/.config/git/personal
+[includeIf "gitdir:~/work/**"]
+	path = ~/.config/git/work
 [pager]
 	branch = false
 [core]

@@ -10,7 +10,6 @@ alias vim="nvim"
 alias sumHours="python3 ~/.dotfiles/.scripts/sum_day_hours.py"
 
 if [[ $(grep -i Microsoft /proc/version) ]]; then
-    alias projects="cd '/mnt/c/Users/zachary.eller.WILSONLEGAL/OneDrive - Harbor Global/Documents/Projects'"
 fi
 
 # If wsl or not
