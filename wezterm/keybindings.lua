@@ -2,6 +2,8 @@ local wezterm = require("wezterm")
 local module = {}
 local act = wezterm.action
 
+---Updates keys
+---@param config table
 function module.bind_keys(config)
 	config.keys = {
 		{
