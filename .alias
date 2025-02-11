@@ -5,7 +5,6 @@ alias ld="ls -ld */" # List only directories
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
-alias nand="cd ~/Nextcloud2/Documents/Learning/OSSU/Nand2Tetris/nand2tetris"
 alias vim="nvim"
 alias sumHours="python3 ~/.dotfiles/.scripts/sum_day_hours.py"
 
