@@ -1,4 +1,4 @@
-[includeIf "gitdir:~/dev/**"]
+[includeIf "gitdir:~/**"]
 	path = ~/.config/git/personal
 [includeIf "gitdir:~/work/**"]
 	path = ~/.config/git/work
