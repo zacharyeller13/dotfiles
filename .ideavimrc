@@ -1,4 +1,6 @@
 set relativenumber
+set number
+
 let mapleader = ' '
 vmap K <Action>(MoveLineUp)
 vmap J <Action>(MoveLineDown)
@@ -34,3 +36,8 @@ nmap <Leader>ca <Action>(ShowIntentionActions)
 
 " Inline Completions with C-y
 imap <C-y> <Action>(EditorChooseLookupItem)
+
+" --- Enable IdeaVim plugins https://jb.gg/ideavim-plugins
+
+" Highlight copied text
+Plug 'machakann/vim-highlightedyank'
