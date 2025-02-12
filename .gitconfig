@@ -2,8 +2,11 @@
 	path = ~/.config/git/personal
 [includeIf "gitdir:~/work/**"]
 	path = ~/.config/git/work
+[includeIf "gitdir:/mnt/c/Users/**"]
+	path = ~/.config/git/work
 [pager]
 	branch = false
+	config = false
 [core]
 	autocrlf = input
 	editor = nvim
