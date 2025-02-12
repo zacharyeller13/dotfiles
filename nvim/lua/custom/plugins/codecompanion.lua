@@ -13,13 +13,31 @@ local M = {
         opts = {
             strategies = {
                 chat = {
-                    adapter = 'deepseek',
+                    adapter = 'llama3',
+                },
+                inline = {
+                    adapter = 'codellama',
                 },
             },
             adapters = {
+                codellama = function()
+                    return require('codecompanion.adapters').extend('ollama', {
+                        name = 'codellama',
+                        formatted_name = 'CodeLlama',
+                        schema = {
+                            model = {
+                                default = 'codellama:13b',
+                            },
+                            num_ctx = {
+                                default = 8192,
+                            },
+                        },
+                    })
+                end,
                 llama3 = function()
                     return require('codecompanion.adapters').extend('ollama', {
                         name = 'llama3',
+                        formatted_name = 'Llama 3',
                         schema = {
                             model = {
                                 default = 'llama3:latest',
@@ -30,22 +48,13 @@ local M = {
                         },
                     })
                 end,
-                deepseek14b = function()
-                    return require('codecompanion.adapters').extend('ollama', {
-                        name = 'deepseek14b',
-                        schema = {
-                            model = {
-                                default = 'deepseek-r1:14b',
-                            },
-                        },
-                    })
-                end,
                 deepseek = function()
                     return require('codecompanion.adapters').extend('ollama', {
                         name = 'deepseek',
+                        formatted_name = 'Deepseek-Coder',
                         schema = {
                             model = {
-                                default = 'deepseek-r1:7b',
+                                default = 'deepseek-coder:6.7b',
                             },
                             num_ctx = {
                                 default = 8192,
