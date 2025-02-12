@@ -70,7 +70,7 @@ HIST_STAMPS="yyyy-mm-dd"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-autocomplete tmux)
+plugins=(git zsh-autocomplete tmux dotnet)
 # plugins=(git)
 
 # User configuration
@@ -109,6 +109,10 @@ source $HOME/.alias
 source $HOME/.env
 
 # Import colorscheme from 'wal' asynchronously
+# typically need to create with `wal -n -a "alpha" -i "<path>"`
+# -a for transparency
+# -n for not setting wallpaper
+# -i for path of picture
 
 (cat ~/.cache/wal/sequences &)
 
