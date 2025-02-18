@@ -22,3 +22,5 @@
 	graph = log --all --graph --decorate --oneline
 [diff]
 	tool = nvimdiff
+[merge]
+	tool = nvimdiff2
