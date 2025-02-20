@@ -24,10 +24,14 @@ vim.keymap.set('c', 'jj', '<Escape>', { desc = 'Escape' })
 
 -- Format using conform
 vim.keymap.set('n', '<leader>f', function()
-    local out = require('conform').format { async = true }
-    if out then
-        print('Formatted!')
-    end
+    require('conform').format({ async = true }, function(err, did_edit)
+        if did_edit then
+            print('Formatted!')
+        end
+        if err then
+            print(err)
+        end
+    end)
 end, { desc = '[F]ormat file' })
 
 -- Harpoon keymaps

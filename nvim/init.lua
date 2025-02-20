@@ -490,6 +490,7 @@ require('lazy').setup({
                 -- clangd = {},
                 csharp_ls = {},
                 gopls = {},
+                xmlformatter = {},
                 pyright = {
                     capabilities = capabilities,
                     settings = {
@@ -514,7 +515,7 @@ require('lazy').setup({
                     trace = 'messages',
                     init_options = {
                         settings = {
-                            logLevel = 'debug',
+                            logLevel = 'info',
                         },
                     },
                 },
@@ -611,6 +612,7 @@ require('lazy').setup({
                 -- is found.
                 -- javascript = { { "prettierd", "prettier" } },
                 sql = { 'sqlfluff' },
+                xml = { 'xmlformatter' },
             },
         },
     },
