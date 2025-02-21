@@ -491,6 +491,7 @@ require('lazy').setup({
                 csharp_ls = {},
                 gopls = {},
                 xmlformatter = {},
+                ['sql-formatter'] = {},
                 pyright = {
                     capabilities = capabilities,
                     settings = {
@@ -592,30 +593,6 @@ require('lazy').setup({
         end,
     },
 
-    { -- Autoformat
-        'stevearc/conform.nvim',
-        opts = {
-            -- log_level = vim.log.levels.DEBUG,
-            -- notify_on_error = false,
-            notify_on_error = true,
-            format_on_save = {
-                timeout_ms = 500,
-                lsp_fallback = true,
-            },
-            formatters_by_ft = {
-                lua = { 'stylua' },
-                -- Conform can also run multiple formatters sequentially
-                python = { 'ruff_format', 'isort', 'black' },
-                -- csharp
-                cs = { lsp_format = 'prefer' },
-                -- You can use a sub-list to tell conform to run *until* a formatter
-                -- is found.
-                -- javascript = { { "prettierd", "prettier" } },
-                sql = { 'sqlfluff' },
-                xml = { 'xmlformatter' },
-            },
-        },
-    },
     { -- You can easily change to a different colorscheme.
         -- Change the name of the colorscheme plugin below, and then
         -- change the command in the config to whatever the name of that colorscheme is
