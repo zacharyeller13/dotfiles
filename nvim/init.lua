@@ -490,8 +490,6 @@ require('lazy').setup({
                 -- clangd = {},
                 csharp_ls = {},
                 gopls = {},
-                xmlformatter = {},
-                ['sql-formatter'] = {},
                 pyright = {
                     capabilities = capabilities,
                     settings = {
@@ -575,6 +573,8 @@ require('lazy').setup({
             vim.list_extend(ensure_installed, {
                 'stylua', -- Used to format lua code
                 'ruff',
+                'xmlformatter',
+                'sql-formatter',
             })
             require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
