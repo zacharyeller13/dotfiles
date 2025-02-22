@@ -1,3 +1,5 @@
+local sql_config = { language = 'tsql', tabWidth = 4, keywordCase = 'upper' }
+
 return {
     { -- Autoformat
         'stevearc/conform.nvim',
@@ -27,7 +29,7 @@ return {
             },
             formatters = {
                 sql_formatter = {
-                    prepend_args = { '-l', 'tsql' },
+                    prepend_args = { '--config', vim.json.encode(sql_config) },
                 },
             },
         },
