@@ -1,4 +1,11 @@
 return {
+    -- Compability with nvim-cmp sources
+    {
+        'saghen/blink.compat',
+        version = '*',
+        lazy = true,
+        opts = {},
+    },
     {
         'saghen/blink.cmp',
         -- optional: provides snippets for the snippet source
@@ -19,6 +26,7 @@ return {
                     return 'make install_jsregexp'
                 end)(),
             },
+            { 'MattiasMTS/cmp-dbee', ft = 'sql', opts = {} },
         },
 
         -- use a release tag to download pre-built binaries
@@ -48,6 +56,10 @@ return {
             sources = {
                 default = { 'lazydev', 'lsp', 'path', 'snippets', 'buffer', 'markdown' },
 
+                per_filetype = {
+                    sql = { 'dbee', 'buffer' },
+                },
+
                 -- Needed to setup lazydev as an available provider
                 providers = {
                     lazydev = {
@@ -60,6 +72,7 @@ return {
                         module = 'render-markdown.integ.blink',
                         fallbacks = { 'lsp' },
                     },
+                    dbee = { name = 'cmp-dbee', module = 'blink.compat.source' },
                 },
 
                 -- optionally disable cmdline completions
