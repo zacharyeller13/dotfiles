@@ -1,6 +1,5 @@
 set relativenumber
 set number
-
 let mapleader = ' '
 vmap K <Action>(MoveLineUp)
 vmap J <Action>(MoveLineDown)
@@ -34,10 +33,20 @@ nmap <Leader>rn <Action>(RenameElement)
 " Context Actions/Code Actions
 nmap <Leader>ca <Action>(ShowIntentionActions)
 
+" Switch Files
+nmap <C-h> <Action>(GoToTab1)
+nmap <C-j> <Action>(GoToTab2)
+nmap <C-k> <Action>(GoToTab3)
+nmap <C-l> <Action>(GoToTab4)
+nmap <C-e> <Action>(Switcher)
+
 " Inline Completions with C-y
 imap <C-y> <Action>(EditorChooseLookupItem)
+nmap <C-n> <Action>(CodeFloatingToolbar.GotoNextMenu)
+nmap <C-p> <Action>(CodeFloatingToolbar.GotoPrevMenu)
 
 " --- Enable IdeaVim plugins https://jb.gg/ideavim-plugins
 
 " Highlight copied text
 Plug 'machakann/vim-highlightedyank'
+
