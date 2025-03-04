@@ -10,6 +10,7 @@ cmap jj <Esc>
 
 set nohlsearch
 set incsearch
+set ignorecase smartcase
 
 " Use system clipboard - also want to match my main init.lua
 set clipboard=unnamedplus
