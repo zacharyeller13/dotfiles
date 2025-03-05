@@ -1,6 +1,18 @@
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
 
+-- Move quickfix list, apparently will be autoset in nvim 0.11
+vim.keymap.set('n', '[q', function()
+    if #vim.fn.getqflist() ~= 0 then
+        return vim.cmd.cprev()
+    end
+end, { desc = 'Go to previous [Q]uickfix item' })
+vim.keymap.set('n', ']q', function()
+    if #vim.fn.getqflist() ~= 0 then
+        return vim.cmd.cnext()
+    end
+end, { desc = 'Go to next [Q]uickfix item' })
+
 -- Run lua code when necessary
 vim.keymap.set('n', '<space><space>x', '<cmd>source %<CR>')
 vim.keymap.set('n', '<space>x', ':.lua<CR>')
