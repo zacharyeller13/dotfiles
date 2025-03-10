@@ -34,6 +34,9 @@ nmap <Leader>rn <Action>(RenameElement)
 " Context Actions/Code Actions
 nmap <Leader>ca <Action>(ShowIntentionActions)
 
+" Goto Reference more or less
+nmap gr <Action>(RiderShowIncomingCalls)
+
 " Switch Files
 nmap <C-h> <Action>(GoToTab1)
 nmap <C-j> <Action>(GoToTab2)
