@@ -7,6 +7,7 @@ alias ...="cd ../.."
 alias ....="cd ../../.."
 alias vim="nvim"
 alias sumHours="python3 ~/.dotfiles/.scripts/sum_day_hours.py"
+alias vim-test="NVIM_APPNAME=nvim-test nvim"
 
 if [[ $(grep -i Microsoft /proc/version) ]]; then
 fi
