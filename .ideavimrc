@@ -8,6 +8,10 @@ vmap J <Action>(MoveLineDown)
 imap jj <Esc>
 cmap jj <Esc>
 
+" Bells are stupid
+set visualbell
+set noerrorbells
+
 set nohlsearch
 set incsearch
 set ignorecase smartcase
