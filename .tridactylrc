@@ -2,7 +2,7 @@ command tmpcontainer jsb (() => {  tri.state.existingContainers.push(`tmp${tri.s
 command tmpclear jsb (() => {tri.state.existingContainers.forEach(tri.excmds.containerdelete); tri.state.existingContainers = [] })() 
 
 " Needs a way to define existingContainers and tempcontainer on startup
-autocmd TriStart .* jsb (() => {tri.state.existingContainers = []; tri.state.tempcontainer++})()
+autocmd TriStart .* jsb (() => {tri.state.existingContainers = []; tri.state.tempcontainer = 0})()
 
 " vim-like searching
 bind / fillcmdline find
