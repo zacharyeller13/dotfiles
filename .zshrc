@@ -100,7 +100,10 @@ plugins=(git zsh-autocomplete tmux dotnet)
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # Tmux config
-ZSH_TMUX_AUTOSTART=true
+if [[ "$TERMINAL_EMULATOR" != "Jetbrains-Jedi" ]]; then
+    ZSH_TMUX_AUTOSTART=true
+    ZSH_TMUX_AUTOCONNECT=false
+fi
 # ZSH_TMUX_AUTOQUIT=false
 
 export ZSH=$HOME/.oh-my-zsh
