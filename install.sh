@@ -87,6 +87,7 @@ ln -s "$HOME/.dotfiles/.gitconfig" "$HOME/.gitconfig";
 ln -s "$HOME/.dotfiles/.ideavimrc" "$HOME/.ideavimrc";
 ln -s "$HOME/.dotfiles/.nanorc" "$HOME/.nanorc";
 ln -s "$HOME/.dotfiles/.tmux.conf" "$HOME/.tmux.conf";
+ln -s "$HOME/.dotfiles/.scripts" "$HOME/.local/scripts";
 ln -s "$HOME/.dotfiles/.zshrc" "$HOME/.zshrc";
 
 # Install xclip as our clipboard manager so that neovim config
