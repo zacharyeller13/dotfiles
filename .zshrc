@@ -2,7 +2,8 @@
 # export PATH=/etc/alternatives/dotnet:$HOME/bin:/usr/local/bin:$PATH
 
 # JRE Path
-export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64/bin/java
+# export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64/bin/java
+# export JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -126,3 +127,7 @@ export NVM_DIR="$HOME/.nvm"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 eval "$(uv generate-shell-completion zsh)"
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
