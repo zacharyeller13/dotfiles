@@ -117,7 +117,7 @@ source $HOME/.env
 # -n for not setting wallpaper
 # -i for path of picture
 
-(cat ~/.cache/wal/sequences &)
+[ -f "$HOME/.cache/wal/sequences" ] && (cat ~/.cache/wal/sequences &)
 
 # NVM - npm version manager.  Required for LSPs
 export NVM_DIR="$HOME/.nvm"
