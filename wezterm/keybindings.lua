@@ -14,6 +14,8 @@ end
 ---Updates keybindings
 ---@param config Config
 function module:bind_keys(config)
+    config.keys = config.keys or {}
+
     ---@param key string
     ---@param mod string?
     ---@param action KeyAssignment
@@ -41,8 +43,8 @@ function module:bind_keys(config)
     )
     set("V", "CTRL", act.PasteFrom("Clipboard"))
     set(
-        "E",
-        "CTRL|SHIFT",
+        ",",
+        "LEADER",
         act.PromptInputLine({
             description = "Enter new tab name",
             action = wezterm.action_callback(function(window, pane, line)
