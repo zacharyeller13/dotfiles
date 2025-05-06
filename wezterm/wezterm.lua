@@ -44,7 +44,7 @@ require("status_bar")
 
 -- Keybindings
 local keybindings = require("keybindings")
-keybindings.bind_keys(config)
+keybindings:bind_keys(config)
 
 -- For pywal
 -- wezterm.add_to_config_reload_watch_list(os.getenv("HOME") .. "/.cache/wal/sequences")
