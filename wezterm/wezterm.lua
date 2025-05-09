@@ -8,8 +8,16 @@ config.show_new_tab_button_in_tab_bar = false
 config.use_fancy_tab_bar = false
 
 -- Need to be able to start straight in to WSL if we're on Windows
+-- And also be able to select powershell
 if #wezterm.default_wsl_domains() > 0 then
     config.default_domain = wezterm.default_wsl_domains()[1].name
+    config.launch_menu = {
+        {
+            label = "Powershell",
+            domain = { DomainName = "local" },
+            args = { "C:/Program Files/Powershell/7/pwsh.exe" },
+        },
+    }
 end
 
 wezterm.on("gui-startup", function()
@@ -45,6 +53,9 @@ require("status_bar")
 -- Keybindings
 local keybindings = require("keybindings")
 keybindings:bind_keys(config)
+
+-- Event for scrollback
+require("tinkering")
 
 -- For pywal
 -- wezterm.add_to_config_reload_watch_list(os.getenv("HOME") .. "/.cache/wal/sequences")

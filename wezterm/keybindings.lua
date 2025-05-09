@@ -54,6 +54,8 @@ function module:bind_keys(config)
             end),
         })
     )
+
+    set("o", "LEADER", act.ShowLauncherArgs({ flags = "LAUNCH_MENU_ITEMS|DOMAINS" }))
 end
 
 return module
