@@ -24,24 +24,25 @@ function module:bind_keys(config)
     end
     config.leader = { key = "a", mods = "CTRL", timeout_milliseconds = 1000 }
 
+    -- Splits/Panes
     set("|", "LEADER|SHIFT", act.SplitHorizontal({ domain = "CurrentPaneDomain" }))
     set("_", "LEADER|SHIFT", act.SplitVertical({ domain = "CurrentPaneDomain" }))
     set("h", "LEADER", act.ActivatePaneDirection("Left"))
     set("j", "LEADER", act.ActivatePaneDirection("Down"))
     set("k", "LEADER", act.ActivatePaneDirection("Up"))
     set("l", "LEADER", act.ActivatePaneDirection("Right"))
+
+    -- Tabs
     set("c", "LEADER", act.SpawnTab("CurrentPaneDomain"))
+    for i = 1, 8 do
+        set(tostring(i), "LEADER", act.ActivateTab(i - 1))
+    end
     set("n", "LEADER", act.ActivateTabRelative(1))
     set("p", "LEADER", act.ActivateTabRelative(-1))
-    set(
-        ",",
-        "SUPER",
-        act.SpawnCommandInNewTab({
-            cwd = wezterm.home_dir,
-            args = { "nvim", wezterm.home_dir .. "/.config/wezterm/wezterm.lua" },
-        })
-    )
+
     set("V", "CTRL", act.PasteFrom("Clipboard"))
+
+    -- Rename tabs
     set(
         ",",
         "LEADER",
@@ -55,6 +56,7 @@ function module:bind_keys(config)
         })
     )
 
+    -- Open select launch menu
     set("o", "LEADER", act.ShowLauncherArgs({ flags = "LAUNCH_MENU_ITEMS|DOMAINS" }))
 end
 
