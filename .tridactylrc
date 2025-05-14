@@ -1,5 +1,6 @@
 command tmpcontainer jsb (() => {  tri.state.existingContainers.push(`tmp${tri.state.tempcontainer++}`); tri.excmds.containercreate(tri.state.existingContainers.slice(-1).toString()); tri.excmds.tabopen("-c", tri.state.existingContainers.slice(-1).toString()) })()
-command tmpclear jsb (() => {tri.state.existingContainers.forEach(tri.excmds.containerdelete); tri.state.existingContainers = [] })() 
+command tmpclear jsb (() => {tri.state.existingContainers.forEach(tri.excmds.containerdelete); tri.state.existingContainers = [] })()
+command forceTmpClear jsb (() => { for (let i = 0; i < 100; i++) { tri.excmds.containerdelete(`tmp${i}`).catch(() =>{}) } })()
 
 " Needs a way to define existingContainers and tempcontainer on startup
 autocmd TriStart .* composite source;  jsb tri.state.existingContainers = []; jsb tri.state.tempcontainer = 0
