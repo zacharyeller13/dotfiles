@@ -18,6 +18,44 @@ local function segments_for_right_status(_, pane)
     }
 end
 
+---Returns tab title, preferring a manually set title
+---@param tab_info TabInformation
+---@return string
+local function tab_title(tab_info)
+    local title = tab_info.tab_title
+
+    if title and #title > 0 then
+        return title
+    end
+
+    return tab_info.active_pane.title
+end
+
+wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
+    local SOLID_RIGHT_ARROW = wezterm.nerdfonts.pl_left_hard_divider
+
+    local color_scheme = config.resolved_palette
+    local bg = wezterm.color.parse("#3E405A")
+    local fg = wezterm.color.parse(color_scheme.foreground)
+
+    local pos = tab.tab_index + 1
+    local title = " " .. pos .. ": " .. tab_title(tab)
+    title = wezterm.truncate_right(title, max_width - 2)
+
+    if not tab.is_active then
+        fg = wezterm.color.parse("#000000")
+    end
+
+    return {
+        { Background = { Color = bg } },
+        { Foreground = { Color = fg } },
+        { Text = title },
+        { Background = { Color = "None" } },
+        { Foreground = { Color = bg } },
+        { Text = SOLID_RIGHT_ARROW },
+    }
+end)
+
 wezterm.on("update-status", function(window, pane)
     local SOLID_LEFT_ARROW = wezterm.nerdfonts.pl_right_hard_divider
     local segments = segments_for_right_status(window, pane)
