@@ -71,8 +71,7 @@ HIST_STAMPS="yyyy-mm-dd"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-autocomplete tmux dotnet)
-# plugins=(git)
+plugins=(git zsh-autocomplete dotnet)
 
 # User configuration
 
@@ -118,7 +117,7 @@ source $HOME/.env
 # -n for not setting wallpaper
 # -i for path of picture
 
-(cat ~/.cache/wal/sequences &)
+[ -f "$HOME/.cache/wal/sequences" ] && (cat ~/.cache/wal/sequences &)
 
 # NVM - npm version manager.  Required for LSPs
 export NVM_DIR="$HOME/.nvm"
