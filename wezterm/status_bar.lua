@@ -37,6 +37,7 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_wid
     local color_scheme = config.resolved_palette
     local bg = wezterm.color.parse("#3E405A")
     local fg = wezterm.color.parse(color_scheme.foreground)
+    local edge_bg = wezterm.color.parse(color_scheme.background)
 
     local pos = tab.tab_index + 1
     local title = " " .. pos .. ": " .. tab_title(tab)
@@ -50,7 +51,7 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_wid
         { Background = { Color = bg } },
         { Foreground = { Color = fg } },
         { Text = title },
-        { Background = { Color = "None" } },
+        { Background = { Color = edge_bg } },
         { Foreground = { Color = bg } },
         { Text = SOLID_RIGHT_ARROW },
     }
@@ -83,7 +84,7 @@ wezterm.on("update-status", function(window, pane)
         local is_first = i == 1
 
         if is_first then
-            table.insert(elements, { Background = { Color = "none" } })
+            table.insert(elements, { Background = { Color = bg } })
         end
         table.insert(elements, { Foreground = { Color = gradient[i] } })
         table.insert(elements, { Text = SOLID_LEFT_ARROW })
