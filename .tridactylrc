@@ -9,3 +9,7 @@ autocmd TriStart .* composite source;  jsb tri.state.existingContainers = []; js
 bind / fillcmdline find
 bind n findnext
 bind N findnext --reverse
+
+" Especially w/vertical tabs this is closer to vim-like
+bind K tabprev
+bind J tabnext
