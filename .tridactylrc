@@ -13,3 +13,6 @@ bind N findnext --reverse
 " Especially w/vertical tabs this is closer to vim-like
 bind K tabprev
 bind J tabnext
+
+" Alt c
+bind <M-c> tmpcontainer

@@ -8,13 +8,3 @@ alias ....="cd ../../.."
 alias vim="nvim"
 alias sumHours="python3 ~/.dotfiles/.scripts/sum_day_hours.py"
 alias vim-test="NVIM_APPNAME=nvim-test nvim"
-
-if [[ $(grep -i Microsoft /proc/version) ]]; then
-fi
-
-# If wsl or not
-if [[ $(grep -i Microsoft /proc/version) ]]; then
-    alias setClipboard="win32yank.exe -i"
-else
-    alias setClipboard="xclip -selection c"
-fi
