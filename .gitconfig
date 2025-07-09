@@ -1,4 +1,4 @@
-[includeIf "gitdir:~/**"]
+[includeIf "hasconfig:remote.*.url:git@github.com:zacharyeller13/**"]
 	path = ~/.config/git/personal
 [includeIf "gitdir:~/work/**"]
 	path = ~/.config/git/work
