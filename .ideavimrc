@@ -47,6 +47,8 @@ nmap <C-j> <Action>(GoToTab2)
 nmap <C-k> <Action>(GoToTab3)
 nmap <C-l> <Action>(GoToTab4)
 nmap <C-e> <Action>(Switcher)
+nmap <Leader>sf <Action>(GotoFile)
+nmap <Leader>sg <Action>(SearchEverywhere)
 
 " Inline Completions with C-y
 imap <C-y> <Action>(EditorChooseLookupItem)
