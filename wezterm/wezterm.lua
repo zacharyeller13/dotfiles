@@ -35,15 +35,15 @@ config.audible_bell = "Disabled"
 config.window_background_opacity = 0.9
 
 -- Remove title bar
-config.window_decorations = "TITLE | RESIZE"
+config.window_decorations = "RESIZE"
 -- Sets font for window frame
 config.window_frame = {
-    font = wezterm.font({ family = "Jetbrains Mono", weight = "Bold" }),
+    font = wezterm.font({ family = "JetBrains Mono", weight = "Bold" }),
     font_size = 11,
 }
 
 -- Global font
-config.font = wezterm.font_with_fallback({ "JetBrains Mono", "JetBrainsMono Nerd Font", "Font Awesome 7 Free" })
+config.font = wezterm.font_with_fallback({ "JetBrains Mono", "SF Pro" })
 
 -- Create a status bar at the top
 require("status_bar")
