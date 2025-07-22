@@ -1,0 +1,4 @@
+---@class Space
+---@field workspace string
+---@field monitor-id integer
+---@field workspace-is-visible boolean
