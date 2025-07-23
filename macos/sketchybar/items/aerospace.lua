@@ -93,4 +93,13 @@ for i = 1, 9, 1 do
     item:subscribe("mouse.clicked", function()
         Sketchybar.exec("aerospace workspace " .. i)
     end)
+
+    -- Typically if we switch power, we may be going from
+    -- a dock to just the built-in screen, so let's check and re-render the
+    -- spaces
+    item:subscribe("power_source_change", function()
+        Sketchybar.exec(AERO_LIST_WORKSPACES, function(spaces)
+            item:set({ display = spaces[i]["monitor-appkit-nsscreen-screens-id"] })
+        end)
+    end)
 end
