@@ -103,6 +103,10 @@ automatically-unhide-macos-hidden-apps = true
     alt-slash = 'layout tiles horizontal vertical'
     alt-comma = 'layout accordion horizontal vertical'
 
+    # Disabled cmd-q because hyprland that's logout lol.
+    # alt-c, can't do this cause I use that for tmp tabs in firefox
+    alt-cmd-c = 'close --quit-if-last-window'
+
     # See: https://nikitabobko.github.io/AeroSpace/commands#focus
     alt-h = 'focus --boundaries all-monitors-outer-frame --boundaries-action wrap-around-all-monitors left'
     alt-j = 'focus down'
