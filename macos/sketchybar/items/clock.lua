@@ -35,9 +35,12 @@ end
 ---@param cal string
 Sketchybar.exec("cal", function(cal)
     local calendar_rows = {}
+    local day = os.date("%d") --[[@as string]]
+
     for match in cal:gmatch("[^\r\n]+") do
         local trimmed, _ = match:gsub("%s+", "")
         if trimmed ~= "" then
+            match, _ = match:gsub(" " .. day .. " ", "[" .. day .. "]")
             table.insert(calendar_rows, match)
         end
     end
