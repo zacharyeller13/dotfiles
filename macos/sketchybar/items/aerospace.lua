@@ -98,6 +98,16 @@ for i = 1, 9, 1 do
     -- a dock to just the built-in screen, so let's check and re-render the
     -- spaces
     item:subscribe("power_source_change", function()
+        item:set({ display = "active" })
+        Sketchybar.exec(AERO_LIST_WORKSPACES, function(spaces)
+            item:set({ display = spaces[i]["monitor-appkit-nsscreen-screens-id"] })
+        end)
+    end)
+
+    -- If we disconnected while asleep, need to re-render spaces on the correct
+    -- monitor again
+    item:subscribe("system_woke", function()
+        item:set({ display = "active" })
         Sketchybar.exec(AERO_LIST_WORKSPACES, function(spaces)
             item:set({ display = spaces[i]["monitor-appkit-nsscreen-screens-id"] })
         end)

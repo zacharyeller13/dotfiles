@@ -1,4 +1,5 @@
 local icons = require("icons")
+local power = require("helpers.power")
 
 local battery = Sketchybar.add("item", "battery", {
     position = "right",
