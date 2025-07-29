@@ -20,11 +20,6 @@ if #wezterm.default_wsl_domains() > 0 then
     }
 end
 
-wezterm.on("gui-startup", function()
-    local _, _, window = wezterm.mux.spawn_window({})
-    window:gui_window():maximize()
-end)
-
 -- appearance.lua
 local appearance = require("appearance")
 if appearance.is_dark() then
