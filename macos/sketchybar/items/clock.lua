@@ -4,6 +4,10 @@ local clock = Sketchybar.add("item", "clock", {
     icon = { string = "  " },
 })
 
+-- Add calendar
+local calendar = require("items.calendar")
+calendar:setup()
+
 ---What the clock currently shows, default should be 'time'
 ---@type "date"
 ---| "time"
@@ -18,6 +22,7 @@ local function update()
     else
         clock:set({ label = time })
     end
+    calendar:update()
 end
 
 local function on_click()
@@ -32,32 +37,7 @@ local function on_click()
     end
 end
 
----@param cal string
-Sketchybar.exec("cal", function(cal)
-    local calendar_rows = {}
-    local day = os.date("%d") --[[@as string]]
-
-    for match in cal:gmatch("[^\r\n]+") do
-        local trimmed, _ = match:gsub("%s+", "")
-        if trimmed ~= "" then
-            match, _ = match:gsub(" " .. day .. " ", "[" .. day .. "]")
-            table.insert(calendar_rows, match)
-        end
-    end
-
-    for i, cal_row in ipairs(calendar_rows) do
-        Sketchybar.add("item", "calendar." .. i, {
-            -- How do we get this width? Trial and error and guessing
-            -- If we leave it as 'dynamic', some of the characters get truncated
-            width = 160,
-            position = "popup.clock",
-            icon = { drawing = false },
-            label = { string = cal_row },
-        })
-    end
-end)
-
-local function show_calendar(env)
+local function show_calendar()
     clock:set({
         popup = { drawing = true, align = "right" },
     })
