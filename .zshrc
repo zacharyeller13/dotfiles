@@ -22,7 +22,7 @@ export NVM_LAZY_LOAD=true
 export NVM_COMPLETION=true
 # neovim obviously uses node for lsp at times
 # and opencode is partially written in typescript and uses LSP, so assume need to load there too just in case
-export NVM_LAZY_LOAD_EXTRA_COMMANDS=('vim', 'nvim', 'opencode')
+export NVM_LAZY_LOAD_EXTRA_COMMANDS=('vim' 'nvim' 'opencode')
 
 #node is now loaded
 # export NVM_DIR="$HOME/.nvm"
