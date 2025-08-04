@@ -7,6 +7,8 @@ M.calendar_rows = {}
 function M:update()
     Sketchybar.exec("cal", function(cal)
         local day = os.date("%d") --[[@as string]]
+        -- Need to strip a leading 0 to match the calendar output
+        day = day:gsub("^0", "")
 
         local i = 1
         for match in cal:gmatch("[^\r\n]+") do
@@ -24,6 +26,7 @@ function M:setup()
     ---@param cal string
     Sketchybar.exec("cal", function(cal)
         local day = os.date("%d") --[[@as string]]
+        day = day:gsub("^0", "")
 
         local i = 1
         for match in cal:gmatch("[^\r\n]+") do
