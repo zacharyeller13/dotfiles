@@ -42,6 +42,9 @@ config.window_frame = {
     font_size = 11,
 }
 
+-- Global font
+config.font = wezterm.font_with_fallback({ "JetBrains Mono", "JetBrainsMono Nerd Font", "Font Awesome 7 Free" })
+
 -- Create a status bar at the top
 require("status_bar")
 
