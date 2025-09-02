@@ -1,5 +1,8 @@
 zmodload zsh/zprof
 
+# Try no to keep re-doing compinit every startup
+ZSH_COMPINIT_CACHE=true
+
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="jonathan"
 
@@ -28,7 +31,6 @@ export NVM_LAZY_LOAD_EXTRA_COMMANDS=('vim' 'nvim' 'opencode')
 # export NVM_DIR="$HOME/.nvm"
 # [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 # [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
 
 # Which plugins would you like to load?
 # Standard plugins can be found in $ZSH/plugins/
@@ -59,7 +61,6 @@ source $HOME/.env
 [ -f "$HOME/.cache/wal/sequences" ] && (cat ~/.cache/wal/sequences &)
 
 # Set up fzf key bindings and fuzzy completion
-[ -f "$HOME/.fzf.zsh" ] && source "$HOME/.fzf.zsh"
 if type fzf > /dev/null; then
     source <(fzf --zsh)
 fi
