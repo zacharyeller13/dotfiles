@@ -1,8 +1,5 @@
 zmodload zsh/zprof
 
-# Try no to keep re-doing compinit every startup
-ZSH_COMPINIT_CACHE=true
-
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="jonathan"
 
