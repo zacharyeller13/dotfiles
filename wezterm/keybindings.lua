@@ -24,6 +24,9 @@ function module:bind_keys(config)
     end
     config.leader = { key = "a", mods = "CTRL", timeout_milliseconds = 1000 }
 
+    -- Passthrough <C-a> to Neovim on 2nd press to not lose increment integer functinality
+    set("a", "LEADER|CTRL", act.SendKey({ key = "a", mods = "CTRL" }))
+
     -- Splits/Panes
     set("|", "LEADER|SHIFT", act.SplitHorizontal({ domain = "CurrentPaneDomain" }))
     set("_", "LEADER|SHIFT", act.SplitVertical({ domain = "CurrentPaneDomain" }))
