@@ -1,4 +1,5 @@
 local wezterm = require("wezterm") --[[@as Wezterm]]
+local domains = require("domains")
 
 local config = wezterm.config_builder()
 
@@ -7,18 +8,7 @@ config.show_tabs_in_tab_bar = true
 config.show_new_tab_button_in_tab_bar = false
 config.use_fancy_tab_bar = false
 
--- Need to be able to start straight in to WSL if we're on Windows
--- And also be able to select powershell
-if #wezterm.default_wsl_domains() > 0 then
-    config.default_domain = wezterm.default_wsl_domains()[1].name
-    config.launch_menu = {
-        {
-            label = "Powershell",
-            domain = { DomainName = "local" },
-            args = { "C:/Program Files/Powershell/7/pwsh.exe" },
-        },
-    }
-end
+domains.apply_domains(config)
 
 -- appearance.lua
 local appearance = require("appearance")
