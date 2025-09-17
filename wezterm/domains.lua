@@ -90,19 +90,22 @@ function M.apply_domains(config)
         return
     end
 
-    local exec_domains = {}
-    for _, domain in ipairs(parallels_list()) do
-        table.insert(
-            exec_domains,
-            wezterm.exec_domain(
-                "parallels:" .. domain.name,
-                make_parallels_fixup_func(domain.name),
-                make_parallels_label_func(domain.name)
+    -- Only run on MacOS where I have parallels
+    if wezterm.target_triple == "aarch64-apple-darwin" then
+        local exec_domains = {}
+        for _, domain in ipairs(parallels_list()) do
+            table.insert(
+                exec_domains,
+                wezterm.exec_domain(
+                    "parallels:" .. domain.name,
+                    make_parallels_fixup_func(domain.name),
+                    make_parallels_label_func(domain.name)
+                )
             )
-        )
-    end
+        end
 
-    config.exec_domains = exec_domains
+        config.exec_domains = exec_domains
+    end
 end
 
 return M
