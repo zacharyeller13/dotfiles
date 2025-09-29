@@ -15,7 +15,8 @@ local function parallels_list()
     local success, stdout, stderr = wezterm.run_child_process({
         "/usr/local/bin/prlctl",
         "list",
-        "Ubuntu",
+        -- "Ubuntu",
+        "--all",
         "--json",
     })
 
