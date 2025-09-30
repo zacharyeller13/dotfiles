@@ -55,6 +55,7 @@ function M:allOutputDataSources() end
 --
 -- Returns:
 --  * A table of zero or more audio output devices connected to the system
+---@return hs.audiodevice[]
 function M.allOutputDevices() end
 
 -- Get the current left/right balance of this audio device
@@ -86,7 +87,7 @@ function M:balance() end
 --         device = defaultOutputDevice(),
 --     }
 -- ```
----@return table
+---@return { name?: string, uid?: string, muted?: boolean, volume: number, device?: hs.audiodevice }
 function M.current(input, ...) end
 
 -- Gets the current input data source of an audio device

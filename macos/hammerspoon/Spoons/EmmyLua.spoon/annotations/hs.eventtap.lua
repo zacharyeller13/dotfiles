@@ -163,6 +163,8 @@ function M.middleClick(point, delay, ...) end
 --
 -- Notes:
 --  * If you specify the argument `types` as the special table {"all"[, events to ignore]}, then *all* events (except those you optionally list *after* the "all" string) will trigger a callback, even events which are not defined in the [Quartz Event Reference](https://developer.apple.com/library/mac/documentation/Carbon/Reference/QuartzEventServicesRef/Reference/reference.html).
+---@param types table<hs.eventtap.event.types>
+---@param fn fun(event: hs.eventtap.event): boolean
 ---@return hs.eventtap
 function M.new(types, fn, ...) end
 
@@ -229,4 +231,3 @@ function M:start() end
 -- Returns:
 --  * The event tap object
 function M:stop() end
-

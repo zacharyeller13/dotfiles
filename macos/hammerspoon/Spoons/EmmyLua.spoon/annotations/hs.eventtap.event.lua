@@ -100,6 +100,7 @@ function M:getCharacters(clean, ...) end
 --   * shift or ⇧
 --   * ctrl or ⌃
 --   * fn
+---@return { cmd?: boolean, alt?: boolean, shift?: boolean, ctrl?: boolean, fn?: boolean }
 function M:getFlags() end
 
 -- Gets the raw keycode for the event
@@ -716,4 +717,3 @@ function M:timestamp(absolutetime, ...) end
 --   * smartMagnify --  The user performed a smart zoom gesture (2-finger double tap on trackpads).
 --   * swipe        --  The user performed a swipe gesture. (thus far unobserved; please submit an issue if you can provide more information)
 M.types = nil
-
