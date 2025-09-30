@@ -1,26 +1,8 @@
+local audio = require("audio")
+local encoding = require("encoding")
+
 hs.loadSpoon("EmmyLua")
 hs.ipc.cliInstall()
-
-hs.hotkey.bind({ "cmd", "alt", "ctrl" }, "w", function()
-    hs.alert.show("hello world")
-    hs.notify.new({ title = "Hammerspoon", informativeText = "Hello World" }):send()
-end)
-
-hs.hotkey.bind({ "cmd", "alt" }, "r", function()
-    hs.reload()
-end)
-
-hs.hotkey.bind({ "cmd", "alt", "ctrl" }, "s", function()
-    hs.execute("sketchybar --reload", true)
-end)
-
-hs.hotkey.bind({ "cmd", "alt", "ctrl" }, "c", function()
-    hs.toggleConsole()
-end)
-
-hs.hotkey.bind({ "cmd", "alt", "ctrl" }, "a", function()
-    show_chooser()
-end)
 
 -- Due to symlinks, there may not be a currentDir set at startup; we want to run
 -- everything as if from the config dir
@@ -32,38 +14,35 @@ assert(
     string.format("cwd %s must be the same as the configdir %s", hs.fs.currentDir(), hs.fs.pathToAbsolute(hs.configdir))
 )
 
----@param to string Audio device name to switch to
-function change_output(to)
-    local current_device = hs.audiodevice.current()
-    if current_device.name == to then
-        return
-    end
-    local next_device = hs.audiodevice.findOutputByName(to)
-    if next_device then
-        next_device:setDefaultOutputDevice()
-    end
-end
+hs.hotkey.bind({ "cmd", "alt" }, "r", function()
+    hs.reload()
+end)
 
----Show audio switching chooser
-function show_chooser()
-    local audio_image = hs.image.imageFromPath("icons/speaker.png")
+hs.hotkey.bind({ "cmd", "alt", "ctrl" }, "s", function()
+    -- A little faster than hs.execute since we don't need to do a lot
+    -- with the output
+    local ok, err, code = os.execute("/opt/homebrew/bin/sketchybar --reload")
+    if not ok then
+        print(err, code)
+    end
+end)
 
-    local chooser = hs.chooser.new(function(choice)
-        print("Choice: " .. hs.inspect(choice))
-        if choice then
-            change_output(choice.text)
-            print(hs.audiodevice.current().name)
-        end
+hs.hotkey.bind({ "cmd", "alt", "ctrl" }, "c", function()
+    hs.toggleConsole()
+end)
+
+hs.hotkey.bind({ "cmd", "alt", "ctrl" }, "a", function()
+    audio.show_chooser()
+end)
+
+hs.hotkey.bind({ "cmd" }, "k", function()
+    local clipboard = hs.pasteboard.getContents()
+    encoding.copy_event_listener:start()
+    hs.eventtap.keyStroke({ "cmd" }, "c")
+    hs.timer.doAfter(0.2, function()
+        hs.pasteboard.setContents(clipboard)
+        encoding.copy_event_listener:stop()
     end)
-    chooser:choices(function()
-        local devices = hs.audiodevice.allOutputDevices()
-        local choices = {}
-        for _, device in ipairs(devices) do
-            table.insert(choices, { image = audio_image, text = device:name(), subText = device:uid() })
-        end
-        return choices
-    end)
-    chooser:show()
-end
+end)
 
 hs.alert.show("Config loaded")
