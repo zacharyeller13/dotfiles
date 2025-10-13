@@ -5,7 +5,6 @@ local wezterm = require("wezterm") --[[@as Wezterm]]
 ---@field status 'running'|'suspended'|'stopped' VM Status
 ---@field ip_configured string
 ---@field name string VM Name. Can be used as arg when starting/listing VMs
-
 local M = {}
 
 ---Return list of parallels VMs. Right now just Ubuntu since it's the only
