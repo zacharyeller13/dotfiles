@@ -15,4 +15,4 @@ bind K tabprev
 bind J tabnext
 
 " Alt c
-bind <M-c> tmpcontainer
+bind <A-c> tmpcontainer
