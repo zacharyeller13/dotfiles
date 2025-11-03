@@ -51,6 +51,7 @@ glide.keymaps.set("command", "<C-p>", "commandline_focus_back", { description: "
 glide.keymaps.set("command", "<C-y>", "commandline_accept", { description: "Accept result/[Y]es" });
 glide.keymaps.set("normal", "t", "tab_new", { description: "New [t]ab" });
 glide.keymaps.set("normal", "T", "commandline_show tabnew -c", { description: "New [T]ab in container" });
+glide.keymaps.set("normal", "<leader>u", undoTabClose, { description: "undo close tab (reopen)" });
 glide.keymaps.set(["insert", "command"], "jj", "mode_change normal", { description: "Escape mapping" });
 
 const selectors = "[class*=link], [class*=action], [class*=button], [tabindex]"
@@ -72,6 +73,17 @@ async function createTmpContainer() {
     glide.excmds.execute(`echo ${container.name}`);
     await browser.tabs.create({ cookieStoreId: container.cookieStoreId });
     glide.g.containerIds.push(container.cookieStoreId);
+}
+
+// Re-open closed tab/window
+// borrowed from tridactyl
+async function undoTabClose(): Promise<void> {
+    const sessions = await browser.sessions.getRecentlyClosed({ maxResults: 1 })
+    const session = sessions[0]
+
+    if (session) {
+        await browser.sessions.restore((session.tab || session.window)?.sessionId)
+    }
 }
 
 // Default Hintables from Tridactyl

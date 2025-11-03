@@ -16,3 +16,5 @@ bind J tabnext
 
 " Alt c
 bind <A-c> tmpcontainer
+bind T fillcmdline tabopen -c Work
+bind t fillcmdline tabopen

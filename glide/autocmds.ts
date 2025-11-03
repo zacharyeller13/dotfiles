@@ -34,21 +34,27 @@ const pinnedTabs: { pinned: boolean, url: string, urlPattern: string, container?
     },
 ]
 
-// TODO: Move to ConfigLoaded instead?
-glide.autocmds.create("WindowLoaded", async () => {
-    // Pinned tabs
-    for (const tab of pinnedTabs) {
-        let newTab: Browser.Tabs.CreateCreatePropertiesType = { pinned: tab.pinned, url: tab.url };
-        if (tab.container) {
-            newTab.cookieStoreId = await getContainerByName(tab.container);
+glide.autocmds.create("ConfigLoaded", async () => {
+    glide.process.execute("uname").then(async (val: glide.CompletedProcess) => {
+        for await (const line of val.stdout.values()) {
+            if (!line.startsWith("Darwin")) {
+                return;
+            }
+        }
+        // Pinned tabs
+        for (const tab of pinnedTabs) {
+            let newTab: Browser.Tabs.CreateCreatePropertiesType = { pinned: tab.pinned, url: tab.url };
+            if (tab.container) {
+                newTab.cookieStoreId = await getContainerByName(tab.container);
+            }
+
+            let existingTab = await glide.tabs.get_first({ pinned: tab.pinned, url: tab.urlPattern, cookieStoreId: newTab.cookieStoreId })
+            if (!existingTab) {
+                await browser.tabs.create(newTab);
+            }
         }
 
-        let existingTab = await glide.tabs.get_first({ pinned: tab.pinned, url: tab.urlPattern, cookieStoreId: newTab.cookieStoreId })
-        if (!existingTab) {
-            await browser.tabs.create(newTab);
-        }
-    }
-
+    });
     // Clear tmpContainers on startup
     const containers = await browser.contextualIdentities.query({})
     for (const container of containers) {
