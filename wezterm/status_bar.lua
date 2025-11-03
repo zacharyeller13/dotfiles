@@ -3,18 +3,21 @@ local wezterm = require("wezterm") --[[@as Wezterm]]
 --- Create a status bar at the top
 ---@param _ Window
 ---@param pane Pane
----@return table
+---@return table #Segments to show in right status
 local function segments_for_right_status(_, pane)
-    local cwd_uri = pane:get_current_working_dir()
-    local cwd = ""
-    if type(cwd_uri) == "userdata" then
-        cwd = cwd_uri.file_path
+    -- We are always on a version where cwd is a Url (unless we're in a non-local domain)
+    local cwd_uri = pane:get_current_working_dir() --[[@as Url]]
+    local cwd = cwd_uri and cwd_uri.file_path or ""
+
+    local domain = pane:get_domain_name()
+    if domain == "local" then
+        domain = wezterm.hostname()
     end
     return {
         cwd,
         wezterm.strftime("%a %b %-d %H:%M"),
         os.getenv("USER") or os.getenv("USERNAME"),
-        wezterm.hostname(),
+        domain,
     }
 end
 
