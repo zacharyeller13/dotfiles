@@ -51,12 +51,16 @@ glide.keymaps.set("command", "<C-p>", "commandline_focus_back", { description: "
 glide.keymaps.set("command", "<C-y>", "commandline_accept", { description: "Accept result/[Y]es" });
 glide.keymaps.set("normal", "t", "tab_new", { description: "New [t]ab" });
 glide.keymaps.set("normal", "T", "commandline_show tabnew -c", { description: "New [T]ab in container" });
+glide.keymaps.set("normal", "H", "back", { description: "Back (history)" });
+glide.keymaps.set("normal", "L", "forward", { description: "Forward (history)" });
 glide.keymaps.set("normal", "<leader>u", undoTabClose, { description: "undo close tab (reopen)" });
 glide.keymaps.set(["insert", "command"], "jj", "mode_change normal", { description: "Escape mapping" });
 
-const selectors = "[class*=link], [class*=action], [class*=button], [tabindex]"
+const selectors = "[class*=link], [class*=action], [class*=button], [tabindex], [data-qa*=btn]"
 // This kinda works for now as far as adding more clickable hints
 glide.keymaps.set("normal", "f", () => { glide.hints.show({ include: selectors }) })
+// Show the built-in hints only incase I've selected too many with selectors
+glide.keymaps.set("normal", ";f", "hint")
 
 // Open in new tab instead of directly
 glide.keymaps.set("normal", "F", () => { glide.hints.show({ include: selectors, action: "newtab-click" }) })
