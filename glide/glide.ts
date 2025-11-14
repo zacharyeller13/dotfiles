@@ -55,6 +55,8 @@ glide.keymaps.set("normal", "H", "back", { description: "Back (history)" });
 glide.keymaps.set("normal", "L", "forward", { description: "Forward (history)" });
 glide.keymaps.set("normal", "<leader>u", undoTabClose, { description: "undo close tab (reopen)" });
 glide.keymaps.set(["insert", "command"], "jj", "mode_change normal", { description: "Escape mapping" });
+glide.keymaps.set("normal", ">>", async () => await moveActiveTab(1), { description: "Move tab forward" })
+glide.keymaps.set("normal", "<<", async () => await moveActiveTab(-1), { description: "Move tab backward" })
 
 const selectors = "[class*=link], [class*=action], [class*=button], [tabindex], [data-qa*=btn]"
 // This kinda works for now as far as adding more clickable hints
@@ -65,6 +67,16 @@ glide.keymaps.set("normal", ";f", "hint")
 // Open in new tab instead of directly
 glide.keymaps.set("normal", "F", () => { glide.hints.show({ include: selectors, action: "newtab-click" }) })
 
+/** Move a tab forward or backward
+  * @param {number} direction - 1 or -1
+  */
+async function moveActiveTab(direction: 1 | -1) {
+    let tab = await glide.tabs.active()
+    // TODO: Wrap around
+    // let tabCount = (await glide.tabs.query({})).length
+
+    await browser.tabs.move(tab.id, { index: tab.index + direction })
+}
 
 // Custom funcs
 // TODO: Delete container when last tab is closed

@@ -1,3 +1,6 @@
+-- TODO: create dummy item to update networing on trigger
+-- Then trigger from hammerspoon
+
 ---Sleep 5 to allow sketchybar to start, then add any cisco app icons as aliases
 ---@param aliases table<string>
 ---@param exit_code integer
