@@ -29,7 +29,6 @@ export NVM_LAZY_LOAD_EXTRA_COMMANDS=('vim' 'nvim' 'opencode')
 # [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 # [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-
 # Which plugins would you like to load?
 # Standard plugins can be found in $ZSH/plugins/
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
@@ -59,7 +58,6 @@ source $HOME/.env
 [ -f "$HOME/.cache/wal/sequences" ] && (cat ~/.cache/wal/sequences &)
 
 # Set up fzf key bindings and fuzzy completion
-[ -f "$HOME/.fzf.zsh" ] && source "$HOME/.fzf.zsh"
 if type fzf > /dev/null; then
     source <(fzf --zsh)
 fi
@@ -68,3 +66,5 @@ eval "$(uv generate-shell-completion zsh)"
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+fpath+=~/.zfunc

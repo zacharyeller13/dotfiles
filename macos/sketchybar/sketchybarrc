@@ -1,0 +1,10 @@
+#!/usr/bin/env lua
+
+Sketchybar = require("sketchybar")
+
+Sketchybar.begin_config()
+require("init")
+Sketchybar.hotload(true)
+Sketchybar.end_config()
+
+Sketchybar.event_loop()
