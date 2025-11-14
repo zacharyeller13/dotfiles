@@ -33,7 +33,11 @@ config.window_frame = {
 }
 
 -- Global font
-config.font = wezterm.font_with_fallback({ "JetBrains Mono", "SF Pro" })
+if wezterm.target_triple == "aarch64-apple-darwin" then
+    config.font = wezterm.font_with_fallback({ "JetBrains Mono", "SF Pro" })
+else
+    config.font = wezterm.font_with_fallback({ "JetBrains Mono", "JetBrainsMono Nerd Font", "Font Awesome 7 Free" })
+end
 
 -- Create a status bar at the top
 require("status_bar")
