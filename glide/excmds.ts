@@ -33,7 +33,6 @@ async function deleteContainer(props: glide.ExcmdCallbackProps) {
 }
 
 async function tabNew(props: glide.ExcmdCallbackProps) {
-    console.log(props)
     if (props.args_arr.length > 1) {
         assert(props.args_arr[0] === "-c", "Only option '-c' supported");
         assert(props.args_arr.length >= 2, "Must provide container name with `tabnew -c {name}`");
