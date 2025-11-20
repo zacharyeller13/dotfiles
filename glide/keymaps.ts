@@ -81,12 +81,18 @@ async function tabClose(): Promise<void> {
     }
 
     assert(containedTabs.length == 1, "Should be only exactly 1 tab in the container at this point")
-    const container = await browser.contextualIdentities.get(cookieStoreId)
-    if (!container.name.startsWith("tmp")) {
-        return glide.excmds.execute("tab_close");
-    }
+    browser.contextualIdentities.get(cookieStoreId).then(
+        async (container) => {
+            if (!container.name.startsWith("tmp")) {
+                return
+            }
+            await browser.contextualIdentities.remove(cookieStoreId);
+        }
+        , (reason) => {
+            console.warn(reason);
+        }
+    );
 
-    await browser.contextualIdentities.remove(cookieStoreId);
     return glide.excmds.execute("tab_close");
 }
 
