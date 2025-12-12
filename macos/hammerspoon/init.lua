@@ -1,5 +1,6 @@
 local audio = require("audio")
 local encoding = require("encoding")
+local vimish = require("vimish")
 
 hs.loadSpoon("EmmyLua")
 hs.ipc.cliInstall()
@@ -21,7 +22,7 @@ end)
 hs.hotkey.bind({ "cmd", "alt", "ctrl" }, "s", function()
     -- A little faster than hs.execute since we don't need to do a lot
     -- with the output
-    local ok, err, code = os.execute("/opt/homebrew/bin/sketchybar --reload")
+    local ok, err, code = hs.execute("sketchybar --reload", true)
     if not ok then
         print(err, code)
     end

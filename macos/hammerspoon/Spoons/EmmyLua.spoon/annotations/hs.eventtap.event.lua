@@ -113,6 +113,7 @@ function M:getFlags() end
 --
 -- Notes:
 --  * This method should only be used on keyboard events
+---@return integer# The raw integer keycode
 function M:getKeyCode() end
 
 -- Gets a property of the event
