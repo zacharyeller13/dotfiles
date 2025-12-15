@@ -12,7 +12,6 @@ glide.keymaps.set("command", "<C-n>", "commandline_focus_next", { description: "
 glide.keymaps.set("command", "<C-p>", "commandline_focus_back", { description: "[P]revious result" });
 glide.keymaps.set("command", "<C-y>", "commandline_accept", { description: "Accept result/[Y]es" });
 glide.keymaps.set("normal", "t", "tab_new", { description: "New [t]ab" });
-glide.keymaps.set("normal", "T", "commandline_show tabnew -c", { description: "New [T]ab in container" });
 glide.keymaps.set("normal", "H", "back", { description: "Back (history)" });
 glide.keymaps.set("normal", "L", "forward", { description: "Forward (history)" });
 glide.keymaps.set("normal", "<leader>u", undoTabClose, { description: "undo close tab (reopen)" });
@@ -20,17 +19,54 @@ glide.keymaps.set(["insert", "command"], "jj", "mode_change normal", { descripti
 glide.keymaps.set("normal", ">>", async () => await moveActiveTab(1), { description: "Move tab forward" })
 glide.keymaps.set("normal", "<lt><lt>", async () => await moveActiveTab(-1), { description: "Move tab backward" })
 
+
+// glide.keymaps.set("normal", "T", "commandline_show tabnew -c", { description: "New [T]ab in container" });
+glide.keymaps.set("normal", "T", async () => {
+    const containers = await browser.contextualIdentities.query({});
+
+    glide.commandline.show({
+        title: "Open container tab",
+        // input: "tabnew -c ",
+        options: containers.map((container) => ({
+            label: container.name,
+            // description: container.name,
+            execute: () => {
+                glide.excmds.execute(`tabnew -c ${container.name}`)
+            }
+        }))
+    })
+});
+
+
 const selectors = "[class*=link], [class*=action], [class*=button], [tabindex], [data-qa*=btn]"
 // This kinda works for now as far as adding more clickable hints
 glide.keymaps.set("normal", "f", () => { glide.hints.show({ include: selectors, include_click_listeners: true }) })
+// Open in new tab instead of directly
+glide.keymaps.set("normal", "F", () => { glide.hints.show({ include: selectors, action: "newtab-click", include_click_listeners: true }) })
+
 // Show the built-in hints only incase I've selected too many with selectors
 glide.keymaps.set("normal", ";f", "hint")
 
-// Open in new tab instead of directly
-glide.keymaps.set("normal", "F", () => { glide.hints.show({ include: selectors, action: "newtab-click" }) })
-
 // Close tab and delete container if this is last tab
 glide.keymaps.set("normal", "<leader>d", tabClose, { description: "Close tab (checking to close tmp containers" })
+
+// Search history
+glide.keymaps.set("normal", "<leader>sh", async () => {
+    const history = await browser.history.search({
+        text: "",
+        maxResults: 10000,
+    })
+    history.sort((l, r) => { return (l.visitCount ?? 0) - (r.visitCount ?? 0) })
+
+    glide.commandline.show({
+        title: "history",
+        options: history.map((histItem) => ({
+            label: histItem.title!,
+            description: histItem.url,
+            execute: async () => { console.log(histItem) }
+        }))
+    })
+});
 
 
 /** Move a tab forward or backward
@@ -38,14 +74,12 @@ glide.keymaps.set("normal", "<leader>d", tabClose, { description: "Close tab (ch
   */
 async function moveActiveTab(direction: 1 | -1) {
     let tab = await glide.tabs.active()
-    // TODO: Wrap around
-    // let tabCount = (await glide.tabs.query({})).length
 
     await browser.tabs.move(tab.id, { index: tab.index + direction })
 }
 
 // Custom funcs
-async function createTmpContainer() {
+async function createTmpContainer(): Promise<void> {
     const colors: string[] = ["blue", "red", "green", "orange"];
     let choice = Math.floor(Math.random() * colors.length);
     let color = colors[choice] ?? "white";
@@ -66,7 +100,8 @@ async function undoTabClose(): Promise<void> {
 }
 
 /** Close the active tab and remove its container if it is the only
-  * tab in the container
+  * tab in the container. This is necessary because we are not longer able to get tabinfo
+  * like the cookieStoreId at the 'onRemoved' event
   */
 async function tabClose(): Promise<void> {
     const activeTab = await glide.tabs.active();
@@ -95,40 +130,3 @@ async function tabClose(): Promise<void> {
 
     return glide.excmds.execute("tab_close");
 }
-
-// Default Hintables from Tridactyl
-/*export const HINTTAGS_selectors = `
-input:not([type=hidden]):not([disabled]),
-a,
-area,
-button,
-details,
-iframe,
-label,
-select,
-summary,
-textarea,
-[onclick],
-[onmouseover],
-[onmousedown],
-[onmouseup],
-[oncommand],
-[role='link'],
-[role='button'],
-[role='checkbox'],
-[role='combobox'],
-[role='listbox'],
-[role='listitem'],
-[role='menuitem'],
-[role='menuitemcheckbox'],
-[role='menuitemradio'],
-[role='option'],
-[role='radio'],
-[role='scrollbar'],
-[role='slider'],
-[role='spinbutton'],
-[role='tab'],
-[role='textbox'],
-[role='treeitem'],
-[class*='button'],
-[tabindex]`*/

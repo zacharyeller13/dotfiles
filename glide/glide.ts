@@ -26,3 +26,7 @@ glide.o.hint_size = "15px";
 glide.prefs.set("toolkit.legacyUserProfileCustomizations.stylesheets", true);
 glide.prefs.set("media.videocontrols.picture-in-picture.audio-toggle.enabled", true);
 
+// Visual selection of non-editable elements
+// document.getSelection().addRange(range)
+// where range is already has a start and end set with setStart and setEnd
+// can we grab the elements of the hints?
