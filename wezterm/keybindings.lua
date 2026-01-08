@@ -60,8 +60,8 @@ function module:bind_keys(config)
     )
 
     -- Move Tabs
-    set(">", "LEADER", act.MoveTabRelative(1))
-    set("<", "LEADER", act.MoveTabRelative(-1))
+    set(">", "LEADER|SHIFT", act.MoveTabRelative(1))
+    set("<", "LEADER|SHIFT", act.MoveTabRelative(-1))
 
     -- Open select launch menu
     set("o", "LEADER", act.ShowLauncherArgs({ flags = "LAUNCH_MENU_ITEMS|DOMAINS" }))

@@ -25,12 +25,12 @@ config.audible_bell = "Disabled"
 config.window_background_opacity = 0.9
 
 -- Remove title bar
-config.window_decorations = "RESIZE"
+config.window_decorations = "TITLE|RESIZE"
 -- Sets font for window frame
-config.window_frame = {
-    font = wezterm.font({ family = "JetBrains Mono", weight = "Bold" }),
-    font_size = 11,
-}
+-- config.window_frame = {
+--     font = wezterm.font({ family = "JetBrains Mono", weight = "Bold" }),
+--     font_size = 11,
+-- }
 
 -- Global font
 if wezterm.target_triple == "aarch64-apple-darwin" then
