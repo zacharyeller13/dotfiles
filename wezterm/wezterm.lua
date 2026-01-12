@@ -1,7 +1,7 @@
 local wezterm = require("wezterm") --[[@as Wezterm]]
 local domains = require("domains")
 
-local config = wezterm.config_builder()
+local config = wezterm.config_builder() --[[@as Config]]
 
 config.tab_bar_at_bottom = true
 config.show_tabs_in_tab_bar = true
@@ -47,10 +47,7 @@ require("status_bar")
 local keybindings = require("keybindings")
 keybindings:bind_keys(config)
 
--- Event for scrollback
-require("tinkering")
-
--- For pywal
--- wezterm.add_to_config_reload_watch_list(os.getenv("HOME") .. "/.cache/wal/sequences")
+-- Workspaces
+require("workspaces")
 
 return config

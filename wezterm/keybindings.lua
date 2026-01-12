@@ -65,6 +65,7 @@ function module:bind_keys(config)
 
     -- Open select launch menu
     set("o", "LEADER", act.ShowLauncherArgs({ flags = "LAUNCH_MENU_ITEMS|DOMAINS" }))
+    set("w", "LEADER", act.ShowLauncherArgs({ flags = "WORKSPACES" }))
 end
 
 return module
