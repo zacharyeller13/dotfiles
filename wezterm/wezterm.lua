@@ -35,6 +35,7 @@ config.window_decorations = "TITLE|RESIZE"
 -- Global font
 if wezterm.target_triple == "aarch64-apple-darwin" then
     config.font = wezterm.font_with_fallback({ "JetBrains Mono", "SF Pro" })
+    config.window_decorations = "RESIZE"
 else
     config.font = wezterm.font_with_fallback({ "JetBrains Mono", "JetBrainsMono Nerd Font", "Font Awesome 7 Free" })
 end
