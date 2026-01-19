@@ -2,7 +2,7 @@
 ---@diagnostic disable: unused-local
 
 -- A module for capturing and manipulating image objects from other modules for use with hs.drawing.
---
+-- 
 ---@class hs.image
 local M = {}
 hs.image = M
@@ -183,7 +183,6 @@ function M.imageFromName(string, ...) end
 --
 -- Returns:
 --  * An `hs.image` object, or nil if an error occurred
----@return hs.image?
 function M.imageFromPath(path, ...) end
 
 -- Creates an `hs.image` object from the contents of the specified URL.
@@ -301,3 +300,4 @@ function M:template(state, ...) end
 --  * A string.
 ---@return string
 function M:toASCII(width, height, ...) end
+

@@ -4,7 +4,7 @@
 -- Tap into input events (mouse, keyboard, trackpad) for observation and possibly overriding them.
 -- It also provides convenience wrappers for sending mouse and keyboard events. If you need to construct finely controlled mouse/keyboard events, see `hs.eventtap.event`.
 --
--- This module is based primarily on code from the previous incarnation of Mjolnir by [Steven Degutis](https://github.com/sdegutis/).
+-- This module is based primarily on code from the previous incarnation of Mjolnir.
 ---@class hs.eventtap
 local M = {}
 hs.eventtap = M
@@ -163,8 +163,6 @@ function M.middleClick(point, delay, ...) end
 --
 -- Notes:
 --  * If you specify the argument `types` as the special table {"all"[, events to ignore]}, then *all* events (except those you optionally list *after* the "all" string) will trigger a callback, even events which are not defined in the [Quartz Event Reference](https://developer.apple.com/library/mac/documentation/Carbon/Reference/QuartzEventServicesRef/Reference/reference.html).
----@param types table<hs.eventtap.event.types>
----@param fn fun(event: hs.eventtap.event): boolean
 ---@return hs.eventtap
 function M.new(types, fn, ...) end
 
@@ -231,3 +229,4 @@ function M:start() end
 -- Returns:
 --  * The event tap object
 function M:stop() end
+

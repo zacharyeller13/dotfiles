@@ -3,7 +3,7 @@
 
 -- Create, modify and inspect events for `hs.eventtap`.
 --
--- This module is based primarily on code from the previous incarnation of Mjolnir by [Steven Degutis](https://github.com/sdegutis/).
+-- This module is based primarily on code from the previous incarnation of Mjolnir.
 --
 -- `hs.eventtap.event.newGesture` uses an external library by Calf Trail Software, LLC.
 --
@@ -100,7 +100,6 @@ function M:getCharacters(clean, ...) end
 --   * shift or ⇧
 --   * ctrl or ⌃
 --   * fn
----@return { cmd?: boolean, alt?: boolean, shift?: boolean, ctrl?: boolean, fn?: boolean }
 function M:getFlags() end
 
 -- Gets the raw keycode for the event
@@ -113,7 +112,6 @@ function M:getFlags() end
 --
 -- Notes:
 --  * This method should only be used on keyboard events
----@return integer# The raw integer keycode
 function M:getKeyCode() end
 
 -- Gets a property of the event
@@ -283,6 +281,7 @@ function M.newEventFromData(data, ...) end
 --   * `endSwipeUp` - End a swipe up.
 --   * `beginSwipeDown` - Begin a swipe down.
 --   * `endSwipeDown` - End a swipe down.
+--   * `smartMagnify` - Performs smart mangify.
 --
 -- Examples:
 --   ```lua
@@ -718,3 +717,4 @@ function M:timestamp(absolutetime, ...) end
 --   * smartMagnify --  The user performed a smart zoom gesture (2-finger double tap on trackpads).
 --   * swipe        --  The user performed a swipe gesture. (thus far unobserved; please submit an issue if you can provide more information)
 M.types = nil
+

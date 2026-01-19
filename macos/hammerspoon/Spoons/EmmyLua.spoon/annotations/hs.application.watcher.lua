@@ -3,40 +3,25 @@
 
 -- Watch for application launch/terminate events
 --
--- This module is based primarily on code from the previous incarnation of Mjolnir by [Markus Engelbrecht](https://github.com/mgee) and [Steven Degutis](https://github.com/sdegutis/).
+-- This module is based primarily on code from the previous incarnation of Mjolnir by [Markus Engelbrecht](https://github.com/mgee).
 ---@class hs.application.watcher
 local M = {}
 hs.application.watcher = M
 
 -- An application has been activated (i.e. given keyboard/mouse focus)
-M.activated = 5
+M.activated = nil
 
 -- An application has been deactivated (i.e. lost keyboard/mouse focus)
-M.deactivated = 6
+M.deactivated = nil
 
 -- An application has been hidden
-M.hidden = 3
+M.hidden = nil
 
 -- An application has been launched
-M.launched = 1
+M.launched = nil
 
 -- An application is in the process of being launched
-M.launching = 0
-
--- An application has been terminated
-M.terminated = 2
-
--- An application has been unhidden
-M.unhidden = 4
-
----@alias hs.application.watcher.event_type
----|`hs.application.watcher.activated`
----|`hs.application.watcher.deactivated`
----|`hs.application.watcher.hidden`
----|`hs.application.watcher.launched`
----|`hs.application.watcher.launching`
----|`hs.application.watcher.terminated`
----|`hs.application.watcher.unhidden`
+M.launching = nil
 
 -- Creates an application event watcher
 --
@@ -51,7 +36,6 @@ M.unhidden = 4
 --
 -- Notes:
 --  * If the function is called with an event type of `hs.application.watcher.terminated` then the application name parameter will be `nil` and the `hs.application` parameter, will only be useful for getting the UNIX process ID (i.e. the PID) of the application
----@param fn fun(app_name: string, event_type: hs.application.watcher.event_type, app: hs.application)
 ---@return hs.application.watcher
 function M.new(fn) end
 
@@ -78,3 +62,4 @@ M.terminated = nil
 
 -- An application has been unhidden
 M.unhidden = nil
+

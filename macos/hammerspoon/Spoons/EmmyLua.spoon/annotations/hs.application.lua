@@ -181,7 +181,7 @@ function M.frontmostApplication() end
 --
 -- Notes:
 --  * see also `hs.application.find`
----@return hs.application?
+---@return hs.application
 function M.get(hint, ...) end
 
 -- Gets the menu structure of the application
@@ -580,3 +580,4 @@ function M:unhide() end
 -- Returns:
 --  * A table containing zero or more hs.window objects
 function M:visibleWindows() end
+

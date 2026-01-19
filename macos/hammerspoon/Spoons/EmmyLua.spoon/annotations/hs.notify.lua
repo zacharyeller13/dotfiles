@@ -9,7 +9,7 @@
 --
 -- A shorthand, based upon the original inspiration for this module from Hydra and Mjolnir, hs.notify.show, is provided if you just require a quick and simple informative notification without the bells and whistles.
 --
--- This module is based in part on code from the previous incarnation of Mjolnir by [Steven Degutis](https://github.com/sdegutis/).
+-- This module is based in part on code from the previous incarnation of Mjolnir.
 ---@class hs.notify
 local M = {}
 hs.notify = M
@@ -268,7 +268,6 @@ function M:informativeText(informativeText, ...) end
 -- Notes:
 --  * A function-tag is a string key which corresponds to a function stored in the [hs.notify.registry](#registry) table with the `hs.notify.register()` function.
 --  * If a notification does not have a `title` attribute set, OS X will not display it, so by default it will be set to "Notification". You can use the `title` key in the attributes table, or call `hs.notify:title()` before displaying the notification to change this.
----@return hs.notify
 function M.new(fn, attributes, ...) end
 
 -- Get or set the label of a notification's other button
@@ -530,3 +529,4 @@ function M.withdrawAll() end
 -- Returns:
 --  * None
 function M.withdrawAllScheduled() end
+

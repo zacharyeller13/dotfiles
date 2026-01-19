@@ -3,7 +3,7 @@
 
 -- Manipulate the system's audio devices
 --
--- This module is based primarily on code from the previous incarnation of Mjolnir by [Steven Degutis](https://github.com/sdegutis/).
+-- This module is based primarily on code from the previous incarnation of Mjolnir.
 --
 -- Note:
 --  * Objects created by this module are distinct from each other - if you fetch an audiodevice and set a watcher on it, then fetch the audiodevice again, the watcher will only be visible from the first object and not the second. To avoid losing reference to watchers, you can store the audiodevice objects in a Lua table.
@@ -18,7 +18,6 @@ hs.audiodevice = M
 --
 -- Returns:
 --  * A table of zero or more audio devices connected to the system
----@return hs.audiodevice[]
 function M.allDevices() end
 
 -- Gets all of the input data sources of an audio device
@@ -55,7 +54,6 @@ function M:allOutputDataSources() end
 --
 -- Returns:
 --  * A table of zero or more audio output devices connected to the system
----@return hs.audiodevice[]
 function M.allOutputDevices() end
 
 -- Get the current left/right balance of this audio device
@@ -87,7 +85,6 @@ function M:balance() end
 --         device = defaultOutputDevice(),
 --     }
 -- ```
----@return { name?: string, uid?: string, muted?: boolean, volume: number, device?: hs.audiodevice }
 function M.current(input, ...) end
 
 -- Gets the current input data source of an audio device
@@ -186,7 +183,6 @@ function M.findInputByUID(uid, ...) end
 --
 -- Returns:
 --  * An hs.audiodevice object or nil if the device could not be found
----@return hs.audiodevice?
 function M.findOutputByName(name, ...) end
 
 -- Find an audio output device by UID
@@ -401,6 +397,20 @@ function M:setOutputMuted(state, ...) end
 ---@return boolean
 function M:setOutputVolume(level, ...) end
 
+-- Set the play through (low latency/direct monitoring) state of the audio device
+--
+-- Parameters:
+--  * thru -  A boolean value. True to enable thru, False to disable
+--
+-- Returns:
+--  * True if thru was set, False if the audio device does not support thru
+--
+-- Notes:
+--  * This method only works on devices that have hardware support (often microphones with a built-in headphone jack)
+--  * This setting corresponds to the "Thru" setting in Audio MIDI Setup
+---@return boolean
+function M:setThru(thru, ...) end
+
 -- Set the volume of this audio device
 --
 -- Parameters:
@@ -434,6 +444,19 @@ function M:supportsInputDataSources() end
 --  * A boolean, true if the device supports output data sources, false if not
 ---@return boolean
 function M:supportsOutputDataSources() end
+
+-- Get the play through (low latency/direct monitoring) state of the audio device
+--
+-- Parameters:
+--  * None
+--
+-- Returns:
+--  * True if the audio device has thru enabled, False if thru is disabled, nil if it does not support thru
+--
+-- Notes:
+--  * This method only works on devices that have hardware support (often microphones with a built-in headphone jack)
+--  * This setting corresponds to the "Thru" setting in Audio MIDI Setup
+function M:thru() end
 
 -- Gets the hardware transport type of an audio device
 --
@@ -525,3 +548,4 @@ function M:watcherStart() end
 --  * The `hs.audiodevice` object
 ---@return hs.audiodevice
 function M:watcherStop() end
+
