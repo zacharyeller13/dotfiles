@@ -1,5 +1,7 @@
 ---@class Status
 ---@field canvas hs.canvas
+---@field width integer
+---@field height integer
 local M = {}
 M.__index = M
 
@@ -8,14 +10,13 @@ M.__index = M
 ---with a height and width of 20x200
 ---@param frame? hs.geometry frame on which to attach status
 function M.new(frame)
-    local width = 200
-    local height = 20
+    local instance = setmetatable({ width = 200, height = 20 }, M)
 
     local screen = hs.screen.mainScreen()
     frame = frame or screen:frame()
-    local x = frame.bottomright.x - width
-    local y = frame.bottomright.y - height
-    local canvas = hs.canvas.new({ x = x, y = y, w = width, h = height })
+    local x = frame.bottomright.x - instance.width
+    local y = frame.bottomright.y - instance.height
+    local canvas = hs.canvas.new({ x = x, y = y, w = instance.width, h = instance.height })
 
     canvas:appendElements({
         type = "rectangle",
@@ -29,8 +30,9 @@ function M.new(frame)
         textSize = 12,
         textAlignment = "center",
     })
+    instance.canvas = canvas
 
-    return setmetatable({ canvas = canvas }, M)
+    return instance
 end
 
 ---Update mode text
@@ -52,7 +54,14 @@ function M:delete()
 end
 
 ---Wrapper for canvas:show()
-function M:show()
+---@param new_frame hs.geometry
+function M:show(new_frame)
+    local frame = self.canvas:frame()
+    if new_frame.topleft ~= frame.topleft then
+        local x = new_frame.bottomright.x - self.width
+        local y = new_frame.bottomright.y - self.height
+        self.canvas:frame({ x = x, y = y, w = self.width, h = self.height })
+    end
     self.canvas:show()
 end
 

@@ -27,12 +27,12 @@ insert:bind({}, "escape", nil, function()
 end)
 
 function M:activate()
+    local app = hs.application.frontmostApplication()
     if not self.status then
-        local app = hs.application.frontmostApplication()
         self:create_status(app)
     end
     self.mode:enter()
-    self.status:show()
+    self.status:show(app:mainWindow():frame())
 end
 
 function M:deactivate()
@@ -134,6 +134,15 @@ set("n", "o", function(opts)
 
     hs.eventtap.keyStroke({ "cmd" }, "right", 10000, opts.app)
     hs.eventtap.keyStroke({}, "return", 10000, opts.app)
+    normal:exit()
+    insert:enter()
+end, { app = target_app })
+set("n", { "shift", "o" }, function(opts)
+    assert(opts.app)
+
+    hs.eventtap.keyStroke({ "cmd" }, "left", 10000, opts.app)
+    hs.eventtap.keyStroke({}, "return", 10000, opts.app)
+    hs.eventtap.keyStroke({}, "up", 10000, opts.app)
     normal:exit()
     insert:enter()
 end, { app = target_app })
