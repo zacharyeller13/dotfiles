@@ -20,6 +20,7 @@ glide.unstable.include("excmds.ts");
 glide.unstable.include("autocmds.ts");
 glide.unstable.include("styles.ts");
 glide.unstable.include("keymaps.ts");
+glide.unstable.include("listeners.ts");
 
 // Options
 glide.o.hint_size = "15px";

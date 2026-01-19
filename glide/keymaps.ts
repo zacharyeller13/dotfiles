@@ -1,9 +1,3 @@
-declare global {
-    interface GlideGlobals {
-        tabsLoaded: boolean;
-    }
-}
-
 let tmpId: number = 0;
 
 // Keymaps
@@ -57,6 +51,7 @@ glide.keymaps.set("normal", "<leader>sh", async () => {
         maxResults: 10000,
     })
     history.sort((l, r) => { return (l.visitCount ?? 0) - (r.visitCount ?? 0) })
+    console.log(`history len: ${history.length}`)
 
     glide.commandline.show({
         title: "history",
