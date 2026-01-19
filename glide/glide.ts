@@ -16,11 +16,11 @@
 //
 // Try typing `glide.` and see what you can do!
 
-glide.unstable.include("excmds.ts");
-glide.unstable.include("autocmds.ts");
-glide.unstable.include("styles.ts");
-glide.unstable.include("keymaps.ts");
-glide.unstable.include("listeners.ts");
+glide.include("excmds.ts");
+glide.include("autocmds.ts");
+glide.include("styles.ts");
+glide.include("keymaps.ts");
+glide.include("listeners.ts");
 
 // Options
 glide.o.hint_size = "15px";

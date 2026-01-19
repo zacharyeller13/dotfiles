@@ -17,28 +17,26 @@ async function captureNextDownload(): Promise<void> {
         const requestData = capturedRequests.get(downloadItem.url);
         if (requestData) {
             await browser.downloads.cancel(downloadItem.id);
-            console.log("Download captured and canceled: ", requestData);
             curlArgs.push(requestData.method)
             curlArgs.push(`"${requestData.url}"`)
+
             let headers = requestData.requestHeaders ?? []
             for (const header of headers) {
                 let headerValue = header.value ?? ""
                 curlArgs.push("-H", `'${header.name}: ${headerValue}'`)
             }
+
             // In case of any redirects
             curlArgs.push("-L")
             let curl = curlArgs.join(" ");
             glide.commandline.show(
                 {
-                    title: "Curl",
-                    options: [curl].map(
-                        (label) => ({
-                            label: label, execute: (_) => {
-                                // TODO: yank to clipboard
-                                console.log(label)
-                            },
-                        })
-                    ),
+                    title: "Curl request (<Enter> to yank)",
+                    options: [{
+                        label: curl, execute: async () => {
+                            await navigator.clipboard.writeText(curl);
+                        }
+                    }]
                 },
             );
 
