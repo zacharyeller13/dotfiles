@@ -10,15 +10,21 @@ async function startWebRequestListener(capturedRequests: Map<string, any>): Prom
 
 async function captureNextDownload(): Promise<void> {
     const capturedRequests: Map<string, Browser.WebRequest.OnSendHeadersDetailsType> = new Map();
-    const curlArgs: string[] = ["curl", "-X"];
     const requestListener = await startWebRequestListener(capturedRequests);
 
     const downloadsListener = async (downloadItem: Browser.Downloads.DownloadItem) => {
+        console.log("download listener fired: ", downloadItem.id);
+        browser.webRequest.onSendHeaders.removeListener(requestListener);
+        browser.downloads.onCreated.removeListener(downloadsListener);
+
         const requestData = capturedRequests.get(downloadItem.url);
         if (requestData) {
+            const curlArgs: string[] = ["curl", "-X"];
             await browser.downloads.cancel(downloadItem.id);
+
             curlArgs.push(requestData.method)
             curlArgs.push(`"${requestData.url}"`)
+            console.log(requestData)
 
             let headers = requestData.requestHeaders ?? []
             for (const header of headers) {
@@ -41,15 +47,17 @@ async function captureNextDownload(): Promise<void> {
             );
 
         }
-
-        setTimeout(() => {
-            console.log("Stopping listener");
-            browser.webRequest.onSendHeaders.removeListener(requestListener);
-            browser.downloads.onCreated.removeListener(downloadsListener);
-        }, 2000);
     }
 
     browser.downloads.onCreated.addListener(downloadsListener);
+
+    // Remove listeners regardless of download or not
+    setTimeout(() => {
+        console.log("Stopping request listener");
+        browser.webRequest.onSendHeaders.removeListener(requestListener);
+        console.log("Stopping download listener");
+        browser.downloads.onCreated.removeListener(downloadsListener);
+    }, 5000);
 }
 
 
