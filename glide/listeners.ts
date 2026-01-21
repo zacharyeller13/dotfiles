@@ -20,7 +20,9 @@ async function captureNextDownload(): Promise<void> {
         const requestData = capturedRequests.get(downloadItem.url);
         if (requestData) {
             const curlArgs: string[] = ["curl", "-X"];
-            await browser.downloads.cancel(downloadItem.id);
+            browser.downloads.cancel(downloadItem.id)
+                .then(() => { console.log("Download canceled") })
+                .catch(console.warn);
 
             curlArgs.push(requestData.method)
             curlArgs.push(`"${requestData.url}"`)
@@ -57,7 +59,7 @@ async function captureNextDownload(): Promise<void> {
         browser.webRequest.onSendHeaders.removeListener(requestListener);
         console.log("Stopping download listener");
         browser.downloads.onCreated.removeListener(downloadsListener);
-    }, 5000);
+    }, 10000);
 }
 
 
