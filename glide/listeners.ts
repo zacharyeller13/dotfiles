@@ -24,9 +24,9 @@ async function captureNextDownload(): Promise<void> {
                 .then(() => { console.log("Download canceled") })
                 .catch(console.warn);
 
-            curlArgs.push(requestData.method)
-            curlArgs.push(`"${requestData.url}"`)
-            console.log(requestData)
+            curlArgs.push(requestData.method);
+            curlArgs.push(`'${requestData.url}'`);
+            console.log(requestData);
 
             let headers = requestData.requestHeaders ?? []
             for (const header of headers) {
@@ -35,14 +35,15 @@ async function captureNextDownload(): Promise<void> {
             }
 
             // In case of any redirects
-            curlArgs.push("-L")
+            curlArgs.push("-L");
             let curl = curlArgs.join(" ");
             glide.commandline.show(
                 {
-                    title: "Curl request (<Enter> to yank)",
+                    title: "Curl request (<Enter> to yank, input = filename)",
                     options: [{
-                        label: curl, execute: async () => {
-                            await navigator.clipboard.writeText(curl);
+                        label: curl, execute: async ({ input }) => {
+                            let yankable = curl + ` | tee ./${input}`
+                            await navigator.clipboard.writeText(yankable);
                         }
                     }]
                 },
