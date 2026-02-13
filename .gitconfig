@@ -4,12 +4,15 @@
 	path = ~/.config/git/work
 [includeIf "gitdir:/mnt/c/Users/**"]
 	path = ~/.config/git/work
+[includeIf "gitdir:~/dev/**"]
+	path = ~/.config/git/personal
 [pager]
 	branch = false
 	config = false
 [core]
 	autocrlf = input
 	editor = nvim
+    pager = less -F -X
 [push]
 	default = current
 [init]
