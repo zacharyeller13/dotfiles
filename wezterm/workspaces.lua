@@ -5,6 +5,7 @@ wezterm.on("gui-startup", function(cmd)
     local file = io.open(os.getenv("HOME") .. "/.config/wezterm/workspaces.json", "r")
     if file then
         local contents = file:read("*a")
+        file:close()
         local tbl = wezterm.serde.json_decode(contents)
         for _, workspace in ipairs(tbl) do
             local tab, pane, window = mux.spawn_window({

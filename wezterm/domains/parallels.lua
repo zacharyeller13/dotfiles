@@ -7,14 +7,13 @@ local wezterm = require("wezterm") --[[@as Wezterm]]
 ---@field name string VM Name. Can be used as arg when starting/listing VMs
 local M = {}
 
----Return list of parallels VMs. Right now just Ubuntu since it's the only
+---Return list of parallels VMs.
 ---VM with SSH enabled
 ---@return ParallelsList[] #Empty if there is an error, otherwise list of parallels vms
-local function parallels_list()
+function M.parallels_list()
     local success, stdout, stderr = wezterm.run_child_process({
         "/usr/local/bin/prlctl",
         "list",
-        -- "Ubuntu",
         "--all",
         "--json",
     })
@@ -28,7 +27,7 @@ local function parallels_list()
 end
 
 ---@param name string Parallels VM name
-local function make_parallels_fixup_func(name)
+function M.make_fixup_func(name)
     return function(cmd)
         local success, stdout, stderr = wezterm.run_child_process({
             "/usr/local/bin/prlctl",
@@ -55,7 +54,7 @@ local function make_parallels_fixup_func(name)
 end
 
 ---@param name string Parallels VM name
-local function make_parallels_label_func(name)
+function M.make_label_func(name)
     return function()
         local success, stdout, stderr = wezterm.run_child_process({
             "/usr/local/bin/prlctl",
