@@ -4,8 +4,9 @@ local status = require("vimish.status")
 ---@class Modes
 ---@field insert hs.hotkey.modal
 ---@field normal hs.hotkey.modal
----@field status Status
 ---@field mode hs.hotkey.modal The current mode
+---@field block_cursor BlockCursor
+---@field status Status
 local M = {}
 M.__index = M
 
@@ -16,6 +17,7 @@ local MODE = {
 }
 local normal = hs.hotkey.modal.new({})
 local insert = hs.hotkey.modal.new({})
+local block_cursor = require("vimish.block_cursor").new()
 
 normal:bind({}, "i", nil, function()
     normal:exit()
@@ -51,6 +53,7 @@ function normal:entered()
     if M.status then
         M.status:set(MODE.Normal)
     end
+    M.block_cursor:show()
     M.mode = normal
 end
 
@@ -58,6 +61,7 @@ function insert:entered()
     if M.status then
         M.status:set(MODE.Insert)
     end
+    M.block_cursor:hide()
     M.mode = insert
 end
 
@@ -112,6 +116,9 @@ local function set(mode, lhs, rhs, opts)
         -- If this is triggered not in our target app there's a problem
         assert(hs.application.frontmostApplication() == target_app)
         hs.eventtap.keyStroke(rhs_mods, rhs, 10000, target_app)
+        if dest_mode == normal then
+            block_cursor:show()
+        end
     end)
 end
 
@@ -119,6 +126,7 @@ local target_app = "Outlook"
 
 set("n", "b", { "alt", "left" }, { app = target_app })
 set("n", "w", { "alt", "right" }, { app = target_app })
+
 set("n", { "shift", "a" }, function(opts)
     local mods = { "cmd" }
     local keys = "right"
@@ -137,6 +145,7 @@ set("n", "o", function(opts)
     normal:exit()
     insert:enter()
 end, { app = target_app })
+
 set("n", { "shift", "o" }, function(opts)
     assert(opts.app)
 
@@ -147,13 +156,29 @@ set("n", { "shift", "o" }, function(opts)
     insert:enter()
 end, { app = target_app })
 
+set("n", "a", function(opts)
+    assert(opts.app)
+
+    hs.eventtap.keyStroke({}, "right", 10000, opts.app)
+    normal:exit()
+    insert:enter()
+end, { app = target_app })
+
 set("n", "h", "left", { app = target_app })
 set("n", "l", "right", { app = target_app })
 set("n", "j", "down", { app = target_app })
 set("n", "k", "up", { app = target_app })
 
+set("n", { "shift", "6" }, { "cmd", "left" }, { app = target_app }) -- ^
+set("n", { "shift", "4" }, { "cmd", "right" }, { app = target_app }) -- $
+set("n", "x", "forwarddelete", { app = target_app })
+set("n", "u", { "cmd", "z" }, { app = target_app })
+set("n", { "ctrl", "d" }, "pagedown", { app = target_app })
+set("n", { "ctrl", "u" }, "pageup", { app = target_app })
+
 M.mode = normal
 M.normal = normal
 M.insert = insert
+M.block_cursor = block_cursor
 
 return M

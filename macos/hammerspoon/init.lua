@@ -1,6 +1,6 @@
 local audio = require("audio")
 local encoding = require("encoding")
-local vimish = require("vimish")
+require("vimish")
 
 hs.loadSpoon("EmmyLua")
 hs.ipc.cliInstall()
@@ -46,4 +46,6 @@ hs.hotkey.bind({ "cmd" }, "k", function()
     end)
 end)
 
+hs.caffeinate.set("displayIdle", true, true)
+hs.caffeinate.set("systemIdle", true, true)
 hs.alert.show("Config loaded")

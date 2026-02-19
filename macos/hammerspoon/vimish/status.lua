@@ -17,6 +17,7 @@ function M.new(frame)
     local x = frame.bottomright.x - instance.width
     local y = frame.bottomright.y - instance.height
     local canvas = hs.canvas.new({ x = x, y = y, w = instance.width, h = instance.height })
+    assert(canvas ~= nil, "Canvas was nil???")
 
     canvas:appendElements({
         type = "rectangle",
