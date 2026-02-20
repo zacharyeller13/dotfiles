@@ -1,12 +1,3 @@
-browser.contextualIdentities.query({ name: "Work" })
-
-async function getContainerByName(containerName?: string): Promise<string> {
-    const containers = await browser.contextualIdentities.query({ name: containerName })
-    let id = containers[0]?.cookieStoreId
-    assert(id)
-    return id
-}
-
 const pinnedTabs: { pinned: boolean, url: string, urlPattern: string, container?: string }[] = [
     {
         pinned: true,
@@ -33,6 +24,13 @@ const pinnedTabs: { pinned: boolean, url: string, urlPattern: string, container?
         container: "Work"
     },
 ]
+
+async function getContainerByName(containerName?: string): Promise<string> {
+    const containers = await browser.contextualIdentities.query({ name: containerName })
+    let id = containers[0]?.cookieStoreId
+    assert(id)
+    return id
+}
 
 glide.autocmds.create("ConfigLoaded", async () => {
     glide.process.execute("uname").then(async (val: glide.CompletedProcess) => {
@@ -62,4 +60,16 @@ glide.autocmds.create("ConfigLoaded", async () => {
             glide.excmds.execute(`containerdelete ${container.name}`)
         }
     }
+});
+
+
+//Thanks 45Hnri!
+glide.autocmds.create("ModeChanged", "*", (_) => {
+    glide.styles.add(`
+      #browser {
+        border-bottom: 5px solid var(--glide-current-mode-color)
+      }
+    `,
+        { id: "glide-custom-mode-indicator", overwrite: true },
+    );
 });

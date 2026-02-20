@@ -20,6 +20,7 @@ glide.include("excmds.ts");
 glide.include("autocmds.ts");
 glide.include("styles.ts");
 glide.include("keymaps.ts");
+glide.include("containers.ts");
 glide.include("listeners.ts");
 
 // Options
