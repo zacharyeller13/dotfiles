@@ -1,6 +1,6 @@
 local wezterm = require("wezterm") --[[@as Wezterm]]
 
---- Create a status bar at the top
+---Create a status bar at the bottom
 ---@param _ Window
 ---@param pane Pane
 ---@return table #Segments to show in right status
@@ -81,21 +81,26 @@ wezterm.on("update-status", function(window, pane)
         colors = { gradient_from, gradient_to },
     }, #segments)
 
-    local elements = {}
-
+    local right_status = {}
     for i, seg in ipairs(segments) do
         local is_first = i == 1
 
         if is_first then
-            table.insert(elements, { Background = { Color = bg } })
+            table.insert(right_status, { Background = { Color = bg } })
         end
-        table.insert(elements, { Foreground = { Color = gradient[i] } })
-        table.insert(elements, { Text = SOLID_LEFT_ARROW })
+        table.insert(right_status, { Foreground = { Color = gradient[i] } })
+        table.insert(right_status, { Text = SOLID_LEFT_ARROW })
 
-        table.insert(elements, { Background = { Color = gradient[i] } })
-        table.insert(elements, { Foreground = { Color = fg } })
-        table.insert(elements, { Text = " " .. seg .. " " })
+        table.insert(right_status, { Background = { Color = gradient[i] } })
+        table.insert(right_status, { Foreground = { Color = fg } })
+        table.insert(right_status, { Text = " " .. seg .. " " })
     end
 
-    window:set_right_status(wezterm.format(elements))
+    local left_status = {}
+    table.insert(left_status, { Background = { Color = bg } })
+    table.insert(left_status, { Foreground = { Color = fg } })
+    table.insert(left_status, { Text = " " .. window:active_workspace() .. " " })
+
+    window:set_left_status(wezterm.format(left_status))
+    window:set_right_status(wezterm.format(right_status))
 end)
