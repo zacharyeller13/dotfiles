@@ -1,5 +1,5 @@
 local wezterm = require("wezterm") --[[@as Wezterm]]
-local module = {}
+local M = {}
 local act = wezterm.action
 
 --- Sets key by adding it to config.keys
@@ -7,13 +7,13 @@ local act = wezterm.action
 ---@param key string
 ---@param mods string?
 ---@param action KeyAssignment
-function module:set(keys, key, mods, action)
+function M:set(keys, key, mods, action)
     table.insert(keys, { key = key, mods = mods, action = action })
 end
 
 ---Updates keybindings
 ---@param config Config
-function module:bind_keys(config)
+function M:bind_keys(config)
     config.keys = config.keys or {}
 
     ---@param key string
@@ -68,4 +68,4 @@ function module:bind_keys(config)
     set("w", "LEADER", act.ShowLauncherArgs({ flags = "WORKSPACES" }))
 end
 
-return module
+return M

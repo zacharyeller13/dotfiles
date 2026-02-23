@@ -7,7 +7,7 @@ local M = {}
 
 ---Apply customized domains to config
 ---@param config Config
-function M.apply_domains(config)
+function M.apply(config)
     -- Need to be able to start straight in to WSL if we're on Windows
     -- And also be able to select powershell
     if #wezterm.default_wsl_domains() > 0 then

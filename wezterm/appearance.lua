@@ -1,11 +1,21 @@
 local wezterm = require("wezterm") --[[@as Wezterm]]
-local module = {}
+local M = {}
 
-function module.is_dark()
+function M.is_dark()
     if wezterm.gui then
         return wezterm.gui.get_appearance():find("Dark")
     end
     return true
 end
 
-return module
+---Apply to wezterm config
+---@param config Config
+function M:apply(config)
+    if self.is_dark() then
+        config.color_scheme = "Tokyo Night"
+    else
+        config.color_scheme = "Tokyo Night Day"
+    end
+end
+
+return M
