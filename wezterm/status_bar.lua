@@ -44,7 +44,7 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_wid
 
     local pos = tab.tab_index + 1
     local title = " " .. pos .. ": " .. tab_title(tab)
-    title = wezterm.truncate_right(title, max_width - 2)
+    title = wezterm.truncate_right(title, max_width - 1)
 
     if not tab.is_active then
         fg = wezterm.color.parse("#000000")

@@ -1,6 +1,8 @@
 local wezterm = require("wezterm") --[[@as Wezterm]]
-local M = {}
+local workspaces = require("workspaces")
 local act = wezterm.action
+
+local M = {}
 
 --- Sets key by adding it to config.keys
 ---@param keys Key[]
@@ -66,6 +68,22 @@ function M:bind_keys(config)
     -- Open select launch menu
     set("o", "LEADER", act.ShowLauncherArgs({ flags = "LAUNCH_MENU_ITEMS|DOMAINS" }))
     set("w", "LEADER", act.ShowLauncherArgs({ flags = "WORKSPACES" }))
+    set(
+        "P",
+        "LEADER",
+        wezterm.action_callback(function(win, pane)
+            local choices = workspaces:list_projects()
+            win:perform_action(
+                act.InputSelector({
+                    title = "Select project",
+                    action = wezterm.action_callback(workspaces.spawn_project),
+                    choices = choices,
+                    fuzzy = true,
+                }),
+                pane
+            )
+        end)
+    )
 end
 
 return M
