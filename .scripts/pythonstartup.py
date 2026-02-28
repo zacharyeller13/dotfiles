@@ -1,8 +1,8 @@
-""""Startup file for Python REPL"""
+"""Startup file for Python REPL"""
+
 import atexit
 import json
 import os
-import sys
 
 from datetime import datetime, date, timedelta
 from pprint import pprint
@@ -20,10 +20,12 @@ except ImportError:
 try:
     # Will only work on Linux; readline is not intended for Windows
     import readline
+
     readline.parse_and_bind("tab: complete")
-    print('tab completion babay!!!')
+    print("readline support")
     del readline
 except ImportError:
-    print('no readline support.')
+    print("no readline support.")
 
 VENV = os.environ.get("VIRTUAL_ENV")
+print(VENV)
