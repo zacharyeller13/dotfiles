@@ -108,9 +108,6 @@ function M.sessionProperties() end
 --  * The acAndBattery argument only applies to the `system` sleep type.
 --  * You can toggle the acAndBattery state by calling `hs.caffeinate.set()` again and altering the acAndBattery value.
 --  * The acAndBattery option does not appear to work anymore - it is based on private API that is not allowed in macOS 10.15 when running with the Hardened Runtime (which Hammerspoon now uses).
----@param sleepType "displayIdle"|"systemIdle"|"system"
----@param aValue boolean true if the specified type of sleep should be prevented, false if it should be allowed
----@param acAndBattery boolean true if the sleep prevention should apply to both AC power and battery power, false if it should only apply to AC power.
 function M.set(sleepType, aValue, acAndBattery, ...) end
 
 -- Request the system log out and power down
@@ -151,3 +148,4 @@ function M.systemSleep() end
 -- Notes:
 --  * If systemIdle is toggled to on, it will apply to AC only
 function M.toggle(sleepType, ...) end
+

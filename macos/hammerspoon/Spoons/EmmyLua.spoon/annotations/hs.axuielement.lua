@@ -500,7 +500,6 @@ function M.systemElementAtPosition(x, y_or_pointTable, ...) end
 --
 -- Returns:
 --  * the axuielementObject for the system attributes
----@return hs.axuielement
 function M.systemWideElement() end
 
 -- A table of measurement unit types which may be used with [hs.axuielement:elementSearch](#elementSearch) or [hs.axuielement:matchesCriteria](#matchesCriteria) as attribute values for attributes which specify measurement unit types (e.g. "AXUnits", "AXHorizontalUnits", and "AXVerticalUnits") in the match criteria argument.
@@ -522,3 +521,4 @@ M.units = {}
 -- Notes:
 --  * if `windowObject` is a string or number, only the first item found with `hs.window.find` will be used by this function to create an axuielementObject.
 function M.windowElement(windowObject, ...) end
+
