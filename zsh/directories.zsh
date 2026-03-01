@@ -11,6 +11,8 @@ alias -g ....='../../..'
 alias -g .....='../../../..'
 alias -g ......='../../../../..'
 
+alias -- -='cd -'
+
 # List directory contents
 alias ls='ls --color=auto'
 alias lsa='ls -lah'
@@ -18,9 +20,6 @@ alias l='ls -lah'
 alias ll='ls -lh'
 alias la='ls -lAh'
 alias ld="ls -ld */" # List only directories
-
-
-alias -- -='cd -'
 
 function d () {
   if [[ -n $1 ]]; then

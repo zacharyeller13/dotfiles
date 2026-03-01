@@ -37,3 +37,8 @@ bindkey "^y" autosuggest-accept
 autoload -U menu-complete
 bindkey -M emacs '^N' menu-complete
 bindkey -M viins '^N' menu-complete
+
+# History search (fzf)
+# bindkey '^P' fzf-history-widget
+autoload -U up-line-or-search
+bindkey '^P' up-line-or-search
