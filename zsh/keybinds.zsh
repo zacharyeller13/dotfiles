@@ -15,7 +15,7 @@ fi
 # Edit the current command line in $EDITOR
 autoload -U edit-command-line
 zle -N edit-command-line
-bindkey '\C-x\C-e' edit-command-line
+bindkey '^X^E' edit-command-line
 
 # [Home] - Go to beginning of line
 if [[ -n "${terminfo[khome]}" ]]; then
@@ -37,6 +37,7 @@ bindkey "^y" autosuggest-accept
 autoload -U menu-complete
 bindkey -M emacs '^N' menu-complete
 bindkey -M viins '^N' menu-complete
+bindkey -M vicmd '^N' menu-complete
 
 # History search (fzf)
 # bindkey '^P' fzf-history-widget
