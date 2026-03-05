@@ -9,17 +9,12 @@ export NVM_COMPLETION=true
 # and opencode is partially written in typescript and uses LSP, so assume need to load there too just in case
 export NVM_LAZY_LOAD_EXTRA_COMMANDS=('vim' 'nvim' 'opencode')
 
-# node is now loaded
-# export NVM_DIR="$HOME/.nvm"
-# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
 # Completions settings
 autoload -U +X bashcompinit && bashcompinit
 autoload -U +X compinit
-zstyle ':completion:*' menu select
 zmodload zsh/complist
-compinit -D $ZSH_COMPDUMP # needs to be run after zmodload per zsh docs
+zstyle ':completion:*' menu select
+compinit -D "$ZSH_COMPDUMP" # needs to be run after zmodload per zsh docs
 _comp_options+=(globdots)
 
 # Aliases and env vars first
@@ -36,6 +31,11 @@ source "$ZDOTDIR/directories.zsh"
 source "$ZDOTDIR/history.zsh"
 source "$ZDOTDIR/keybinds.zsh"
 
+# Functions sourced for completions/autoload
+fpath+=~/.zfunc
+
+# Other Stuff
+
 # Set up fzf key bindings and fuzzy completion
 if type fzf > /dev/null; then
     source <(fzf --zsh)
@@ -49,5 +49,3 @@ eval "$(starship init zsh)"
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 
-# all other completions
-fpath+=~/.zfunc

@@ -43,3 +43,6 @@ bindkey -M vicmd '^N' menu-complete
 # bindkey '^P' fzf-history-widget
 autoload -U up-line-or-search
 bindkey '^P' up-line-or-search
+
+autoload -U down-line-or-search
+bindkey '^N' down-line-or-search
