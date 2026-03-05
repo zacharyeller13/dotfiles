@@ -51,7 +51,7 @@ format = 'via [${symbol}${pyenv_prefix}(${version} )]($style)'
 
 [custom.venv]
 description = 'The python venv name'
-command = 'echo -n $VIRTUAL_ENV_PROMPT'
+command = 'echo -n "${VIRTUAL_ENV_PROMPT:-no venv}"'
 detect_files = ['.python-version', 'Pipfile', '__init__.py', 'pyproject.toml', 'requirements.txt', 'setup.py', 'tox.ini']
 detect_extensions = ['py', '.ipynb']
 style = 'yellow bold'
