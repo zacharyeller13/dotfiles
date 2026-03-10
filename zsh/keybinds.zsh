@@ -12,10 +12,11 @@ if (( ${+terminfo[smkx]} )) && (( ${+terminfo[rmkx]} )); then
   zle -N zle-line-finish
 fi
 
-# vim modes
+# vim mode
 bindkey -v
-export KEYTIMEOUT=1
+export KEYTIMEOUT=15
 bindkey -M viins "^?" backward-delete-char
+bindkey -M viins "jj" vi-cmd-mode
 
 # Edit the current command line in $EDITOR
 autoload -U edit-command-line
