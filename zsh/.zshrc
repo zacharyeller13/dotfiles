@@ -14,7 +14,7 @@ autoload -U +X bashcompinit && bashcompinit
 autoload -U +X compinit
 zmodload zsh/complist
 zstyle ':completion:*' menu select
-compinit -D "$ZSH_COMPDUMP" # needs to be run after zmodload per zsh docs
+compinit -d "$ZSH_COMPDUMP" # needs to be run after zmodload per zsh docs
 _comp_options+=(globdots)
 
 # Aliases and env vars first
