@@ -57,3 +57,6 @@ detect_extensions = ['py', '.ipynb']
 style = 'yellow bold'
 when = ''' ! (test -z "$VIRTUAL_ENV_PROMPT") '''
 format = '[\($output\)]($style)'
+
+[status]
+disabled = false
