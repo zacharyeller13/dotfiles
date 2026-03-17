@@ -2,6 +2,7 @@
 const containercreate = glide.excmds.create({ name: "containercreate", description: "Create a new container" }, createContainer)
 const containerdelete = glide.excmds.create({ name: "containerdelete", description: "Delete a container by name" }, deleteContainer)
 const containerremove = glide.excmds.create({ name: "containerremove", description: "Alias for `containerdelete`" }, deleteContainer)
+const tmpClear = glide.excmds.create({ name: "tmpClear", description: "Delete ALL tmp containers" }, clearTmpContainers)
 const tabnew = glide.excmds.create({ name: "tabnew", description: "Open new tab, optionally in a container with '-c'" }, tabNew)
 
 declare global {
@@ -9,7 +10,17 @@ declare global {
         containercreate: typeof containercreate
         containerdelete: typeof containerdelete
         containerremove: typeof containerremove
+        tmpClear: typeof tmpClear
         tabnew: typeof tabnew
+    }
+}
+
+async function clearTmpContainers(_: glide.ExcmdCallbackProps) {
+    const containers = await browser.contextualIdentities.query({})
+    for (const container of containers) {
+        if (container.name.startsWith("tmp")) {
+            glide.excmds.execute(`containerdelete ${container.name}`)
+        }
     }
 }
 

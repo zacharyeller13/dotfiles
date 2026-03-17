@@ -32,6 +32,7 @@ async function getContainerByName(containerName?: string): Promise<string> {
     return id
 }
 
+// This is fired on every window open
 glide.autocmds.create("ConfigLoaded", async () => {
     glide.process.execute("uname").then(async (val: glide.CompletedProcess) => {
         for await (const line of val.stdout.values()) {
@@ -53,13 +54,6 @@ glide.autocmds.create("ConfigLoaded", async () => {
         }
 
     });
-    // Clear tmpContainers on startup
-    const containers = await browser.contextualIdentities.query({})
-    for (const container of containers) {
-        if (container.name.startsWith("tmp")) {
-            glide.excmds.execute(`containerdelete ${container.name}`)
-        }
-    }
 });
 
 
