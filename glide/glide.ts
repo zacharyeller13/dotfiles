@@ -27,6 +27,7 @@ glide.include("listeners.ts");
 glide.o.hint_size = "15px";
 glide.prefs.set("toolkit.legacyUserProfileCustomizations.stylesheets", true);
 glide.prefs.set("media.videocontrols.picture-in-picture.audio-toggle.enabled", true);
+glide.o.switch_mode_on_focus = false;
 
 // Visual selection of non-editable elements
 // document.getSelection().addRange(range)
