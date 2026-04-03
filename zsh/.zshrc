@@ -14,6 +14,10 @@ autoload -U +X bashcompinit && bashcompinit
 autoload -U +X compinit
 zmodload zsh/complist
 zstyle ':completion:*' menu select
+
+# Case insensitive matching
+zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'r:|=*' 'l:|=* r:|=*'
+
 compinit -d "$ZSH_COMPDUMP" # needs to be run after zmodload per zsh docs
 _comp_options+=(globdots)
 
