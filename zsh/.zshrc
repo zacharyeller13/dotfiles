@@ -25,6 +25,9 @@ _comp_options+=(globdots)
 source "$HOME/.alias"
 source "$HOME/.env"
 
+# Cache dir
+zstyle ':completion::complete:*' cache-path "$ZSH_CACHE_DIR"
+
 # plugins
 source "$ZDOTDIR/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 source "$ZDOTDIR/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
