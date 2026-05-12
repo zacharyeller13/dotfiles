@@ -1,16 +1,17 @@
 {
-  "runtime": {
-    "version": "Lua 5.4"
-  },
-  "workspace": {
-    "library": [
-      "types"
-    ],
-    "checkThirdParty": false
-  },
-  "diagnostics": {
-    "globals": [
-      "sbar"
-    ]
-  }
+    "runtime": {
+        "version": "Lua 5.4"
+    },
+    "workspace": {
+        "library": [
+            "types"
+        ],
+        "checkThirdParty": false
+    },
+    "diagnostics": {
+        "globals": [
+            "sbar",
+            "Sketchybar"
+        ]
+    }
 }
