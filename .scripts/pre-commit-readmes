@@ -4,11 +4,9 @@
 
 set -e
 
-mapfile -t files < <(git diff --name-only --cached)
-
 # Render mermaid diagrams using `mmdc` for any README-templates
 # And add the new README's
-for file in "${files[@]}"; do
+for file in $(git diff --name-only --cached); do
     if [[ $file == *"README-template.md"  ]]; then
         mmdc -i "$file" -o "${file/README-template/README}" --outputFormat png
         git add "${file/README-template/README}"
