@@ -59,7 +59,7 @@ function M:list_projects()
     local projects = {}
 
     local ok, stdout, stderr =
-        wezterm.run_child_process({ "fd", "-H", "-t", "d", "^\\.git$", table.unpack(self.search_dirs) })
+        wezterm.run_child_process({ "fd", "-H", "-I", "-t", "d", "^\\.git$", table.unpack(self.search_dirs) })
     if not ok then
         wezterm.log_error("Error getting projects: ", stderr)
         return {}

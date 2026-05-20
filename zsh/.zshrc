@@ -9,29 +9,39 @@ export NVM_COMPLETION=true
 # and opencode is partially written in typescript and uses LSP, so assume need to load there too just in case
 export NVM_LAZY_LOAD_EXTRA_COMMANDS=('vim' 'nvim' 'opencode')
 
-# node is now loaded
-# export NVM_DIR="$HOME/.nvm"
-# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
 # Completions settings
 autoload -U +X bashcompinit && bashcompinit
-autoload -U +X compinit && compinit
+autoload -U +X compinit
+zmodload zsh/complist
 zstyle ':completion:*' menu select
+
+# Case insensitive matching
+zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'r:|=*' 'l:|=* r:|=*'
+
+compinit -d "$ZSH_COMPDUMP" # needs to be run after zmodload per zsh docs
+_comp_options+=(globdots)
 
 # Aliases and env vars first
 source "$HOME/.alias"
 source "$HOME/.env"
 
-# plugins
-source "$ZSH/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
-source "$ZSH/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
-source "$ZSH/plugins/zsh-nvm/zsh-nvm.plugin.zsh"
+# Cache dir
+zstyle ':completion::complete:*' cache-path "$ZSH_CACHE_DIR"
 
-source "$ZSH/functions.zsh"
-source "$ZSH/directories.zsh"
-source "$ZSH/history.zsh"
-source "$ZSH/keybinds.zsh"
+# plugins
+source "$ZDOTDIR/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+source "$ZDOTDIR/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
+source "$ZDOTDIR/plugins/zsh-nvm/zsh-nvm.plugin.zsh"
+
+source "$ZDOTDIR/functions.zsh"
+source "$ZDOTDIR/directories.zsh"
+source "$ZDOTDIR/history.zsh"
+source "$ZDOTDIR/keybinds.zsh"
+
+# Functions sourced for completions/autoload
+fpath+=~/.zfunc
+
+# Other Stuff
 
 # Set up fzf key bindings and fuzzy completion
 if type fzf > /dev/null; then
@@ -46,5 +56,3 @@ eval "$(starship init zsh)"
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 
-# all other completions
-fpath+=~/.zfunc

@@ -1,14 +1,15 @@
 #!/usr/bin/env bash
 
-alias l-"ls -la"  # List long format, include dotfiles
-alias ld="ls -ld */" # List only directories
-alias ..="cd .."
-alias ...="cd ../.."
-alias ....="cd ../../.."
 alias vim="nvim"
-alias sumHours="python3 ~/.dotfiles/.scripts/sum_day_hours.py"
 alias vim-test="NVIM_APPNAME=nvim-test nvim"
 
 if [[ -x "$(command -v fdfind)" ]]; then
     alias fd="fdfind"
 fi
+
+# Copied from oh-my-zsh
+alias gst='git status'
+alias gd='git diff'
+alias ga='git add'
+alias gb='git branch'
+alias gc='git commit --verbose'

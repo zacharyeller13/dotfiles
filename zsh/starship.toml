@@ -1,0 +1,62 @@
+# $all is the default see https://starship.rs/config/#default-prompt-format
+format = """
+$username\
+$hostname\
+$localip\
+$shlvl\
+$directory\
+$git_branch\
+$git_commit\
+$git_state\
+$git_status\
+$docker_context\
+$package\
+$dotnet\
+$golang\
+$lua\
+$nodejs\
+$python\
+$rust\
+$memory_usage\
+$azure\
+$env_var\
+$custom\
+$sudo\
+$cmd_duration\
+$line_break\
+$jobs\
+$battery\
+$time\
+$status\
+$os\
+$container\
+$shell\
+${custom.venv} \
+$character"""
+
+add_newline = true
+
+[azure]
+disabled = true
+
+[sudo]
+disabled = false
+
+[directory]
+truncation_length = 5
+truncation_symbol = '.../'
+
+[python]
+format = 'via [${symbol}${pyenv_prefix}(${version} )]($style)'
+
+[custom.venv]
+description = 'The python venv name'
+command = 'echo -n "${VIRTUAL_ENV_PROMPT:-no venv}"'
+detect_files = ['.python-version', 'Pipfile', '__init__.py', 'pyproject.toml', 'requirements.txt', 'setup.py', 'tox.ini']
+detect_extensions = ['py', '.ipynb']
+style = 'yellow bold'
+when = ''' ! (test -z "$VIRTUAL_ENV_PROMPT") '''
+format = '[\($output\)]($style)'
+
+[status]
+disabled = false
