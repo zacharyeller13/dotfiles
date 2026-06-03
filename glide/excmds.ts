@@ -1,9 +1,9 @@
-
+glide.include("workday.ts")
 const containercreate = glide.excmds.create({ name: "containercreate", description: "Create a new container" }, createContainer)
 const containerdelete = glide.excmds.create({ name: "containerdelete", description: "Delete a container by name" }, deleteContainer)
 const containerremove = glide.excmds.create({ name: "containerremove", description: "Alias for `containerdelete`" }, deleteContainer)
 const tmpClear = glide.excmds.create({ name: "tmpClear", description: "Delete ALL tmp containers" }, clearTmpContainers)
-const tabnew = glide.excmds.create({ name: "tabnew", description: "Open new tab, optionally in a container with '-c'" }, tabNew)
+const tabnew = glide.excmds.create({ name: "tabnew", description: "Open new tab, optionally in a container with '-c'" }, async (props) => { await tabNew(props) })
 
 declare global {
     interface ExcmdRegistry {
@@ -19,7 +19,10 @@ async function clearTmpContainers(_: glide.ExcmdCallbackProps) {
     const containers = await browser.contextualIdentities.query({})
     for (const container of containers) {
         if (container.name.startsWith("tmp")) {
+            // Just catch any errors, we're forcing the deletion so don't care
+            // if it was already deleted
             glide.excmds.execute(`containerdelete ${container.name}`)
+                .catch(reason => { console.log(reason) })
         }
     }
 }
@@ -43,7 +46,7 @@ async function deleteContainer(props: glide.ExcmdCallbackProps) {
     }
 }
 
-async function tabNew(props: glide.ExcmdCallbackProps) {
+async function tabNew(props: glide.ExcmdCallbackProps): Promise<Browser.Tabs.Tab> {
     if (props.args_arr.length > 1) {
         assert(props.args_arr[0] === "-c", "Only option '-c' supported");
         assert(props.args_arr.length >= 2, "Must provide container name with `tabnew -c {name}`");
@@ -57,9 +60,8 @@ async function tabNew(props: glide.ExcmdCallbackProps) {
         const containers = await browser.contextualIdentities.query({ name: containerName });
         if (containers.length === 1) {
             let container = containers[0];
-            await browser.tabs.create({ cookieStoreId: container?.cookieStoreId, url: url });
-            return
+            return await browser.tabs.create({ cookieStoreId: container?.cookieStoreId, url: url });
         }
     }
-    await browser.tabs.create({})
+    return await browser.tabs.create({})
 }
