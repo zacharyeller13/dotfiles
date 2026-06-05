@@ -44,3 +44,5 @@ battery:subscribe("routine", update)
 battery:subscribe("forced", update)
 battery:subscribe("system_woke", update)
 battery:subscribe("power_source_change", update)
+
+return { battery }

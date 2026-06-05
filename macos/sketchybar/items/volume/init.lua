@@ -1,48 +1,14 @@
 local colors = require("colors")
 local icons = require("icons")
 
-local volume_slider = Sketchybar.add("slider", 100, {
-    position = "right",
-    updates = true,
-    label = { drawing = false },
-    icon = { drawing = false },
-    slider = {
-        highlight_color = colors.blue,
-        width = 0,
-        background = {
-            height = 6,
-            corner_radius = 3,
-            color = colors.bg2,
-        },
-        knob = {
-            string = "􀀁",
-            drawing = true,
-        },
-    },
-})
-
-local volume_icon = Sketchybar.add("item", {
-    position = "right",
-    icon = {
-        string = icons.volume._100,
-        align = "left",
-        font = {
-            style = "Regular",
-            size = 18.0,
-        },
-    },
-    label = {
-        align = "left",
-        font = {
-            style = "Regular",
-        },
-    },
-})
+local volume_slider = require("items.volume.slider")
+local volume_icon = require("items.volume.icon")
+local devices = require("items.volume.devices")
+devices.setup(volume_icon)
 
 volume_slider:subscribe("mouse.clicked", function(env)
     Sketchybar.exec("aerospace volume set " .. env.PERCENTAGE)
 end)
-
 volume_slider:subscribe("volume_change", function(env)
     local volume = tonumber(env.INFO)
     local icon = icons.volume._0
@@ -73,3 +39,5 @@ volume_icon:subscribe("mouse.clicked", function()
         animate_slider_width(100)
     end
 end)
+
+return { volume_icon, volume_slider }

@@ -18,9 +18,9 @@ local function update()
     local date = os.date("%Y-%m-%d")
     local time = os.date("%H:%M")
     if shown == "date" then
-        clock:set({ label = date })
+        clock:set({ label = tostring(date) })
     else
-        clock:set({ label = time })
+        clock:set({ label = tostring(time) })
     end
     calendar:update()
 end
@@ -30,10 +30,10 @@ local function on_click()
     local time = os.date("%H:%M")
     if shown == "date" then
         shown = "time"
-        clock:set({ label = time })
+        clock:set({ label = tostring(time) })
     else
         shown = "date"
-        clock:set({ label = date })
+        clock:set({ label = tostring(date) })
     end
 end
 
@@ -54,3 +54,5 @@ clock:subscribe("forced", update)
 clock:subscribe("mouse.clicked", on_click)
 clock:subscribe("mouse.entered", show_calendar)
 clock:subscribe("mouse.exited", hide_calendar)
+
+return { clock }

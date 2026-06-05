@@ -17,4 +17,10 @@ return {
         active = "",
         default = "",
     },
+    audio = {
+        input = "󰍬",
+        input_muted = "󰍭",
+        output = "󰕾",
+        output_muted = "󰖁",
+    },
 }

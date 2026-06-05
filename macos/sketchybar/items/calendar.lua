@@ -14,7 +14,7 @@ function M:update()
         for match in cal:gmatch("[^\r\n]+") do
             local trimmed, _ = match:gsub("%s+", "")
             if trimmed ~= "" then
-                nmatch, _ = match:gsub(" " .. day .. " ", "[" .. day .. "]")
+                local nmatch, _ = match:gsub(" " .. day .. " ", "[" .. day .. "]")
                 self.calendar_rows[i]:set({ label = { string = nmatch } })
                 i = i + 1
             end
@@ -32,8 +32,8 @@ function M:setup()
         for match in cal:gmatch("[^\r\n]+") do
             local trimmed, _ = match:gsub("%s+", "")
             if trimmed ~= "" then
-                nmatch, _ = match:gsub(" " .. day .. " ", "[" .. day .. "]")
-                week = Sketchybar.add("item", "calendar." .. i, {
+                local nmatch, _ = match:gsub(" " .. day .. " ", "[" .. day .. "]")
+                local week = Sketchybar.add("item", "calendar." .. i, {
                     -- How do we get this width? Trial and error and guessing
                     -- If we leave it as 'dynamic', some of the characters get truncated
                     width = 160,

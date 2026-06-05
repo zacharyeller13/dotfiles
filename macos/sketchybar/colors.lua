@@ -11,7 +11,7 @@ return {
     transparent = 0x00000000,
 
     bar = {
-        bg = 0xd01e1e2e, -- #1e1e2e
+        bg = 0xb01e1e2e, -- #1e1e2e
         border = 0xff494d64, -- #494d64
     },
     popup = {
@@ -19,5 +19,6 @@ return {
         border = 0xffcad3f5, -- #cad3f5
     },
     bg1 = 0x803c3e4f,
-    bg2 = 0xff494d64,
+    bg2 = 0xff494d64, -- #494d64
+    volume_slider_bg = 0xff494d64, -- #494d64
 }
