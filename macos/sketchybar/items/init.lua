@@ -1,7 +1,7 @@
 local colors = require("colors")
 
-require("items.aerospace")
--- require("items.rift_spaces")
+-- require("items.aerospace")
+require("items.rift_spaces")
 require("items.front_app")
 
 Sketchybar.add("bracket", "left", { "/space\\..*/" }, { background = { color = colors.black } })

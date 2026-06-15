@@ -2,6 +2,7 @@ require("types.space")
 local icons = require("icons")
 local colors = require("colors")
 local tbl = require("helpers.tables")
+local inspect = require("lib.inspect")
 
 ---@type table<string, SbarItem?>
 local workspaces = {}
@@ -17,8 +18,8 @@ local active_space = {
 }
 local default_space = {
     width = "dynamic",
-    label = { drawing = true, highlight = false, string = icons.spaces.default },
-    icon = { drawing = true, highlight = false },
+    label = { drawing = true, highlight = false, string = icons.spaces.default, color = colors.space.inactive },
+    icon = { drawing = true, highlight = false, color = colors.space.inactive },
     background = { drawing = false },
 }
 local empty_space = {
@@ -51,7 +52,7 @@ local function animate_border(item, display)
     if not display and active then
         return
     end
-    item:set({ background = { border_color = colors.green, drawing = display } })
+    item:set({ background = { border_color = colors.space.active, drawing = display } })
 end
 
 --We can do this synchronously cause we know we only have 9 spaces really
@@ -62,15 +63,15 @@ for i = 1, 9, 1 do
         label = {
             string = icons.spaces.default,
             font = { size = 14 },
-            highlight_color = colors.green,
+            highlight_color = colors.space.active,
         },
         icon = {
             string = i .. ":",
-            highlight_color = colors.green,
+            highlight_color = colors.space.active,
             font = { size = 14 },
         },
         background = {
-            border_color = colors.green,
+            border_color = colors.space.active,
             drawing = false,
             -- A bit hacky but works to make a solid bar at the top-ish
             height = 2,
@@ -82,7 +83,12 @@ for i = 1, 9, 1 do
     workspaces[space.name] = space
 
     space:subscribe("mouse.clicked", function()
-        Sketchybar.exec("rift-cli execute workspace switch " .. i)
+        local client, err = require("rift").connect()
+        if not client then
+            error(err)
+        end
+        local stmt = [[{"execute_command":{"command":"{\"Reactor\":{\"switch_to_workspace\":%d}}","args":[]}}]]
+        local resp, err = client:send_request(stmt:format(i))
     end)
     space:subscribe("mouse.entered", function()
         animate_border(space, true)

@@ -1,13 +1,13 @@
--- TODO: create dummy item to update networing on trigger
--- Then trigger from hammerspoon
+---@type string[]
+local aliases = {}
 
----Sleep 5 to allow sketchybar to start, then add any cisco app icons as aliases
----@param aliases table<string>
----@param exit_code integer
-Sketchybar.exec("sleep 5 && sketchybar --query default_menu_items", function(aliases, exit_code)
-    for i, alias in ipairs(aliases) do
-        if alias:lower():match("cisco") then
-            Sketchybar.add("alias", alias, { position = "right" })
-        end
+---@type string[]
+local menu_items = Sketchybar.query("default_menu_items")
+
+for _, alias in ipairs(menu_items) do
+    if alias:lower():match("cisco") then
+        local item = Sketchybar.add("alias", alias, { position = "right" })
+        table.insert(aliases, item.name)
     end
-end)
+end
+Sketchybar.add("bracket", "network", aliases, { background = { color = require("colors").bg2 } })
