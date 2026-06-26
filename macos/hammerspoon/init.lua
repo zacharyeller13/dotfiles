@@ -1,5 +1,6 @@
 local audio = require("audio")
 local encoding = require("encoding")
+local riftapi = require("riftapi")
 require("vimish")
 
 hs.loadSpoon("EmmyLua")
@@ -19,9 +20,11 @@ hs.hotkey.bind({ "cmd", "alt" }, "r", function()
     hs.reload()
 end)
 
+hs.hotkey.bind({ "cmd" }, "h", function()
+    hs.alert("Oops, no hide")
+end)
+
 hs.hotkey.bind({ "cmd", "alt", "ctrl" }, "s", function()
-    -- A little faster than hs.execute since we don't need to do a lot
-    -- with the output
     local ok, err, code = hs.execute("sketchybar --reload", true)
     if not ok then
         print(err, code)
@@ -44,6 +47,19 @@ hs.hotkey.bind({ "cmd" }, "k", function()
         hs.pasteboard.setContents(clipboard)
         encoding.copy_event_listener:stop()
     end)
+end)
+
+hs.hotkey.bind({ "alt" }, "c", function()
+    local app = hs.application.frontmostApplication()
+    local allWins = app:allWindows()
+    if #allWins == 1 then
+        app:kill()
+        hs.alert("Closed app: " .. app:title())
+        return
+    end
+    local win = app:focusedWindow()
+    hs.alert("Closed window: " .. win:title())
+    win:close()
 end)
 
 hs.caffeinate.set("displayIdle", true, true)

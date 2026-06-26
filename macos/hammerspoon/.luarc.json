@@ -1,3 +1,7 @@
 {
-  "runtime.version": "Lua 5.4"
+    "$schema": "https://raw.githubusercontent.com/LuaLS/vscode-lua/master/setting/schema.json",
+    "runtime.version": "Lua 5.4",
+    "workspace.library": [
+        "/Users/ellerz/dev/rift.lua/rift.d.lua"
+    ]
 }

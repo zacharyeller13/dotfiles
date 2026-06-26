@@ -112,6 +112,7 @@ function M:getFlags() end
 --
 -- Notes:
 --  * This method should only be used on keyboard events
+---@return number #raw keycode taken from hs.keycodes.map
 function M:getKeyCode() end
 
 -- Gets a property of the event
@@ -717,4 +718,3 @@ function M:timestamp(absolutetime, ...) end
 --   * smartMagnify --  The user performed a smart zoom gesture (2-finger double tap on trackpads).
 --   * swipe        --  The user performed a swipe gesture. (thus far unobserved; please submit an issue if you can provide more information)
 M.types = nil
-
