@@ -83,6 +83,9 @@ function M.inputSourceChanged(fn) end
 --  * Only those layouts which can be explicitly switched to will be included in the table.  Keyboard layouts which are part of input methods are not included.  See `hs.keycodes.methods`.
 function M.layouts(sourceID, ...) end
 
+---@class KeycodeMap
+---@field [string] number
+---@field [number] string
 -- A mapping from string representation of a key to its keycode, and vice versa.
 --
 -- Notes:
@@ -129,4 +132,3 @@ function M.setLayout(layoutName, ...) end
 --  * A boolean, true if the method was successfully changed, otherwise false
 ---@return boolean
 function M.setMethod(methodName, ...) end
-

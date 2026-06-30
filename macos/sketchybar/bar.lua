@@ -3,7 +3,7 @@ local colors = require("colors")
 -- Equivalent to the --bar domain
 Sketchybar.bar({
     height = 30,
-    color = colors.bar.bg,
+    -- color = colors.bar.bg,
     border_color = colors.bar.border,
     shadow = true,
     sticky = true,

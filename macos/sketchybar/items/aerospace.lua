@@ -23,8 +23,8 @@ local active_space = {
 }
 local default_space = {
     width = "dynamic",
-    label = { drawing = true, highlight = false, string = icons.spaces.default },
-    icon = { drawing = true, highlight = false },
+    label = { drawing = true, highlight = false, string = icons.spaces.default, color = colors.space.inactive },
+    icon = { drawing = true, highlight = false, color = colors.space.inactive },
     background = { drawing = false },
 }
 local empty_space = {
@@ -34,6 +34,12 @@ local empty_space = {
     background = { drawing = false },
 }
 
+---@param item SbarItem
+---@param display boolean
+local function animate_border(item, display)
+    item:set({ background = { border_color = colors.space.active, drawing = display } })
+end
+
 -- We can do this synchronously cause we know we only have 9 spaces really
 for i = 1, 9, 1 do
     local name = "space." .. i
@@ -42,15 +48,15 @@ for i = 1, 9, 1 do
         label = {
             string = icons.spaces.default,
             font = { size = 14 },
-            highlight_color = colors.green,
+            highlight_color = colors.space.active,
         },
         icon = {
             string = i .. ":",
-            highlight_color = colors.green,
+            highlight_color = colors.space.active,
             font = { size = 14 },
         },
         background = {
-            border_color = colors.green,
+            border_color = colors.space.active,
             drawing = false,
             -- A bit hacky but works to make a solid bar at the top-ish
             height = 2,
@@ -92,6 +98,20 @@ for i = 1, 9, 1 do
 
     item:subscribe("mouse.clicked", function()
         Sketchybar.exec("aerospace workspace " .. i)
+    end)
+    item:subscribe("mouse.entered", function()
+        Sketchybar.exec(AERO_LIST_FOCUSED, function(spaces)
+            if spaces[1].workspace ~= tostring(i) then
+                animate_border(item, true)
+            end
+        end)
+    end)
+    item:subscribe("mouse.exited", function()
+        Sketchybar.exec(AERO_LIST_FOCUSED, function(spaces)
+            if spaces[1].workspace ~= tostring(i) then
+                animate_border(item, false)
+            end
+        end)
     end)
 
     -- Typically if we switch power, we may be going from
