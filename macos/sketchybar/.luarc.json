@@ -4,7 +4,9 @@
     },
     "workspace": {
         "library": [
-            "types"
+            "types",
+            "/Users/ellerz/dev/rift.lua/rift.d.lua",
+            "/opt/homebrew/share/lua/5.4"
         ],
         "checkThirdParty": false
     },
