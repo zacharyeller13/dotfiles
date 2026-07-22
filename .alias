@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 alias vim="nvim"
+alias vim-git="nvim-git"
 alias vim-test="NVIM_APPNAME=nvim-test nvim"
 
 if [[ -x "$(command -v fdfind)" ]]; then
