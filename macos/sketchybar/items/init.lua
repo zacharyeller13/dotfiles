@@ -1,10 +1,13 @@
 local colors = require("colors")
 
 -- require("items.aerospace")
-require("items.rift_spaces")
+local rift_spaces = require("items.rift_spaces")
 require("items.front_app")
 
-Sketchybar.add("bracket", "left", { "/space\\..*/" }, { background = { color = colors.black } })
+local spaces = Sketchybar.add("bracket", "left", { "/space\\..*/" }, { background = { color = colors.black } })
+spaces:subscribe("front_app_switched", function()
+    rift_spaces.update_spaces()
+end)
 
 local clock = table.unpack(require("items.clock"), 1)
 local volume_icon, volume_slider = table.unpack(require("items.volume"), 1)

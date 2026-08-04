@@ -2,6 +2,10 @@ require("types.space")
 local icons = require("icons")
 local colors = require("colors")
 local riftapi = require("riftapi")
+local inspect = require("lib.inspect")
+
+local M = {}
+M.__index = M
 
 ---@type table<string, SbarItem?>
 local workspaces = {}
@@ -81,8 +85,7 @@ for i = 1, 9, 1 do
     workspaces[space.name] = space
 
     space:subscribe("mouse.clicked", function()
-        local rift = riftapi
-        rift.workspace.switch(i)
+        riftapi.workspace.switch(i)
     end)
     space:subscribe("mouse.entered", function()
         animate_border(space, true)
@@ -92,7 +95,7 @@ for i = 1, 9, 1 do
     end)
 end
 
-riftapi.subscribe({ "workspace_changed" }, function(env)
-    update_spaces()
-end)
 update_spaces()
+M.update_spaces = update_spaces
+
+return M
