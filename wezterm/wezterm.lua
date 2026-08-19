@@ -1,6 +1,7 @@
 local wezterm = require("wezterm") --[[@as Wezterm]]
 
 local config = wezterm.config_builder() --[[@as Config]]
+config.default_prog = { "/usr/bin/zsh" }
 
 require("options").apply(config)
 require("domains").apply(config)
