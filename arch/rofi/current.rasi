@@ -1,143 +1,141 @@
 /*
- * Tokyonight colorscheme for rofi
- * User: w8ste
+ * Tokyonight rofi theme
+ * Clean, modern take on the classic palette
  */
 
-
-// define colors etc.
 * {
-    bg: #24283b;
-    hv: #9274ca; 
-    primary: #C5C8C6; 
-    ug: #0B2447;
-    font: "Monospace 11";
-    background-color: @bg;
-    //dark: @bg;
-    border: 0px;
-    kl: #7aa2f7;
-    black: #000000;
+    /* Tokyonight colors */
+    bg:        rgba(26, 27, 38, 0.92);
+    bg-alt:    rgba(36, 40, 59, 0.90);
+    bg-hover:  rgba(41, 46, 66, 0.95);
+    fg:        #c0caf5;
+    fg-dim:    #565f89;
+    blue:      #7aa2f7;
+    purple:    #bb9af7;
+    cyan:      #7dcfff;
+    black:     #15161e;
+    bdr:       rgba(59, 66, 97, 0.85);
 
-    transparent: rgba(46,52,64,0);
+    /* Globals */
+    background-color: transparent;
+    text-color:       @fg;
+    font:             "monospace 11";
 }
 
-// defines different aspects of the window
 window {
-    width: 700;
-    /*since line wont work with height, i comment it out 
-    if you rather control the size via height
-    just comment it out */
-    //height: 500;
-
-    orientation: horizontal;
+    width:    560px;
     location: center;
-    anchor: center;
-    transparency: "screenshot";
-    border-color: @transparent;   
-    border: 0px;
-    border-radius: 6px;
-    spacing: 0;
-    children: [ mainbox ];
+    anchor:   north;
+
+    background-color: @bg;
+    border:           1px;
+    border-color:     @bdr;
+    border-radius:    14px;
+    padding:          14px;
+
+    transparency: "real";
 }
 
 mainbox {
-    spacing: 0;
+    spacing:  8px;
     children: [ inputbar, message, listview ];
 }
 
+/* Search bar */
 inputbar {
-    color: @kl;
-    padding: 11px;
-    border: 3px 3px 2px 3px;
-    border-color: @primary;
-    border-radius: 6px 6px 0px 0px;
-}
+    background-color: @bg-alt;
+    border-radius:    10px;
+    padding:          10px 14px;
+    spacing:          8px;
 
-message {
-    padding: 5;
-    border-color: @primary;
-    border: 0px 1px 1px 1px;
-}
-
-textbox {
-    text-color: @kl;
-}
-
-entry, prompt, case-indicator {
-    text-font: inherit;
-    text-color: inherit;
-}
-
-entry {
-    cursor: pointer;
+    children: [ prompt, entry ];
 }
 
 prompt {
-    margin: 0px 5px 0px 0px;
+    text-color: @blue;
+    font:       "monospace 12";
 }
 
+entry {
+    cursor:           pointer;
+    placeholder:      "Search...";
+    placeholder-color: @fg-dim;
+}
+
+/* Results list */
 listview {
-    layout: vertical;
-    //spacing: 5px;
-    padding: 8px;
-    lines: 12;
-    columns: 1;
-    border: 0px 3px 3px 3px; 
-    border-radius: 0px 0px 6px 6px;
-    border-color: @primary;
-    dynamic: false;
+    lines:         12;
+    columns:       1;
+    spacing:       3px;
+    fixed-height:  false;
+    dynamic:       true;
+    scrollbar:     false;
+
+    border-radius: 10px;
 }
 
 element {
-    padding: 2px;
-    vertical-align: 1;
-    color: @kl;
-    font: inherit;
+    padding:       8px 12px;
+    border-radius: 8px;
+    spacing:       8px;
+}
+
+element-icon {
+    size: 18px;
 }
 
 element-text {
-    background-color: inherit;
-    text-color: inherit;
+    background-color: transparent;
+    text-color:       inherit;
 }
 
-element selected.normal {
-    color: @black;
-    background-color: @hv;
+element normal.normal,
+element alternate.normal {
+    background-color: transparent;
 }
 
-element normal active {
-    background-color: @hv;
-    color: @black;
+element normal.active {
+    text-color: @cyan;
 }
 
-element-text, element-icon {
-    background-color: inherit;
-    text-color: inherit;
+element normal.urgent {
+    text-color: @purple;
 }
 
-element normal urgent {
-    background-color: @primary;
+element selected.normal,
+element selected.active,
+element selected.urgent {
+    background-color: @blue;
+    text-color:       @black;
 }
 
-element selected active {
-    background: @hv;
-    foreground: @bg;
+element selected.normal element-icon,
+element selected.active element-icon,
+element selected.urgent element-icon {
+    background-color: transparent;
 }
 
+/* Not currently shown, but styled if modes are enabled */
 button {
-    padding: 6px;
-    color: @primary;
-    horizonatal-align: 0.5;
-
-    border: 2px 0px 2px 2px;
-    border-radius: 4px 0px 0px 4px;
-    border-color: @primary;
+    padding:          8px 12px;
+    background-color: @bg-alt;
+    text-color:       @fg-dim;
+    border-radius:    8px;
 }
 
-button selected normal {
-    border: 2px 0px 2px 2px;
-    border-color: @primary;
+button selected.normal {
+    background-color: @bg-hover;
+    text-color:       @fg;
 }
 
-scrollbar {
-    enabled: true;
-} 
+/* Message / mode switcher bar */
+message {
+    margin:        4px 0 0 0;
+    padding:       10px 14px;
+    border-radius: 10px;
+    background-color: @bg-alt;
+}
+
+textbox {
+    text-color: @fg-dim;
+}
