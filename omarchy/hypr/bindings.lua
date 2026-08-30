@@ -61,6 +61,8 @@ o.bind(mainMod .. " + SHIFT + J", "Toggle window split", hl.dsp.layout("togglesp
 hl.unbind(mainMod .. " + F")
 o.bind(mainMod .. " + M", "Toggle fullscreen", hl.dsp.window.fullscreen())
 
--- hl.unbind(mainMod .. " + SPACE")
--- hl.unbind(mainMod .. " + R")
+-- swap workspaces
+hl.unbind(mainMod .. " + SHIFT + TAB") -- default = previous workspace
+o.bind(mainMod .. " + SHIFT + TAB", "Move workspace to next monitor", hl.dsp.workspace.move({ monitor = "+1" }))
+
 o.bind(mainMod .. " + R", "Rofi", "rofi -show drun")
