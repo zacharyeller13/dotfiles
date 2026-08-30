@@ -1,0 +1,8 @@
+{
+    "workspace": {
+        "library": [
+            "/usr/share/hypr/stubs",
+            "/usr/share/omarchy/default/hypr"
+        ]
+    }
+}

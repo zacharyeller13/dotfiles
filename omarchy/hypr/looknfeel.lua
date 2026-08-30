@@ -25,6 +25,8 @@ hl.config({
     },
 })
 
+hl.layer_rule({ match = { namespace = "rofi" }, no_anim = true })
+
 -- https://wiki.hypr.land/Configuring/Basics/Variables/#animations
 -- hl.config({
 --   animations = {

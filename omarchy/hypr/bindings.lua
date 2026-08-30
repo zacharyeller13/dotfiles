@@ -31,7 +31,7 @@
 local mainMod = "SUPER"
 
 hl.unbind(mainMod .. " + RETURN") -- default = launch term
-hl.unbind(mainMod .. " + T")      -- default = toggle float/tile
+hl.unbind(mainMod .. " + T") -- default = toggle float/tile
 -- copy omarchy binding, since we have wezterm set as default
 o.bind(mainMod .. " + T", "Terminal", { omarchy = "terminal" })
 
@@ -60,3 +60,7 @@ o.bind(mainMod .. " + SHIFT + J", "Toggle window split", hl.dsp.layout("togglesp
 -- Fullscreen
 hl.unbind(mainMod .. " + F")
 o.bind(mainMod .. " + M", "Toggle fullscreen", hl.dsp.window.fullscreen())
+
+-- hl.unbind(mainMod .. " + SPACE")
+-- hl.unbind(mainMod .. " + R")
+o.bind(mainMod .. " + R", "Rofi", "rofi -show drun")
