@@ -73,3 +73,25 @@ glide.styles.add(css`
     }
 }
 `)
+
+glide.styles.add(css`
+  .glide-hints-container {}
+
+  div.glide-internal-hint-marker {
+    background: #a9c7ff !important;
+    border: 1px solid #3b5bdb !important;
+    border-radius: 4px !important;
+    padding: 2px 5px !important;
+  }
+
+  div.glide-internal-hint-marker span {
+    color: #1b1f3b !important;
+    font-weight: 700 !important;
+    font-size: 12px !important;
+  }
+
+  .glide-matching-character {
+    color: #ffffff !important;
+    background: #3b5bdb !important;
+  }
+`)
