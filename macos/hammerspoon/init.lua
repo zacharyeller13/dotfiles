@@ -1,7 +1,6 @@
 local audio = require("audio")
 local encoding = require("encoding")
 local riftapi = require("riftapi")
-require("vimish")
 
 hs.loadSpoon("EmmyLua")
 hs.ipc.cliInstall()

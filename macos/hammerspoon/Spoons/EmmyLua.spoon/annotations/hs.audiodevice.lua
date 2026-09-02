@@ -36,6 +36,7 @@ function M:allInputDataSources() end
 --
 -- Returns:
 --  * A table of zero or more audio input devices connected to the system
+---@return hs.audiodevice[]
 function M.allInputDevices() end
 
 -- Gets all of the output data sources of an audio device
@@ -54,6 +55,7 @@ function M:allOutputDataSources() end
 --
 -- Returns:
 --  * A table of zero or more audio output devices connected to the system
+---@return hs.audiodevice[]
 function M.allOutputDevices() end
 
 -- Get the current left/right balance of this audio device
@@ -85,6 +87,7 @@ function M:balance() end
 --         device = defaultOutputDevice(),
 --     }
 -- ```
+---@return { name: string, uid: string, muted: boolean, volume: number, device: hs.audiodevice }
 function M.current(input, ...) end
 
 -- Gets the current input data source of an audio device
@@ -165,6 +168,8 @@ function M.findDeviceByUID(uid, ...) end
 --
 -- Returns:
 --  * An hs.audiodevice object or nil if the device could not be found
+---@param name string
+---@return hs.audiodevice
 function M.findInputByName(name, ...) end
 
 -- Find an audio input device by UID
@@ -183,6 +188,8 @@ function M.findInputByUID(uid, ...) end
 --
 -- Returns:
 --  * An hs.audiodevice object or nil if the device could not be found
+---@param name string
+---@return hs.audiodevice
 function M.findOutputByName(name, ...) end
 
 -- Find an audio output device by UID
@@ -548,4 +555,3 @@ function M:watcherStart() end
 --  * The `hs.audiodevice` object
 ---@return hs.audiodevice
 function M:watcherStop() end
-
