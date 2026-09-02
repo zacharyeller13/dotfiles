@@ -17,6 +17,11 @@ hot_reload = true
 [settings.layout]
 mode = "bsp"
 
+[settings.layout.traditional]
+equalize_nodes = true
+
+[settings.layout.bsp]
+
 [settings.layout.stack]
 stack_offset = 40.0
 default_orientation = "perpendicular"
@@ -89,9 +94,11 @@ show_empty = false
 mode = "all"
 active_label = "index"
 display_style = "layout"
+layout_folder = "~/.config/rift/layouts"
 
 [settings.ui.stack_line]
 enabled = false
+hover = "hover"
 thickness = 20.0
 horiz_placement = "top"
 vert_placement = "left"
@@ -117,7 +124,6 @@ haptic_pattern = "level_change"
 drag_swap_fraction = 0.3
 
 [keys]
-"Alt + Shift + Minus" = "resize_window_shrink"
 "Alt + Slash" = "toggle_orientation"
 "Alt + M" = "toggle_fullscreen"
 "Alt + Shift + Space" = "toggle_window_floating"
@@ -129,7 +135,6 @@ drag_swap_fraction = 0.3
 "Alt + Comma" = "toggle_stack"
 "Alt + Shift + Ctrl + Space" = "toggle_focus_floating"
 "Alt + Shift + F" = "toggle_fullscreen_within_gaps"
-"Alt + Shift + Equal" = "resize_window_grow"
 "Alt + Ctrl + S" = "serialize"
 
 [keys."Alt + Shift + ArrowUp"]
@@ -149,6 +154,9 @@ switch_to_workspace = 8
 
 [keys."Alt + Shift + 7"]
 move_window_to_workspace = 7
+
+[keys."Alt + Shift + Minus"]
+resize_window_shrink = "horizontal"
 
 [keys."Alt + J"]
 move_focus = "down"
@@ -222,6 +230,9 @@ move_node = "up"
 [keys."Alt + Shift + L"]
 move_node = "right"
 
+[keys."Alt + Shift + Equal"]
+resize_window_grow = "horizontal"
+
 [keys."Alt + Shift + ArrowLeft"]
 join_window = "left"
 
@@ -244,6 +255,7 @@ default_workspace_count = 10
 auto_assign_windows = true
 preserve_focus_per_workspace = true
 workspace_auto_back_and_forth = false
+prevent_wrapping = false
 workspace_names = [
     "space.0",
     "space.1",
@@ -264,29 +276,34 @@ workspace_rules = []
 app_id = "com.github.wez.wezterm"
 workspace = 1
 floating = false
+focus = false
 manage = true
 
 [[virtual_workspaces.app_rules]]
 app_id = "app.glide-browser.glide"
 workspace = 2
 floating = false
+focus = false
 manage = true
 
 [[virtual_workspaces.app_rules]]
 app_id = "com.microsoft.Outlook"
 workspace = 3
 floating = false
+focus = false
 manage = true
 
 [[virtual_workspaces.app_rules]]
 app_id = "com.cisco.Jabber"
 workspace = 4
 floating = false
+focus = false
 manage = true
 
 [[virtual_workspaces.app_rules]]
 app_id = "com.cisco.secureclient.gui"
 floating = true
+focus = true
 manage = true
 
 [modifier_combinations]
