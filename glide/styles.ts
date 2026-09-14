@@ -1,3 +1,6 @@
+glide.prefs.set("sidebar.verticalTabs", true);
+glide.prefs.set("sidebar.visibility", "expand-on-hover");
+
 glide.styles.add(css`
 #sidebar-header {
   display: none;

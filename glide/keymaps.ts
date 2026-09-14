@@ -10,6 +10,27 @@ glide.keymaps.set(["insert", "command"], "jj", "mode_change normal", { descripti
 glide.keymaps.set("normal", ">>", async () => await moveActiveTab(1), { description: "Move tab forward" })
 glide.keymaps.set("normal", "<lt><lt>", async () => await moveActiveTab(-1), { description: "Move tab backward" })
 
+glide.keymaps.set("normal", "<C-d>", "scroll_page_down")
+glide.keymaps.set("normal", "<C-u>", "scroll_page_up")
+
+glide.keymaps.set("normal", "<leader>s", async () => {
+    let current = await glide.tabs.active()
+    if (glide.unstable.split_views.has_split_view(current)) {
+        glide.unstable.split_views.separate(current)
+        return
+    }
+    glide.commandline.show({
+        title: "Select 2nd tab",
+        options: (await listAllTabs()).map((tab) => ({ label: tab.title!, execute(_) { glide.unstable.split_views.create([current, tab]) } }))
+    })
+
+}, { description: "Split view" })
+
+async function listAllTabs() {
+    let tabs = await glide.tabs.query({ active: false })
+    return tabs
+}
+
 
 const selectors = "[class*=link], [class*=action], [class*=button], [tabindex], [data-qa*=btn]"
 // This kinda works for now as far as adding more clickable hints
@@ -19,26 +40,6 @@ glide.keymaps.set("normal", "F", () => { glide.hints.show({ include: selectors, 
 
 // Show the built-in hints only incase I've selected too many with selectors
 glide.keymaps.set("normal", ";f", "hint")
-
-// Search history
-glide.keymaps.set("normal", "<leader>sh", async () => {
-    const history = await browser.history.search({
-        text: "",
-        maxResults: 10000,
-    })
-    history.sort((l, r) => { return (l.visitCount ?? 0) - (r.visitCount ?? 0) })
-    console.log(`history len: ${history.length}`)
-
-    glide.commandline.show({
-        title: "history",
-        options: history.map((histItem) => ({
-            label: histItem.title!,
-            description: histItem.url,
-            execute: async () => { console.log(histItem) }
-        }))
-    })
-});
-
 
 /** Move a tab forward or backward
   * @param {number} direction - 1 or -1
