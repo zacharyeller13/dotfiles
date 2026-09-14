@@ -6,8 +6,12 @@ local volume_icon = require("items.volume.icon")
 local devices = require("items.volume.devices")
 devices.setup(volume_icon)
 
+local hs_cmd = [[hs -c 'local output = hs.audiodevice.current()
+output.device:setOutputVolume(%d)'
+]]
+
 volume_slider:subscribe("mouse.clicked", function(env)
-    Sketchybar.exec("aerospace volume set " .. env.PERCENTAGE)
+    Sketchybar.exec(hs_cmd:format(tonumber(env.PERCENTAGE)))
 end)
 volume_slider:subscribe("volume_change", function(env)
     local volume = tonumber(env.INFO)

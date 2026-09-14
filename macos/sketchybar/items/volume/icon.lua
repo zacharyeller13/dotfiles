@@ -10,12 +10,14 @@ local volume_icon = Sketchybar.add("item", "volume_icon", {
             style = "Regular",
             size = 18.0,
         },
+        color = colors.magenta,
     },
     label = {
         align = "left",
         font = {
             style = "Regular",
         },
+        color = colors.magenta,
     },
 })
 

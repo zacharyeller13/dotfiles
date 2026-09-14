@@ -22,5 +22,6 @@ return {
         input_muted = "󰍭",
         output = "󰕾",
         output_muted = "󰖁",
+        knob = "􀀁",
     },
 }

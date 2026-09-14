@@ -1,7 +1,9 @@
+local colors = require("colors")
 local clock = Sketchybar.add("item", "clock", {
     position = "right",
     update_freq = 10,
-    icon = { string = "  " },
+    icon = { string = "  ", color = colors.blue },
+    label = { color = colors.blue },
 })
 
 -- Add calendar

@@ -7,7 +7,7 @@ local volume_slider = Sketchybar.add("slider", "volume_slider", 100, {
     label = { drawing = false },
     icon = { drawing = false },
     slider = {
-        highlight_color = colors.blue,
+        highlight_color = colors.magenta,
         width = 0,
         background = {
             height = 6,
@@ -15,7 +15,7 @@ local volume_slider = Sketchybar.add("slider", "volume_slider", 100, {
             color = colors.volume_slider_bg,
         },
         knob = {
-            string = "􀀁",
+            string = icons.audio.knob,
             drawing = true,
         },
     },

@@ -7,7 +7,7 @@ local M = {}
 ---@field name string
 ---@field muted boolean
 
-local hs_cmd = [['local output = hs.audiodevice.current()
+local hs_cmd = [[hs -c 'local output = hs.audiodevice.current()
 local input = hs.audiodevice.current(true)
 local out = hs.json.encode({
     output = { name = output.name, muted = output.muted },
@@ -20,7 +20,7 @@ print(out)'
 ---and perform some callback on the result
 ---@param callback fun(result: {output: HSAudioDevice, input: HSAudioDevice}, exit_code: integer)
 local function update(callback)
-    Sketchybar.exec("hs -c " .. hs_cmd, callback)
+    Sketchybar.exec(hs_cmd, callback)
 end
 
 ---Setup input/output devices as popups on the parent item

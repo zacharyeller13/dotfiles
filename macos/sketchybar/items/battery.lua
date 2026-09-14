@@ -1,10 +1,11 @@
+local colors = require("colors")
 local icons = require("icons")
 local power = require("helpers.power")
 
 local battery = Sketchybar.add("item", "battery", {
     position = "right",
-    icon = icons.battery._100,
-    label = "100%",
+    icon = { string = icons.battery._100, color = colors.green },
+    label = { string = "100%", color = colors.green },
     update_freq = 120,
 })
 
@@ -17,24 +18,42 @@ local function update()
             percentage, _ = match:gsub("%%", "")
         end
 
-        battery:set({ label = percentage .. "%" })
+        battery:set({ label = { string = percentage .. "%" } })
 
         for _ in result:gmatch("AC Power") do
             charging = true
         end
         if charging then
-            battery:set({ icon = icons.battery.charging })
+            battery:set({
+                icon = { string = icons.battery.charging, color = colors.white },
+                label = { color = colors.white },
+            })
         else
             if tonumber(percentage) >= 90 then
-                battery:set({ icon = icons.battery._100 })
+                battery:set({
+                    icon = { string = icons.battery._100, color = colors.green },
+                    label = { color = colors.green },
+                })
             elseif tonumber(percentage) >= 60 then
-                battery:set({ icon = icons.battery._75 })
+                battery:set({
+                    icon = { string = icons.battery._75, color = colors.green },
+                    label = { color = colors.green },
+                })
             elseif tonumber(percentage) >= 40 then
-                battery:set({ icon = icons.battery._50 })
+                battery:set({
+                    icon = { string = icons.battery._50, color = colors.yellow },
+                    label = { color = colors.yellow },
+                })
             elseif tonumber(percentage) >= 15 then
-                battery:set({ icon = icons.battery._20 })
+                battery:set({
+                    icon = { string = icons.battery._20, color = colors.orange },
+                    label = { color = colors.orange },
+                })
             else
-                battery:set({ icon = icons.battery._0 })
+                battery:set({
+                    icon = { string = icons.battery._0, color = colors.red },
+                    label = { color = colors.red },
+                })
             end
         end
     end)
