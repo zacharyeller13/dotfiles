@@ -1,29 +1,39 @@
 [includeIf "hasconfig:remote.*.url:git@github.com:zacharyeller13/**"]
-	path = ~/.config/git/personal
+    path = ~/.config/git/personal
 [includeIf "gitdir:~/work/**"]
-	path = ~/.config/git/work
+    path = ~/.config/git/work
 [includeIf "gitdir:/mnt/c/Users/**"]
-	path = ~/.config/git/work
+    path = ~/.config/git/work
 [includeIf "gitdir:~/dev/**"]
-	path = ~/.config/git/personal
+    path = ~/.config/git/personal
 [pager]
-	branch = false
-	config = false
+    branch = false
+    config = false
 [core]
-	autocrlf = input
-	editor = nvim
-    pager = less -F -X
+    autocrlf = input
+    editor = nvim
+    # pager = less -F -X
+    pager = delta
+[interactive]
+    diffFilter = delta --color-only
+[delta]
+    navigate = true
+    dark = true
+    side-by-side = true
 [push]
-	default = current
+    default = current
 [init]
-	defaultBranch = main
+    defaultBranch = main
 [branch]
-	sort = -committerdate
+    sort = -committerdate
 [log]
-	date = iso
+    date = iso
 [alias]
-	graph = log --all --graph --decorate --oneline
+    graph = log --all --graph --decorate --oneline
 [diff]
-	tool = nvimdiff
+    tool = nvimdiff
 [merge]
-	tool = nvimdiff2
+    tool = nvimdiff2
+    conflictStyle = zdiff3
+[pull]
+    rebase = true
