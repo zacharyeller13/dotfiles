@@ -7,7 +7,11 @@ local devices = require("items.volume.devices")
 devices.setup(volume_icon)
 
 local hs_cmd = [[hs -c 'local output = hs.audiodevice.current()
-output.device:setOutputVolume(%d)'
+local new_volume = %d
+if output.muted and new_volume > 0 then
+    output.device:setMuted(false)
+end
+local ok = output.device:setOutputVolume(new_volume)'
 ]]
 
 volume_slider:subscribe("mouse.clicked", function(env)

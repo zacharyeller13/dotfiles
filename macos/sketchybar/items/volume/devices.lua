@@ -11,7 +11,7 @@ local hs_cmd = [[hs -c 'local output = hs.audiodevice.current()
 local input = hs.audiodevice.current(true)
 local out = hs.json.encode({
     output = { name = output.name, muted = output.muted },
-    input = {name = input.name, muted = input.muted }
+    input = { name = input.name, muted = input.muted }
 })
 print(out)'
 ]]
