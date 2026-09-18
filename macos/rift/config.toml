@@ -191,8 +191,9 @@ move_window_to_workspace = 9
 [keys."Alt + 5"]
 switch_to_workspace = 5
 
-[keys."Alt + Shift + Tab".move_window_to_display]
+[keys."Alt + Shift + Tab".move_workspace_to_display]
 selector = "left"
+wrap_around = true
 
 [keys."Alt + 0"]
 switch_to_workspace = 0
