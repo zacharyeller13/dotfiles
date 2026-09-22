@@ -61,6 +61,11 @@ hs.hotkey.bind({ "alt" }, "c", function()
     win:close()
 end)
 
+hs.hotkey.bind({ "alt", "cmd" }, "n", function()
+    hs.alert.show("Closing notifications")
+    require("notifications").close_all()
+end)
+
 hs.caffeinate.set("displayIdle", true, true)
 hs.caffeinate.set("systemIdle", true, true)
 hs.alert.show("Config loaded")
