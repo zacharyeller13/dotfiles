@@ -74,6 +74,7 @@ right = 10.0
 
 [settings.layout.scrolling]
 column_width_ratio = 0.7
+preserve_window_sizes = true
 min_column_width_ratio = 0.3
 max_column_width_ratio = 0.9
 alignment = "center"
@@ -120,15 +121,20 @@ distance_pct = 0.08
 haptics_enabled = true
 haptic_pattern = "level_change"
 
-[settings.window_snapping]
-drag_swap_fraction = 0.3
+[settings.drag_drop]
+enabled = true
+modifier = "fn"
+action1 = "move"
+action2 = "none"
+drop_action = "swap"
+drop_zone_fraction = 0.25
+preview = true
 
 [keys]
 "Alt + Slash" = "toggle_orientation"
 "Alt + M" = "toggle_fullscreen"
 "Alt + Shift + Space" = "toggle_window_floating"
 "Alt + Tab" = "switch_to_last_workspace"
-"Alt + Z" = "toggle_space_activated"
 "Alt + Ctrl + Q" = "save_and_exit"
 "Alt + Shift + D" = "debug"
 "Alt + Ctrl + E" = "unjoin_windows"
