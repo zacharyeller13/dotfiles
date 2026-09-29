@@ -5,6 +5,7 @@ local riftapi = require("riftapi")
 
 ---@type table<string, SbarItem?>
 local workspaces = {}
+local current_space = "space.0"
 
 local active_space = {
     width = "dynamic",
@@ -94,5 +95,16 @@ end
 
 riftapi.subscribe({ "workspace_changed" }, function(env)
     update_spaces()
+end)
+riftapi.subscribe({ "focused_window_changed" }, function(env)
+    local new_space = env.DATA.workspace_name
+    if not new_space then
+        return
+    end
+
+    if new_space ~= current_space then
+        update_spaces()
+        current_space = new_space
+    end
 end)
 update_spaces()

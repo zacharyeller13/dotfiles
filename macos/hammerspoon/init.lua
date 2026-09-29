@@ -51,14 +51,18 @@ end)
 hs.hotkey.bind({ "alt" }, "c", function()
     local app = hs.application.frontmostApplication()
     local allWins = app:allWindows()
+    local win = app:focusedWindow()
+    local win_id = win:id() -- this SHOULD match the window_server_id that rift sees
     if #allWins == 1 then
+        -- first close the window by letting rift know
+        -- then kill the app, because MacOS is stupid and thinks close means minimize
+        riftapi.window.close(win_id)
         app:kill()
         hs.alert("Closed app: " .. app:title())
         return
     end
-    local win = app:focusedWindow()
     hs.alert("Closed window: " .. win:title())
-    win:close()
+    riftapi.window.close(win_id)
 end)
 
 hs.hotkey.bind({ "alt", "cmd" }, "n", function()
