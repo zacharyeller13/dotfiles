@@ -308,13 +308,6 @@ focus = false
 manage = true
 
 [[virtual_workspaces.app_rules]]
-app_id = "us.zoom.xos"
-workspace = 4
-floating = false
-focus = false
-manage = true
-
-[[virtual_workspaces.app_rules]]
 app_id = "com.cisco.secureclient.gui"
 floating = true
 focus = true
