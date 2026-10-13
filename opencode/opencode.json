@@ -1,0 +1,57 @@
+{
+    "$schema": "https://opencode.ai/config.json",
+    "update": "disable",
+    "default_agent": "plan",
+    "permissions": [
+        {
+            "action": "edit",
+            "resource": "*",
+            "effect": "ask"
+        },
+        {
+            "action": "shell",
+            "resource": "env *",
+            "effect": "deny"
+        }
+    ],
+    "agents": {
+        "plan": {
+            "system": "Never offer to implement or ask to switch out of plan mode to implement. Always assume the user (or a separate agent) will be the one implementing.",
+            "permissions": [
+                {
+                    "action": "shell",
+                    "resource": "env *",
+                    "effect": "deny"
+                }
+            ]
+        }
+    },
+    "providers": {
+        "ollama": {
+            "name": "Ollama",
+            "package": "aisdk:@ai-sdk/openai-compatible",
+            "settings": {
+                "baseURL": "http://127.0.0.1:11434/v1"
+            },
+            "models": {
+                "qwen3-coder": {
+                    "name": "qwen3-coder"
+                }
+            }
+        }
+    },
+    "mcp": {
+        "servers": {
+            "azure-mcp": {
+                "type": "local",
+                "command": [
+                    "azmcp",
+                    "server",
+                    "start"
+                ],
+                "disabled": false
+            }
+        }
+    },
+    "lsp": true
+}
