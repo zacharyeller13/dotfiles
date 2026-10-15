@@ -301,11 +301,30 @@ focus = false
 manage = true
 
 [[virtual_workspaces.app_rules]]
+app_id = "us.zoom.xos"
+ax_subrole = "AXSystemDialog"
+manage = false
+
+[[virtual_workspaces.app_rules]]
+app_id = "us.zoom.xos"
+ax_subrole = "AXStandardWindow"
+workspace = 4
+floating = false
+focus = false
+manage = true
+
+[[virtual_workspaces.app_rules]]
 app_id = "com.cisco.Jabber"
 workspace = 4
 floating = false
 focus = false
 manage = true
+
+[[virtual_workspaces.app_rules]]
+app_id = "com.cisco.Jabber"
+title_substring = "Window"
+# floating = true
+manage = false
 
 [[virtual_workspaces.app_rules]]
 app_id = "com.cisco.secureclient.gui"
