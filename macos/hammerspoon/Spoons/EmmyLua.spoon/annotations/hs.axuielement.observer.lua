@@ -58,6 +58,8 @@ function M:isRunning() end
 -- Notes:
 --  * If you already have the `hs.application` object for an application, you can get its process ID with `hs.application:pid()`
 --  * If you already have an `hs.axuielement` from the application you wish to observe (it doesn't have to be the application axuielement object, just one belonging to the application), you can get the process ID with `hs.axuielement:pid()`.
+---@param pid number
+---@return hs.axuielement.observer
 function M.new(pid, ...) end
 
 -- A table of common accessibility object notification names, provided for reference.
@@ -116,4 +118,3 @@ function M:stop() end
 --  * If an element is specified, then the table returned will contain a list of strings specifying the specific notifications that the observer is watching that element for.
 --  * If no argument is specified, then the table will contain key-value pairs in which each key will be an `hs.axuielement` that is being observed and the corresponding value will be a table containing a list of strings specifying the specific notifications that the observer is watching for from that element.
 function M:watching(element, ...) end
-
