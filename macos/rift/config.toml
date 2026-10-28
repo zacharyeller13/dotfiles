@@ -258,6 +258,7 @@ move_window_to_workspace = 3
 
 [virtual_workspaces]
 enabled = true
+mode = "global"
 default_workspace_count = 10
 auto_assign_windows = true
 preserve_focus_per_workspace = true
@@ -277,7 +278,15 @@ workspace_names = [
 ]
 default_workspace = 1
 reapply_app_rules_on_title_change = false
-workspace_rules = []
+
+[[virtual_workspaces.workspace_rules]]
+workspace = "space.3"
+display = ["left", "builtin"]
+
+[[virtual_workspaces.workspace_rules]]
+workspace = "space.4"
+display = ["left", "builtin"]
+
 
 [[virtual_workspaces.app_rules]]
 app_id = "com.github.wez.wezterm"

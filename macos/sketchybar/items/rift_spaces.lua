@@ -33,8 +33,8 @@ local function update_spaces()
         return
     end
     for _, rspace in ipairs(result) do
-        local space = workspaces[rspace.name]
-        if rspace.is_active and space then
+        local space = workspaces[rspace.name or ""]
+        if rspace.is_active and rspace.is_focused and space then
             space:set(active_space)
         elseif #rspace.windows == 0 and space then
             space:set(empty_space)
