@@ -19,13 +19,14 @@ async function clearTmpContainers(_: glide.ExcmdCallbackProps) {
     const containers = await browser.contextualIdentities.query({})
     for (const container of containers) {
         if (container.name.startsWith("tmp")) {
-            if (await glide.tabs.query({ cookieStoreId: container.cookieStoreId })) {
+            const tabs = await glide.tabs.query({ cookieStoreId: container.cookieStoreId });
+            if (tabs.length > 0) {
                 return
             }
             // Just catch any errors, we're forcing the deletion so don't care
             // if it was already deleted
             glide.excmds.execute(`containerdelete ${container.name}`)
-                .catch(reason => { console.log(reason) })
+                .catch(reason => { console.log(reason) });
         }
     }
 }
